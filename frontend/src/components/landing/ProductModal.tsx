@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Plus, Minus, Check, Clock, Flame, Info, ShoppingBag } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Product, ProductSize, ProductExtra, CartExtraItem } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
@@ -27,7 +28,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
   useEffect(() => {
     if (product) {
-      // Find default size or first size
       const defaultSize = product.sizes?.find(s => s.is_default) || product.sizes?.[0];
       setSelectedSize(defaultSize);
       setSelectedExtras({});
@@ -42,7 +42,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const description = isAr ? (product.description_ar || product.description) : product.description;
   const ingredients = isAr ? (product.ingredients_ar || product.ingredients) : product.ingredients;
 
-  // Calculate live total price
   const basePrice = selectedSize ? selectedSize.price : (product.discount_price ?? product.base_price);
   
   let extrasTotal = 0;
@@ -60,9 +59,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     setSelectedExtras(prev => {
       const current = prev[extra.name] || 0;
       if (current > 0) {
-        const copy = { ...prev };
-        delete copy[extra.name];
-        return copy;
+        const updated = { ...prev };
+        delete updated[extra.name];
+        return updated;
       } else {
         return { ...prev, [extra.name]: 1 };
       }
@@ -90,108 +89,110 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm animate-fade-in overflow-y-auto">
-      <div
-        className="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden my-8"
-        onClick={e => e.stopPropagation()}
-      >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 rtl:right-auto rtl:left-4 z-20 p-2 rounded-full bg-white/80 dark:bg-zinc-800/80 hover:bg-white dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-200 shadow-md backdrop-blur-xs transition-colors cursor-pointer"
-        >
-          <X className="w-5 h-5" />
-        </button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      
+      {/* Backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 bg-slate-950/80 backdrop-blur-md transition-opacity"
+      ></motion.div>
 
-        {/* Large Product Image */}
-        <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+      {/* Modal Dialog Card (Taste-Skill) */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 16 }}
+        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        className="relative w-full max-w-2xl rounded-3xl bg-slate-900 border border-slate-700/80 shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh]"
+      >
+        
+        {/* Header Photo */}
+        <div className="relative aspect-16/9 w-full bg-slate-950 shrink-0 overflow-hidden">
           <img
             src={product.image_url || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80'}
             alt={name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-          
-          <div className="absolute bottom-4 left-6 rtl:left-auto rtl:right-6 flex flex-wrap gap-2">
-            {product.is_bestseller && <Badge type="bestseller" size="md" />}
-            {product.is_featured && <Badge type="featured" size="md" />}
-            {product.is_vegetarian && <Badge type="vegetarian" size="md" />}
-            {product.is_spicy && <Badge type="spicy" size="md" />}
+
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-black/30"></div>
+
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="taste-btn absolute top-4 right-4 rtl:right-auto rtl:left-4 p-2.5 rounded-full bg-slate-950/80 text-white hover:bg-slate-800 transition-colors cursor-pointer border border-slate-700 z-20"
+          >
+            <X className="w-4 h-4" />
+          </button>
+
+          {/* Badges */}
+          <div className="absolute bottom-4 left-4 rtl:left-auto rtl:right-4 flex flex-wrap gap-2 z-10">
+            {product.is_bestseller && <Badge type="bestseller" />}
+            {product.is_featured && <Badge type="featured" />}
+            {product.is_new && <Badge type="new" />}
+            {product.is_vegetarian && <Badge type="vegetarian" />}
+            {product.is_spicy && <Badge type="spicy" />}
           </div>
         </div>
 
-        {/* Modal Body */}
-        <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+        {/* Modal Scrollable Body */}
+        <div className="p-6 overflow-y-auto space-y-6 flex-1 text-white">
           
-          {/* Title & Description */}
           <div className="space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-zinc-50">
+            <h2 className="text-2xl sm:text-3xl font-black text-white">
               {name}
             </h2>
-            {description && (
-              <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                {description}
-              </p>
-            )}
-
-            {/* Calories & Prep time */}
-            <div className="flex items-center gap-4 pt-2 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-              {product.prep_time_mins && (
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-blue-500" />
-                  <span>{product.prep_time_mins} {t('product.mins')}</span>
-                </span>
-              )}
-              {product.calories && (
-                <span className="flex items-center gap-1.5">
-                  <Flame className="w-4 h-4 text-blue-500" />
-                  <span>{product.calories} kcal</span>
-                </span>
-              )}
-            </div>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              {description}
+            </p>
           </div>
 
-          {/* Ingredients list */}
+          {/* Ingredients Note */}
           {ingredients && (
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-blue-950/60 text-xs">
-              <div className="flex items-center gap-1.5 font-bold text-slate-800 dark:text-slate-200 mb-1">
-                <Info className="w-4 h-4 text-blue-500" />
-                <span>{t('product.ingredients')}</span>
-              </div>
-              <p className="text-zinc-500 dark:text-zinc-400">
+            <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 flex items-start gap-3">
+              <Info className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
+              <div className="text-xs text-slate-300 leading-relaxed">
+                <span className="font-bold text-white block mb-0.5">{t('product.ingredients')}:</span>
                 {ingredients}
-              </p>
+              </div>
             </div>
           )}
 
-          {/* Sizes Options */}
+          {/* Sizes Selection */}
           {product.sizes && product.sizes.length > 0 && (
             <div className="space-y-3">
-              <label className="block text-sm font-extrabold text-zinc-900 dark:text-zinc-100">
-                {t('product.selectSize')}
-              </label>
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-black uppercase tracking-wider text-slate-400">
+                  {t('product.selectSize')}
+                </label>
+                <span className="text-[11px] text-blue-400 font-bold">{isAr ? 'مطلوب' : 'Required'}</span>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {product.sizes.map(size => {
-                  const isSelected = selectedSize?.name === size.name;
-                  const sizeName = isAr ? size.name_ar : size.name;
+                  const isSelected = selectedSize?.id === size.id;
+                  const sizeName = isAr ? (size.name_ar || size.name) : size.name;
+
                   return (
                     <button
-                      key={size.name}
+                      key={size.id}
                       type="button"
                       onClick={() => setSelectedSize(size)}
-                      className={`flex flex-col p-3 rounded-2xl border text-left rtl:text-right transition-all cursor-pointer ${
+                      className={`taste-btn flex flex-col items-start p-3.5 rounded-2xl border text-left rtl:text-right cursor-pointer transition-all ${
                         isSelected
-                          ? 'border-blue-600 bg-blue-50/70 dark:bg-blue-950/40 ring-2 ring-blue-500'
-                          : 'border-slate-200 dark:border-blue-950 bg-white dark:bg-slate-800 hover:border-slate-400'
+                          ? 'bg-blue-600/20 border-blue-500 shadow-sm ring-1 ring-blue-400/40'
+                          : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
                       }`}
                     >
-                      <div className="flex items-center justify-between">
-                        <span className="font-bold text-sm text-slate-900 dark:text-white">
+                      <div className="flex items-center justify-between w-full">
+                        <span className="text-xs font-extrabold text-white">
                           {sizeName}
                         </span>
-                        {isSelected && <Check className="w-4 h-4 text-blue-600" />}
+                        {isSelected && <Check className="w-4 h-4 text-blue-400" />}
                       </div>
-                      <span className="text-xs font-black text-blue-600 dark:text-blue-400 mt-1">
+                      <span className="text-xs font-black text-blue-300 mt-1">
                         {currency} {Number(size.price || 0).toFixed(2)}
                       </span>
                     </button>
@@ -201,41 +202,41 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             </div>
           )}
 
-          {/* Optional Extras */}
+          {/* Extras Selection */}
           {product.extras && product.extras.length > 0 && (
             <div className="space-y-3">
-              <label className="block text-sm font-extrabold text-slate-900 dark:text-white">
-                {t('product.extrasOptions')}
+              <label className="text-xs font-black uppercase tracking-wider text-slate-400">
+                {t('product.chooseExtras')}
               </label>
-              <div className="space-y-2">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {product.extras.map(extra => {
-                  const isChecked = !!selectedExtras[extra.name];
-                  const extraName = isAr ? extra.name_ar : extra.name;
+                  const isSelected = (selectedExtras[extra.name] || 0) > 0;
+                  const extraName = isAr ? (extra.name_ar || extra.name) : extra.name;
+
                   return (
                     <div
-                      key={extra.name}
+                      key={extra.id}
                       onClick={() => handleToggleExtra(extra)}
-                      className={`flex items-center justify-between p-3.5 rounded-2xl border transition-colors cursor-pointer ${
-                        isChecked
-                          ? 'border-blue-500 bg-blue-50/60 dark:bg-blue-950/30 ring-1 ring-blue-500'
-                          : 'border-slate-200 dark:border-blue-950 hover:bg-slate-50 dark:hover:bg-slate-800/60'
+                      className={`taste-btn flex items-center justify-between p-3.5 rounded-2xl border cursor-pointer transition-all ${
+                        isSelected
+                          ? 'bg-blue-600/20 border-blue-500 shadow-sm ring-1 ring-blue-400/40'
+                          : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
                       }`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5">
                         <div
-                          className={`w-5 h-5 rounded-lg border flex items-center justify-center transition-colors ${
-                            isChecked
-                              ? 'bg-blue-600 border-blue-600 text-white'
-                              : 'border-slate-300 dark:border-slate-600'
+                          className={`w-4 h-4 rounded-md border flex items-center justify-center transition-colors ${
+                            isSelected ? 'bg-blue-600 border-blue-500 text-white' : 'border-slate-700'
                           }`}
                         >
-                          {isChecked && <Check className="w-3.5 h-3.5" />}
+                          {isSelected && <Check className="w-3 h-3 text-white" />}
                         </div>
-                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                        <span className="text-xs font-bold text-white">
                           {extraName}
                         </span>
                       </div>
-                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
+                      <span className="text-xs font-bold text-blue-300">
                         +{currency} {Number(extra.price || 0).toFixed(2)}
                       </span>
                     </div>
@@ -247,47 +248,47 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
           {/* Special Instructions */}
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-slate-600 dark:text-slate-300">
+            <label className="block text-xs font-black uppercase tracking-wider text-slate-400">
               {t('product.specialInstructions')}
             </label>
             <textarea
               rows={2}
               value={specialInstructions}
               onChange={e => setSpecialInstructions(e.target.value)}
-              placeholder={isAr ? 'أي طلبات إضافية؟' : 'e.g. Extra napkins, no pickles, sauce on side...'}
-              className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-blue-950 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder={isAr ? 'أي طلبات إضافية؟ (مثال: بدون بصل، صلصة إضافية...)' : 'e.g. Extra napkins, no onions, dressing on side...'}
+              className="w-full px-4 py-3 rounded-2xl bg-slate-950/80 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
             />
           </div>
 
         </div>
 
-        {/* Modal Sticky Footer with Quantity & Add to Cart Button */}
-        <div className="p-4 sm:p-6 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-blue-950 flex items-center justify-between gap-4">
+        {/* Modal Sticky Footer with Quantity & Add to Cart */}
+        <div className="p-4 sm:p-6 bg-slate-950 border-t border-slate-800 flex items-center justify-between gap-4">
           
           {/* Quantity Controls */}
-          <div className="flex items-center gap-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-blue-950 px-3 py-1.5 rounded-2xl shadow-xs">
+          <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-2xl">
             <button
               onClick={() => setQuantity(q => Math.max(1, q - 1))}
               disabled={quantity <= 1}
-              className="p-1 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-30 cursor-pointer"
+              className="taste-btn p-1.5 rounded-lg text-slate-300 hover:text-white disabled:opacity-30 cursor-pointer"
             >
               <Minus className="w-4 h-4" />
             </button>
-            <span className="font-black text-base w-6 text-center text-slate-900 dark:text-white">
+            <span className="font-black text-base w-6 text-center text-white">
               {quantity}
             </span>
             <button
               onClick={() => setQuantity(q => q + 1)}
-              className="p-1 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer"
+              className="taste-btn p-1.5 rounded-lg text-slate-300 hover:text-white cursor-pointer"
             >
               <Plus className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Add to Cart with live price in Dark Blue & White style */}
+          {/* Add to Cart CTA */}
           <button
             onClick={handleAddToCart}
-            className="flex-1 flex items-center justify-between px-6 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 hover:from-blue-500 hover:to-indigo-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-blue-900/30 active:scale-98 transition-all cursor-pointer ring-1 ring-blue-400/30"
+            className="taste-btn flex-1 flex items-center justify-between px-6 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-black text-sm sm:text-base shadow-xl shadow-blue-600/30 ring-1 ring-blue-400/40 cursor-pointer"
           >
             <span className="flex items-center gap-2">
               <ShoppingBag className="w-5 h-5 text-white" />
@@ -299,7 +300,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           </button>
 
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

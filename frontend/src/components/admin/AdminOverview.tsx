@@ -140,10 +140,10 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
           {/* Firebase Status Pill */}
           <button
             onClick={() => setFirebaseModalOpen(true)}
-            className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold border transition-colors cursor-pointer ${
+            className={`taste-btn inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold border transition-colors cursor-pointer ${
               isFirebaseConfigured
-                ? 'bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300 border-blue-300 dark:border-blue-800'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-blue-950 hover:bg-slate-50'
+                ? 'bg-blue-950/60 text-blue-300 border-blue-800'
+                : 'bg-slate-900 text-slate-300 border-slate-800 hover:bg-slate-850'
             }`}
             title="Configure Google Firebase connection"
           >
@@ -157,7 +157,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
               setRestoreStatus(null);
               setRestoreModalOpen(true);
             }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-500/20 transition-all cursor-pointer ring-1 ring-blue-400/30"
+            className="taste-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-md shadow-blue-600/30 cursor-pointer ring-1 ring-blue-400/30"
           >
             <Database className="w-4 h-4" />
             <span>{isAr ? 'استعادة قاعدة البيانات' : 'Restore Database'}</span>
@@ -166,7 +166,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
           {/* Refresh Button */}
           <button
             onClick={fetchDashboardData}
-            className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-blue-950 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+            className="taste-btn p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer"
             title="Refresh Metrics"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -174,21 +174,21 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
         </div>
       </div>
 
-      {/* KPI Metric Cards in Dark Blue & White style */}
+      {/* KPI Metric Cards in Dark Blue & White style (Taste-Skill) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         
         {/* Total Revenue */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-blue-950/70 shadow-sm space-y-3">
+        <div className="taste-card p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
               {isAr ? 'إجمالي المبيعات' : 'Total Revenue'}
             </span>
-            <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
               <DollarSign className="w-5 h-5" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900 dark:text-white">
+            <span className="text-3xl font-black text-white">
               {currency} {Number(stats?.total_revenue || 0).toFixed(2)}
             </span>
           </div>
@@ -198,17 +198,17 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
         </div>
 
         {/* Total Orders */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-blue-950/70 shadow-sm space-y-3">
+        <div className="taste-card p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
               {isAr ? 'إجمالي الطلبات' : 'Total Orders'}
             </span>
-            <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
               <ShoppingCart className="w-5 h-5" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900 dark:text-white">
+            <span className="text-3xl font-black text-white">
               {stats.total_orders}
             </span>
           </div>
@@ -218,17 +218,17 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
         </div>
 
         {/* Pending Orders */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-blue-950/70 shadow-sm space-y-3">
+        <div className="taste-card p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
               {isAr ? 'طلبات قيد الإعداد والتوصيل' : 'Active Pipeline'}
             </span>
-            <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-blue-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
               <Clock className="w-5 h-5" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-blue-600 dark:text-blue-400">
+            <span className="text-3xl font-black text-amber-400">
               {stats.pending_orders}
             </span>
           </div>
@@ -238,17 +238,17 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
         </div>
 
         {/* Total Products */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-blue-950/70 shadow-sm space-y-3">
+        <div className="taste-card p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
               {isAr ? 'أصناف القائمة' : 'Active Menu Items'}
             </span>
-            <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
               <UtensilsCrossed className="w-5 h-5" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-slate-900 dark:text-white">
+            <span className="text-3xl font-black text-white">
               {stats.total_products}
             </span>
           </div>

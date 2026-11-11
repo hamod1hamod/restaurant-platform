@@ -17,11 +17,12 @@ export const Navbar: React.FC<NavbarProps> = ({ settings }) => {
   const { theme, toggleTheme } = useTheme();
   const { totalItemsCount, setIsCartOpen } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isAr = language === 'ar';
 
   const restaurantName = language === 'ar' ? (settings?.name_ar || 'ملاذ الذواقة') : (settings?.name || 'Gourmet Haven');
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-900/95 text-white border-b border-blue-950/60 shadow-lg shadow-blue-950/20 transition-colors">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/90 text-white border-b border-slate-800/80 shadow-lg shadow-slate-950/40 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* Brand / Logo */}
@@ -30,43 +31,46 @@ export const Navbar: React.FC<NavbarProps> = ({ settings }) => {
             <img
               src={settings.logo_url}
               alt={restaurantName}
-              className="w-11 h-11 rounded-full object-cover ring-2 ring-blue-500 shadow-sm"
+              className="w-11 h-11 rounded-2xl object-cover ring-2 ring-blue-500/40 shadow-sm"
             />
           ) : (
-            <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-800 flex items-center justify-center text-white shadow-md ring-2 ring-blue-400/30">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-800 flex items-center justify-center text-white shadow-md ring-2 ring-blue-400/30">
               <UtensilsCrossed className="w-6 h-6 text-white" />
             </div>
           )}
           <div>
-            <a href="#" className="font-extrabold text-xl sm:text-2xl tracking-tight text-white flex items-center gap-1.5">
+            <a href="#" className="font-black text-xl sm:text-2xl tracking-tight text-white flex items-center gap-1.5 hover:text-blue-400 transition-colors">
               <span>{restaurantName}</span>
-              <span className="inline-block w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             </a>
-            <p className="text-xs text-blue-200/80 font-medium hidden sm:block">
+            <p className="text-xs text-slate-400 font-medium hidden sm:block">
               {settings?.opening_hours || 'Freshly Crafted Gourmet Meals'}
             </p>
           </div>
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-200">
-          <a href="#menu" className="hover:text-blue-400 transition-colors">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-bold text-slate-300">
+          <a href="#menu" className="hover:text-white transition-colors">
             {t('nav.menu')}
           </a>
-          <a href="#bestsellers" className="hover:text-blue-400 transition-colors flex items-center gap-1">
+          <a href="#bestsellers" className="hover:text-white transition-colors flex items-center gap-1">
             <Sparkles className="w-3.5 h-3.5 text-blue-400" />
             <span>{t('nav.bestsellers')}</span>
           </a>
-          <a href="#offers" className="hover:text-blue-400 transition-colors">
+          <a href="#craft" className="hover:text-white transition-colors text-blue-400">
+            {isAr ? 'حرفة الطهي' : 'Culinary Craft'}
+          </a>
+          <a href="#offers" className="hover:text-white transition-colors">
             {t('nav.offers')}
           </a>
-          <a href="#about" className="hover:text-blue-400 transition-colors">
+          <a href="#about" className="hover:text-white transition-colors">
             {t('nav.about')}
           </a>
-          <a href="#reviews" className="hover:text-blue-400 transition-colors">
+          <a href="#reviews" className="hover:text-white transition-colors">
             {t('nav.reviews')}
           </a>
-          <a href="#contact" className="hover:text-blue-400 transition-colors">
+          <a href="#contact" className="hover:text-white transition-colors">
             {t('nav.contact')}
           </a>
         </nav>
@@ -78,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ settings }) => {
           <button
             onClick={toggleLanguage}
             title={language === 'en' ? 'Switch to العربية' : 'Switch to English'}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border border-blue-800/60 hover:bg-blue-900/50 text-white transition-all cursor-pointer shadow-xs"
+            className="taste-btn flex items-center gap-1.5 px-3.5 py-2 rounded-2xl text-xs font-bold border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-white transition-all cursor-pointer shadow-xs"
           >
             <Globe className="w-3.5 h-3.5 text-blue-400" />
             <span>{language === 'en' ? 'العربية' : 'English'}</span>
@@ -88,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({ settings }) => {
           <button
             onClick={toggleTheme}
             title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-            className="p-2 rounded-full border border-blue-800/60 text-slate-200 hover:bg-blue-900/50 transition-colors cursor-pointer"
+            className="taste-btn p-2.5 rounded-2xl border border-slate-700 bg-slate-900/80 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
           >
             {theme === 'light' ? <Moon className="w-4 h-4 text-blue-300" /> : <Sun className="w-4 h-4 text-amber-300" />}
           </button>
@@ -96,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({ settings }) => {
           {/* Shopping Cart Button */}
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative flex items-center gap-2 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 hover:from-blue-500 hover:to-indigo-700 text-white px-4 py-2 rounded-full font-bold text-sm shadow-md shadow-blue-900/50 active:scale-95 transition-all cursor-pointer ring-1 ring-blue-400/30"
+            className="taste-btn relative flex items-center gap-2.5 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-2xl font-bold text-sm shadow-lg shadow-blue-600/30 transition-all cursor-pointer ring-1 ring-blue-400/40"
           >
             <ShoppingBag className="w-4 h-4 text-white" />
             <span className="hidden sm:inline">{t('nav.cart')}</span>

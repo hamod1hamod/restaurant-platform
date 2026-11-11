@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Star, MessageSquarePlus, User, CheckCircle2, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Review } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
 import { api } from '../../services/api';
@@ -51,27 +52,27 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
   };
 
   return (
-    <section id="reviews" className="py-16 sm:py-24 bg-zinc-50 dark:bg-zinc-950/40 border-t border-zinc-200/60 dark:border-zinc-800/60">
+    <section id="reviews" className="py-20 lg:py-28 bg-slate-950 text-white border-b border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
-              <Star className="w-3.5 h-3.5 fill-amber-500" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-900/40 border border-blue-500/30 text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <Star className="w-3.5 h-3.5 fill-blue-400" />
               <span>{isAr ? 'تقييمات وتجارب حقيقية' : 'Testimonials & Ratings'}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 dark:text-zinc-50">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
               {t('reviews.title')}
             </h2>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 max-w-xl">
+            <p className="text-sm text-slate-400 mt-1 max-w-xl">
               {isAr ? 'نفخر برضا زبائننا ونسعى دائماً لتقديم أشهى الأطباق وأرقى الخدمات.' : 'See what our loyal diners are saying about their flavorful journeys.'}
             </p>
           </div>
 
           <button
             onClick={() => setModalOpen(true)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-500/20 active:scale-95 transition-all cursor-pointer"
+            className="taste-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 cursor-pointer ring-1 ring-blue-400/40"
           >
             <MessageSquarePlus className="w-4 h-4" />
             <span>{t('reviews.writeReview')}</span>
@@ -83,7 +84,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
           {reviews.map(rev => (
             <div
               key={rev.id}
-              className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-blue-950/70 shadow-sm flex flex-col justify-between space-y-4"
+              className="taste-card p-6 rounded-3xl bg-slate-900/90 border border-slate-800/80 shadow-sm flex flex-col justify-between space-y-4"
             >
               <div className="space-y-3">
                 {/* Rating Stars */}
@@ -91,26 +92,26 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${i < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-200 dark:text-slate-700'}`}
+                      className={`w-4 h-4 ${i < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-700'}`}
                     />
                   ))}
                 </div>
                 
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic">
+                <p className="text-sm text-slate-300 leading-relaxed italic">
                   "{rev.comment}"
                 </p>
               </div>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-3 border-t border-slate-100 dark:border-blue-950/60">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-700 to-indigo-800 text-white flex items-center justify-center font-bold text-sm shadow-xs ring-1 ring-blue-400/40">
+              <div className="flex items-center gap-3 pt-3 border-t border-slate-800/80">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-800 text-white flex items-center justify-center font-bold text-sm shadow-xs ring-1 ring-blue-400/40">
                   {rev.customer_name.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-zinc-900 dark:text-zinc-100">
+                  <h4 className="font-bold text-sm text-white">
                     {rev.customer_name}
                   </h4>
-                  <span className="text-[11px] text-zinc-400">
+                  <span className="text-[11px] text-slate-400">
                     {isAr ? 'زبون معتمد' : 'Verified Diner'}
                   </span>
                 </div>
@@ -121,93 +122,108 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
 
       </div>
 
-      {/* Review Submission Modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-xs">
-          <div className="relative w-full max-w-lg rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 sm:p-8 shadow-2xl">
-            <button
+      {/* Review Submission Modal with AnimatePresence */}
+      <AnimatePresence>
+        {modalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setModalOpen(false)}
-              className="absolute top-4 right-4 rtl:right-auto rtl:left-4 p-2 rounded-full text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
-            >
-              <X className="w-5 h-5" />
-            </button>
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
+            ></motion.div>
 
-            {success ? (
-              <div className="py-8 text-center space-y-3">
-                <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto" />
-                <h3 className="text-xl font-black text-zinc-900 dark:text-zinc-50">
-                  {t('reviews.submitted')}
-                </h3>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-50">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-lg rounded-3xl bg-slate-900 border border-slate-700 p-6 sm:p-8 shadow-2xl z-10 space-y-6 text-white"
+            >
+              <div className="flex items-center justify-between">
+                <h3 className="font-black text-xl text-white">
                   {t('reviews.writeReview')}
                 </h3>
-
-                <div>
-                  <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-1">
-                    {t('reviews.name')} *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={customerName}
-                    onChange={e => setCustomerName(e.target.value)}
-                    placeholder={isAr ? 'محمد العلي' : 'e.g. Alex Morgan'}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-blue-950 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-900 dark:text-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                    {t('reviews.rating')}
-                  </label>
-                  <div className="flex items-center gap-2">
-                    {[1, 2, 3, 4, 5].map(star => (
-                      <button
-                        type="button"
-                        key={star}
-                        onClick={() => setRating(star)}
-                        className="p-1 cursor-pointer transition-transform hover:scale-110"
-                      >
-                        <Star
-                          className={`w-6 h-6 ${star <= rating ? 'fill-amber-400 text-amber-400' : 'text-slate-300 dark:text-slate-600'}`}
-                        />
-                      </button>
-                    ))}
-                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300 ml-2">
-                      {rating} / 5
-                    </span>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                    {t('reviews.comment')} *
-                  </label>
-                  <textarea
-                    rows={4}
-                    required
-                    value={comment}
-                    onChange={e => setComment(e.target.value)}
-                    placeholder={isAr ? 'ما رأيك في المذاق وسرعة الخدمة؟' : 'Share your dining experience...'}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-blue-950 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-900 dark:text-white"
-                  />
-                </div>
-
                 <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-500/20 transition-all cursor-pointer ring-1 ring-blue-400/30"
+                  onClick={() => setModalOpen(false)}
+                  className="taste-btn p-2 rounded-full text-slate-400 hover:text-white"
                 >
-                  {submitting ? '...' : t('reviews.submit')}
+                  <X className="w-5 h-5" />
                 </button>
-              </form>
-            )}
+              </div>
+
+              {success ? (
+                <div className="py-8 text-center space-y-3">
+                  <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto animate-bounce" />
+                  <p className="font-extrabold text-white text-base">
+                    {isAr ? 'شكراً لك! تم إرسال تقييمك بنجاح.' : 'Thank you! Your review has been submitted.'}
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                      {isAr ? 'اسمك الكريم' : 'Your Name'}
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={customerName}
+                      onChange={e => setCustomerName(e.target.value)}
+                      placeholder={isAr ? 'مثال: محمد العمري' : 'e.g. Alex Morgan'}
+                      className="w-full px-4 py-3 rounded-2xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                      {isAr ? 'التقييم' : 'Rating'}
+                    </label>
+                    <div className="flex items-center gap-2">
+                      {[1, 2, 3, 4, 5].map(star => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => setRating(star)}
+                          className="taste-btn p-1 text-2xl cursor-pointer"
+                        >
+                          <Star
+                            className={`w-7 h-7 ${star <= rating ? 'fill-amber-400 text-amber-400' : 'text-slate-700'}`}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                      {isAr ? 'رأيك وتجربتك' : 'Your Experience'}
+                    </label>
+                    <textarea
+                      required
+                      rows={3}
+                      value={comment}
+                      onChange={e => setComment(e.target.value)}
+                      placeholder={isAr ? 'ما الذي نال إعجابك في الأطباق والخدمة؟' : 'What did you enjoy most about the food and service?'}
+                      className="w-full px-4 py-3 rounded-2xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="taste-btn w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 cursor-pointer disabled:opacity-50"
+                  >
+                    {submitting ? '...' : (isAr ? 'نشر التقييم' : 'Submit Review')}
+                  </button>
+                </form>
+              )}
+
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 };

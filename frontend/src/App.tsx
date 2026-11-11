@@ -19,6 +19,7 @@ import { FilterBar } from './components/landing/FilterBar';
 import { ProductCard } from './components/landing/ProductCard';
 import { ProductModal } from './components/landing/ProductModal';
 import { BestSellersSection } from './components/landing/BestSellersSection';
+import { ChefMomentSection } from './components/landing/ChefMomentSection';
 import { SpecialOffersSection } from './components/landing/SpecialOffersSection';
 import { AboutSection } from './components/landing/AboutSection';
 import { GallerySection } from './components/landing/GallerySection';
@@ -316,6 +317,11 @@ const RestaurantApp: React.FC = () => {
             onOpenDetails={setSelectedProduct}
           />
         )}
+
+        {/* Dealt Culinary Craftsmanship Moment (Taste-Skill) */}
+        <section id="craft">
+          <ChefMomentSection />
+        </section>
 
         {activeSections.offers && (
           <SpecialOffersSection />
