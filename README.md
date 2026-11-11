@@ -1,5 +1,13 @@
 # Gourmet Haven - Restaurant Digital Menu & Management Platform
 
+[![Deploy to GitHub Pages](https://github.com/hamod1hamod/restaurant-platform/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/hamod1hamod/restaurant-platform/actions/workflows/deploy-pages.yml)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f?style=flat&logo=github)](https://hamod1hamod.github.io/restaurant-platform/)
+[![Codespaces](https://img.shields.io/badge/Codespaces-Open%20in%20Browser-blue?logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=hamod1hamod/restaurant-platform)
+[![Docker Compose](https://img.shields.io/badge/Docker%20Compose-Ready-2496ED?logo=docker)](docker-compose.yml)
+
+> 🌐 **Live Demo Website:** [https://hamod1hamod.github.io/restaurant-platform/](https://hamod1hamod.github.io/restaurant-platform/)  
+> 🎓 **Student Developer Guide:** See [STUDENT_PLAN_GUIDE.md](STUDENT_PLAN_GUIDE.md) for Codespaces, custom domain, and cloud hosting perks.
+
 A modern, responsive, full-stack restaurant platform featuring an interactive **Customer Digital Menu & Ordering Website** and a comprehensive **Admin Restaurant Management Dashboard**, backed by a high-performance **Python FastAPI** backend with dual **PostgreSQL / SQLite** database engines.
 
 ---
