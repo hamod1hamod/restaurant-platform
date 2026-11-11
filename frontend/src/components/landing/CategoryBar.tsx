@@ -32,20 +32,20 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
     <div className="w-full overflow-x-auto pb-3 pt-2 scrollbar-none">
       <div className="flex items-center gap-2.5 min-w-max">
         
-        {/* "All" button */}
+        {/* "All" button in Dark Blue & White style */}
         <button
           onClick={() => onSelectCategory(null)}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold transition-all cursor-pointer ${
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all cursor-pointer ${
             selectedCategoryId === null
-              ? 'bg-orange-600 text-white shadow-md shadow-orange-500/25 scale-102'
-              : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700'
+              ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30 scale-102 ring-2 ring-blue-400/40'
+              : 'bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-blue-950/80 shadow-xs'
           }`}
         >
           <Grid className="w-4 h-4" />
           <span>{t('menu.allCategories')}</span>
         </button>
 
-        {/* Categories list */}
+        {/* Categories list in Dark Blue & White style */}
         {categories.map(category => {
           const isSelected = selectedCategoryId === category.id;
           const name = isAr ? category.name_ar : category.name;
@@ -55,10 +55,10 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
             <button
               key={category.id}
               onClick={() => onSelectCategory(category.id)}
-              className={`flex items-center gap-2.5 px-4 py-2.5 rounded-full text-sm font-bold transition-all cursor-pointer ${
+              className={`flex items-center gap-2.5 px-5 py-2.5 rounded-full text-sm font-bold transition-all cursor-pointer ${
                 isSelected
-                  ? 'bg-orange-600 text-white shadow-md shadow-orange-500/25 scale-102'
-                  : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30 scale-102 ring-2 ring-blue-400/40'
+                  : 'bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-blue-950/80 shadow-xs'
               }`}
             >
               {category.image_url ? (
@@ -75,8 +75,8 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
                 <span
                   className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                     isSelected
-                      ? 'bg-orange-700/60 text-white'
-                      : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300'
+                      ? 'bg-blue-800 text-white'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
                   }`}
                 >
                   {category.product_count}

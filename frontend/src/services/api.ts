@@ -4,6 +4,7 @@ import {
 import {
   mockSettings, mockCategories, mockProducts, mockCoupons, mockReviews, mockOrders, mockAdminUser
 } from './mockData';
+import { restoreDatabase as restoreFirebaseDb, getStoredFirebaseConfig, saveFirebaseConfig, clearFirebaseConfig, initFirebase } from './firebase';
 
 const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || '/api/v1';
 
@@ -696,5 +697,23 @@ export const api = {
         filename: file.name
       };
     }
-  }
+  },
+
+  // Firebase & Database Restore
+  async restoreDatabase(): Promise<{ success: boolean; message: string }> {
+    const result = await restoreFirebaseDb();
+    if (result.success) {
+      categoriesState = getStorage<Category[]>('categories', mockCategories);
+      productsState = getStorage<Product[]>('products', mockProducts);
+      ordersState = getStorage<Order[]>('orders', mockOrders);
+      couponsState = getStorage<Coupon[]>('coupons', mockCoupons);
+      settingsState = getStorage<RestaurantSettings>('settings', mockSettings);
+      reviewsState = getStorage<Review[]>('reviews', mockReviews);
+    }
+    return result;
+  },
+
+  getFirebaseConfig: getStoredFirebaseConfig,
+  saveFirebaseConfig: saveFirebaseConfig,
+  clearFirebaseConfig: clearFirebaseConfig
 };

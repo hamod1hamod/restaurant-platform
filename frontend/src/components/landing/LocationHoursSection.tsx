@@ -23,14 +23,14 @@ export const LocationHoursSection: React.FC<LocationHoursSectionProps> = ({ sett
           {/* Information Column */}
           <div className="space-y-8">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
                 <MapPin className="w-3.5 h-3.5" />
                 <span>{isAr ? 'الموقع وساعات العمل' : 'Visit & Connect'}</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 dark:text-zinc-50">
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
                 {t('nav.contact')}
               </h2>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-2">
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
                 {isAr
                   ? 'يسعدنا استقبالكم في صالتنا الفاخرة أو توصيل أشهى المأكولات مباشرة إلى باب بيتكم.'
                   : 'Join us at our cozy dining lounge or order directly to your doorstep with guaranteed warmth.'}
@@ -40,22 +40,22 @@ export const LocationHoursSection: React.FC<LocationHoursSectionProps> = ({ sett
             <div className="space-y-4">
               
               {/* Address */}
-              <div className="flex items-start gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/60 dark:border-zinc-700/60">
-                <div className="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/60 text-orange-600 dark:text-orange-400 flex items-center justify-center shrink-0">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-blue-950/60">
+                <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-zinc-900 dark:text-zinc-100">
+                  <h4 className="font-bold text-sm text-slate-900 dark:text-white">
                     {isAr ? 'العنوان والموقع' : 'Location & Address'}
                   </h4>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-300 mt-0.5">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 mt-0.5">
                     {address}
                   </p>
                   <a
                     href={settings?.google_maps_url || 'https://maps.google.com'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-bold text-orange-600 dark:text-orange-400 hover:underline mt-2"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline mt-2"
                   >
                     <span>{isAr ? 'فتح على خرائط جوجل' : 'Open in Google Maps'}</span>
                     <ExternalLink className="w-3 h-3" />
@@ -96,7 +96,7 @@ export const LocationHoursSection: React.FC<LocationHoursSectionProps> = ({ sett
                   <div className="flex items-center gap-3 mt-2">
                     <a
                       href={`tel:${settings?.phone || '+15557892345'}`}
-                      className="text-xs font-bold text-orange-600 dark:text-orange-400 hover:underline"
+                      className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline"
                     >
                       {isAr ? 'اتصل الآن' : 'Call Directly'}
                     </a>

@@ -138,13 +138,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             <div className="flex items-center gap-4 pt-2 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
               {product.prep_time_mins && (
                 <span className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-orange-500" />
+                  <Clock className="w-4 h-4 text-blue-500" />
                   <span>{product.prep_time_mins} {t('product.mins')}</span>
                 </span>
               )}
               {product.calories && (
                 <span className="flex items-center gap-1.5">
-                  <Flame className="w-4 h-4 text-orange-500" />
+                  <Flame className="w-4 h-4 text-blue-500" />
                   <span>{product.calories} kcal</span>
                 </span>
               )}
@@ -153,9 +153,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
           {/* Ingredients list */}
           {ingredients && (
-            <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/60 dark:border-zinc-700/60 text-xs">
-              <div className="flex items-center gap-1.5 font-bold text-zinc-700 dark:text-zinc-300 mb-1">
-                <Info className="w-4 h-4 text-orange-500" />
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-blue-950/60 text-xs">
+              <div className="flex items-center gap-1.5 font-bold text-slate-800 dark:text-slate-200 mb-1">
+                <Info className="w-4 h-4 text-blue-500" />
                 <span>{t('product.ingredients')}</span>
               </div>
               <p className="text-zinc-500 dark:text-zinc-400">
@@ -181,17 +181,17 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                       onClick={() => setSelectedSize(size)}
                       className={`flex flex-col p-3 rounded-2xl border text-left rtl:text-right transition-all cursor-pointer ${
                         isSelected
-                          ? 'border-orange-600 bg-orange-50/60 dark:bg-orange-950/30 ring-2 ring-orange-500'
-                          : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:border-zinc-400'
+                          ? 'border-blue-600 bg-blue-50/70 dark:bg-blue-950/40 ring-2 ring-blue-500'
+                          : 'border-slate-200 dark:border-blue-950 bg-white dark:bg-slate-800 hover:border-slate-400'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-bold text-sm text-zinc-900 dark:text-zinc-100">
+                        <span className="font-bold text-sm text-slate-900 dark:text-white">
                           {sizeName}
                         </span>
-                        {isSelected && <Check className="w-4 h-4 text-orange-600" />}
+                        {isSelected && <Check className="w-4 h-4 text-blue-600" />}
                       </div>
-                      <span className="text-xs font-black text-orange-600 dark:text-orange-400 mt-1">
+                      <span className="text-xs font-black text-blue-600 dark:text-blue-400 mt-1">
                         {currency} {size.price.toFixed(2)}
                       </span>
                     </button>
@@ -204,7 +204,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           {/* Optional Extras */}
           {product.extras && product.extras.length > 0 && (
             <div className="space-y-3">
-              <label className="block text-sm font-extrabold text-zinc-900 dark:text-zinc-100">
+              <label className="block text-sm font-extrabold text-slate-900 dark:text-white">
                 {t('product.extrasOptions')}
               </label>
               <div className="space-y-2">
@@ -217,25 +217,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                       onClick={() => handleToggleExtra(extra)}
                       className={`flex items-center justify-between p-3.5 rounded-2xl border transition-colors cursor-pointer ${
                         isChecked
-                          ? 'border-orange-500 bg-orange-50/50 dark:bg-orange-950/20'
-                          : 'border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800/50'
+                          ? 'border-blue-500 bg-blue-50/60 dark:bg-blue-950/30 ring-1 ring-blue-500'
+                          : 'border-slate-200 dark:border-blue-950 hover:bg-slate-50 dark:hover:bg-slate-800/60'
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div
                           className={`w-5 h-5 rounded-lg border flex items-center justify-center transition-colors ${
                             isChecked
-                              ? 'bg-orange-600 border-orange-600 text-white'
-                              : 'border-zinc-300 dark:border-zinc-600'
+                              ? 'bg-blue-600 border-blue-600 text-white'
+                              : 'border-slate-300 dark:border-slate-600'
                           }`}
                         >
                           {isChecked && <Check className="w-3.5 h-3.5" />}
                         </div>
-                        <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                           {extraName}
                         </span>
                       </div>
-                      <span className="text-xs font-bold text-orange-600 dark:text-orange-400">
+                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
                         +{currency} {extra.price.toFixed(2)}
                       </span>
                     </div>
@@ -247,7 +247,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
           {/* Special Instructions */}
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-zinc-600 dark:text-zinc-300">
+            <label className="block text-xs font-bold text-slate-600 dark:text-slate-300">
               {t('product.specialInstructions')}
             </label>
             <textarea
@@ -255,45 +255,45 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               value={specialInstructions}
               onChange={e => setSpecialInstructions(e.target.value)}
               placeholder={isAr ? 'أي طلبات إضافية؟' : 'e.g. Extra napkins, no pickles, sauce on side...'}
-              className="w-full px-4 py-2.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-blue-950 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
         </div>
 
         {/* Modal Sticky Footer with Quantity & Add to Cart Button */}
-        <div className="p-4 sm:p-6 bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between gap-4">
+        <div className="p-4 sm:p-6 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-blue-950 flex items-center justify-between gap-4">
           
           {/* Quantity Controls */}
-          <div className="flex items-center gap-3 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-3 py-1.5 rounded-2xl shadow-xs">
+          <div className="flex items-center gap-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-blue-950 px-3 py-1.5 rounded-2xl shadow-xs">
             <button
               onClick={() => setQuantity(q => Math.max(1, q - 1))}
               disabled={quantity <= 1}
-              className="p-1 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 disabled:opacity-30 cursor-pointer"
+              className="p-1 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-30 cursor-pointer"
             >
               <Minus className="w-4 h-4" />
             </button>
-            <span className="font-black text-base w-6 text-center text-zinc-900 dark:text-zinc-50">
+            <span className="font-black text-base w-6 text-center text-slate-900 dark:text-white">
               {quantity}
             </span>
             <button
               onClick={() => setQuantity(q => q + 1)}
-              className="p-1 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 cursor-pointer"
+              className="p-1 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Add to Cart with live price */}
+          {/* Add to Cart with live price in Dark Blue & White style */}
           <button
             onClick={handleAddToCart}
-            className="flex-1 flex items-center justify-between px-6 py-3.5 rounded-2xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-orange-600/25 active:scale-98 transition-all cursor-pointer"
+            className="flex-1 flex items-center justify-between px-6 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 hover:from-blue-500 hover:to-indigo-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-blue-900/30 active:scale-98 transition-all cursor-pointer ring-1 ring-blue-400/30"
           >
             <span className="flex items-center gap-2">
-              <ShoppingBag className="w-5 h-5" />
+              <ShoppingBag className="w-5 h-5 text-white" />
               <span>{t('product.addToCart')}</span>
             </span>
-            <span className="font-black">
+            <span className="font-black text-white">
               {currency} {overallTotal.toFixed(2)}
             </span>
           </button>

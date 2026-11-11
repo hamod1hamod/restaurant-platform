@@ -45,19 +45,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ settings }) => {
               />
             </div>
 
-            {/* Experience badge */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-zinc-900 text-white px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-zinc-700">
-              <ChefHat className="w-6 h-6 text-orange-500" />
+            {/* Experience badge in Dark Blue style */}
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-blue-900/60">
+              <ChefHat className="w-6 h-6 text-blue-400" />
               <div className="text-left rtl:text-right">
-                <span className="block font-black text-lg text-orange-500">100% Artisan</span>
-                <span className="text-xs text-zinc-300 font-medium">Fresh Daily Ingredients</span>
+                <span className="block font-black text-lg text-blue-400">100% Artisan</span>
+                <span className="text-xs text-slate-300 font-medium">Fresh Daily Ingredients</span>
               </div>
             </div>
           </div>
 
           {/* Text Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 font-bold text-xs uppercase tracking-wider">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{isAr ? 'قصتنا وفلسفتنا' : 'Our Story & Philosophy'}</span>
             </div>
@@ -86,7 +86,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ settings }) => {
               </div>
 
               <div className="flex items-start gap-3 p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800">
-                <HeartHandshake className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
+                <HeartHandshake className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-bold text-sm text-zinc-900 dark:text-zinc-100">
                     {isAr ? 'توصيل ساخن وسريع' : 'Fast & Hot Delivery'}

@@ -6,7 +6,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { CartProvider, useCart } from './context/CartContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { api } from './services/api';
-import { Category, Product, RestaurantSettings, Review, Order } from './types';
+import { Category, Product, RestaurantSettings, Review } from './types';
 
 // Common Components
 import { Navbar } from './components/common/Navbar';
@@ -68,6 +68,35 @@ const RestaurantApp: React.FC = () => {
 
   // Admin Dashboard Active Tab
   const [adminTab, setAdminTab] = useState<string>('overview');
+
+  // Route listener: Check if user visited #admin, #/admin, ?admin=true, or /admin
+  useEffect(() => {
+    const handleCheckAdminRoute = () => {
+      const hash = window.location.hash.toLowerCase();
+      const search = new URLSearchParams(window.location.search);
+      const path = window.location.pathname.toLowerCase();
+
+      const isAdminRoute = hash.includes('admin') || search.has('admin') || path.endsWith('/admin');
+
+      if (isAdminRoute) {
+        setIsAdminView(true);
+        if (!isAuthenticated) {
+          setAdminLoginOpen(true);
+        }
+      } else {
+        setIsAdminView(false);
+      }
+    };
+
+    handleCheckAdminRoute();
+    window.addEventListener('hashchange', handleCheckAdminRoute);
+    window.addEventListener('popstate', handleCheckAdminRoute);
+
+    return () => {
+      window.removeEventListener('hashchange', handleCheckAdminRoute);
+      window.removeEventListener('popstate', handleCheckAdminRoute);
+    };
+  }, [isAuthenticated, setIsAdminView]);
 
   const fetchAppData = async () => {
     try {
@@ -147,7 +176,7 @@ const RestaurantApp: React.FC = () => {
     return a.display_order - b.display_order;
   });
 
-  // If in Admin Dashboard view
+  // If in Admin Dashboard view and authenticated
   if (isAdminView && isAuthenticated) {
     return (
       <AdminLayout
@@ -179,15 +208,27 @@ const RestaurantApp: React.FC = () => {
     );
   }
 
-  // Customer Landing Page View
+  // If in Admin route but not yet authenticated
+  if (isAdminView && !isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+        <AdminLogin
+          isOpen={true}
+          onClose={() => {
+            window.location.hash = '';
+            setIsAdminView(false);
+          }}
+        />
+      </div>
+    );
+  }
+
+  // Customer Landing Page View in Dark Blue & White Theme
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col font-sans transition-colors">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors">
       
-      {/* Sticky Header Navbar */}
-      <Navbar
-        settings={settings}
-        onOpenAdminLogin={() => setAdminLoginOpen(true)}
-      />
+      {/* Sticky Header Navbar (Control panel removed from public landing page) */}
+      <Navbar settings={settings} />
 
       <main className="flex-1">
         
@@ -198,10 +239,10 @@ const RestaurantApp: React.FC = () => {
         <section id="menu" className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="mb-6">
-            <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 dark:text-zinc-50">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
               {t('nav.menu')}
             </h2>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
               {isAr ? 'استمتع بأشهى الأطباق المحضرة طازجة من قائمة طعامنا الرقمية' : 'Browse our chef-crafted gourmet menu and customize your favorites'}
             </p>
           </div>
@@ -215,7 +256,7 @@ const RestaurantApp: React.FC = () => {
             />
           )}
 
-          {/* D. Search & Filter Bar */}
+          {/* D. Advanced Search & Filtering */}
           <FilterBar
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
@@ -229,10 +270,15 @@ const RestaurantApp: React.FC = () => {
             onSortChange={setSortBy}
           />
 
-          {/* C. Dynamic Products Grid */}
-          {filteredProducts.length === 0 ? (
-            <div className="py-20 text-center space-y-3 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-200 dark:border-zinc-800">
-              <p className="text-base font-bold text-zinc-600 dark:text-zinc-300">
+          {/* C. Dynamic Menu Products Grid */}
+          {loading ? (
+            <div className="py-24 text-center">
+              <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-xs font-bold text-slate-400">{t('common.loading')}</p>
+            </div>
+          ) : filteredProducts.length === 0 ? (
+            <div className="py-20 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-blue-950 p-8">
+              <p className="text-base font-extrabold text-slate-700 dark:text-slate-200">
                 {t('menu.noProductsFound')}
               </p>
               <button
@@ -243,9 +289,9 @@ const RestaurantApp: React.FC = () => {
                   setIsSpicy(false);
                   setIsBestseller(false);
                 }}
-                className="px-4 py-2 rounded-xl bg-orange-600 text-white font-bold text-xs"
+                className="mt-4 px-5 py-2.5 rounded-full bg-blue-600 text-white font-bold text-xs hover:bg-blue-700 cursor-pointer shadow-md shadow-blue-500/20"
               >
-                {isAr ? 'إعادة ضبط عوامل التصفية' : 'Reset All Filters'}
+                {isAr ? 'إعادة ضبط الفلاتر' : 'Reset Filters'}
               </button>
             </div>
           ) : (
@@ -263,16 +309,18 @@ const RestaurantApp: React.FC = () => {
 
         </section>
 
-        {/* Additional Landing Sections */}
+        {/* G. Additional Landing Page Sections */}
         {activeSections.bestsellers && (
           <BestSellersSection
-            products={products}
+            products={products.filter(p => p.is_bestseller)}
             currency={currency}
             onOpenDetails={setSelectedProduct}
           />
         )}
 
-        {activeSections.offers && <SpecialOffersSection />}
+        {activeSections.offers && (
+          <SpecialOffersSection />
+        )}
 
         {activeSections.about && <AboutSection settings={settings} />}
 
@@ -290,10 +338,7 @@ const RestaurantApp: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <Footer
-        settings={settings}
-        onOpenAdminLogin={() => setAdminLoginOpen(true)}
-      />
+      <Footer settings={settings} />
 
       {/* E. Product Details & Customization Modal */}
       <ProductModal
@@ -306,7 +351,7 @@ const RestaurantApp: React.FC = () => {
       <CartDrawer currency={currency} />
       <CheckoutModal currency={currency} />
 
-      {/* Admin Login Modal */}
+      {/* Admin Login Modal (Accessible via #admin) */}
       <AdminLogin
         isOpen={adminLoginOpen}
         onClose={() => setAdminLoginOpen(false)}

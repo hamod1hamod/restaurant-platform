@@ -44,7 +44,7 @@ export const BestSellersSection: React.FC<BestSellersSectionProps> = ({
 
           <a
             href="#menu"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-orange-600 dark:text-orange-400 hover:text-orange-700 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors"
           >
             <span>{isAr ? 'عرض القائمة الكاملة' : 'View Full Menu'}</span>
             {isRTL ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}

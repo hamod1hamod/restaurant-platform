@@ -30,15 +30,15 @@ export const Badge: React.FC<BadgeProps> = ({ type, size = 'sm' }) => {
       );
     case 'bestseller':
       return (
-        <span className={`inline-flex items-center gap-1 font-bold rounded-full bg-amber-50 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800 ${sizeClasses}`}>
-          <Award className="w-3 h-3 text-amber-500" />
+        <span className={`inline-flex items-center gap-1 font-bold rounded-full bg-blue-50 text-blue-800 dark:bg-blue-950/70 dark:text-blue-300 border border-blue-200 dark:border-blue-800 ${sizeClasses}`}>
+          <Award className="w-3 h-3 text-blue-500" />
           <span>{isAr ? 'الأكثر طلباً' : 'Best Seller'}</span>
         </span>
       );
     case 'featured':
       return (
-        <span className={`inline-flex items-center gap-1 font-bold rounded-full bg-orange-50 text-orange-800 dark:bg-orange-950/60 dark:text-orange-300 border border-orange-200 dark:border-orange-800 ${sizeClasses}`}>
-          <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
+        <span className={`inline-flex items-center gap-1 font-bold rounded-full bg-indigo-50 text-indigo-800 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 ${sizeClasses}`}>
+          <Star className="w-3 h-3 text-indigo-500 fill-indigo-500" />
           <span>{isAr ? 'مميز' : 'Chef Pick'}</span>
         </span>
       );

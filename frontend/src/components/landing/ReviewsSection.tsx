@@ -71,7 +71,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
 
           <button
             onClick={() => setModalOpen(true)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-md shadow-orange-600/20 active:scale-95 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-500/20 active:scale-95 transition-all cursor-pointer"
           >
             <MessageSquarePlus className="w-4 h-4" />
             <span>{t('reviews.writeReview')}</span>
@@ -83,7 +83,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
           {reviews.map(rev => (
             <div
               key={rev.id}
-              className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 shadow-xs flex flex-col justify-between space-y-4"
+              className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-blue-950/70 shadow-sm flex flex-col justify-between space-y-4"
             >
               <div className="space-y-3">
                 {/* Rating Stars */}
@@ -91,19 +91,19 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${i < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-zinc-200 dark:text-zinc-700'}`}
+                      className={`w-4 h-4 ${i < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-200 dark:text-slate-700'}`}
                     />
                   ))}
                 </div>
                 
-                <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed italic">
+                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic">
                   "{rev.comment}"
                 </p>
               </div>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-3 border-t border-zinc-100 dark:border-zinc-800">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+              <div className="flex items-center gap-3 pt-3 border-t border-slate-100 dark:border-blue-950/60">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-700 to-indigo-800 text-white flex items-center justify-center font-bold text-sm shadow-xs ring-1 ring-blue-400/40">
                   {rev.customer_name.charAt(0).toUpperCase()}
                 </div>
                 <div>
@@ -155,12 +155,12 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                     value={customerName}
                     onChange={e => setCustomerName(e.target.value)}
                     placeholder={isAr ? 'محمد العلي' : 'e.g. Alex Morgan'}
-                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 text-zinc-900 dark:text-zinc-100"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-blue-950 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-900 dark:text-white"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                     {t('reviews.rating')}
                   </label>
                   <div className="flex items-center gap-2">
@@ -172,18 +172,18 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                         className="p-1 cursor-pointer transition-transform hover:scale-110"
                       >
                         <Star
-                          className={`w-6 h-6 ${star <= rating ? 'fill-amber-400 text-amber-400' : 'text-zinc-300 dark:text-zinc-600'}`}
+                          className={`w-6 h-6 ${star <= rating ? 'fill-amber-400 text-amber-400' : 'text-slate-300 dark:text-slate-600'}`}
                         />
                       </button>
                     ))}
-                    <span className="text-sm font-bold text-zinc-600 dark:text-zinc-300 ml-2">
+                    <span className="text-sm font-bold text-slate-600 dark:text-slate-300 ml-2">
                       {rating} / 5
                     </span>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                     {t('reviews.comment')} *
                   </label>
                   <textarea
@@ -192,14 +192,14 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                     value={comment}
                     onChange={e => setComment(e.target.value)}
                     placeholder={isAr ? 'ما رأيك في المذاق وسرعة الخدمة؟' : 'Share your dining experience...'}
-                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 text-zinc-900 dark:text-zinc-100"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-blue-950 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-900 dark:text-white"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer"
+                  className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-500/20 transition-all cursor-pointer ring-1 ring-blue-400/30"
                 >
                   {submitting ? '...' : t('reviews.submit')}
                 </button>

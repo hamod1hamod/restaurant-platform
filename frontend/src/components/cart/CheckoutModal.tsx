@@ -135,40 +135,40 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
             </div>
 
             <div className="space-y-2">
-              <span className="text-xs uppercase tracking-wider font-extrabold text-zinc-400">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-slate-400">
                 {t('checkout.orderNumberIs')}
               </span>
-              <div className="font-mono text-2xl sm:text-3xl font-black text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/30 py-3 px-6 rounded-2xl border border-orange-200 dark:border-orange-800 inline-block">
+              <div className="font-mono text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 py-3 px-6 rounded-2xl border border-blue-200 dark:border-blue-900 inline-block shadow-sm">
                 {createdOrder.order_number}
               </div>
-              <p className="text-sm text-zinc-600 dark:text-zinc-300 pt-2 max-w-md mx-auto">
+              <p className="text-sm text-slate-600 dark:text-slate-300 pt-2 max-w-md mx-auto">
                 {t('checkout.trackOrderMessage')}
               </p>
             </div>
 
             {/* Receipt Summary Box */}
-            <div className="p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/60 dark:border-zinc-700/60 text-left rtl:text-right space-y-2 text-xs">
-              <div className="flex justify-between py-1 border-b border-zinc-200/50 dark:border-zinc-700/50 font-bold">
+            <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-blue-950/60 text-left rtl:text-right space-y-2 text-xs">
+              <div className="flex justify-between py-1 border-b border-slate-200/50 dark:border-slate-700/50 font-bold">
                 <span>{isAr ? 'العميل:' : 'Customer:'}</span>
                 <span>{createdOrder.customer_name} ({createdOrder.customer_phone})</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-zinc-200/50 dark:border-zinc-700/50">
+              <div className="flex justify-between py-1 border-b border-slate-200/50 dark:border-slate-700/50">
                 <span>{isAr ? 'نوع الطلب:' : 'Order Type:'}</span>
                 <span className="font-bold uppercase">{createdOrder.order_type}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-zinc-200/50 dark:border-zinc-700/50">
+              <div className="flex justify-between py-1 border-b border-slate-200/50 dark:border-slate-700/50">
                 <span>{isAr ? 'طريقة الدفع:' : 'Payment:'}</span>
                 <span className="font-bold">{createdOrder.payment_method} ({createdOrder.payment_status})</span>
               </div>
-              <div className="flex justify-between py-1 text-sm font-black text-zinc-900 dark:text-zinc-100 pt-1">
+              <div className="flex justify-between py-1 text-sm font-black text-slate-900 dark:text-white pt-1">
                 <span>{t('cart.total')}:</span>
-                <span className="text-orange-600 dark:text-orange-400">{currency} {createdOrder.total.toFixed(2)}</span>
+                <span className="text-blue-600 dark:text-blue-400">{currency} {createdOrder.total.toFixed(2)}</span>
               </div>
             </div>
 
             <button
               onClick={handleClose}
-              className="w-full py-4 rounded-2xl bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-sm shadow-md transition-all cursor-pointer"
+              className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm shadow-md transition-all cursor-pointer"
             >
               {t('checkout.done')}
             </button>
@@ -188,8 +188,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
                   onClick={() => setOrderType('delivery')}
                   className={`flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
                     orderType === 'delivery'
-                      ? 'bg-white dark:bg-zinc-900 text-orange-600 shadow-sm'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
+                      ? 'bg-white dark:bg-slate-900 text-blue-600 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
                   }`}
                 >
                   <Bike className="w-4 h-4" />
@@ -201,8 +201,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
                   onClick={() => setOrderType('pickup')}
                   className={`flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
                     orderType === 'pickup'
-                      ? 'bg-white dark:bg-zinc-900 text-orange-600 shadow-sm'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
+                      ? 'bg-white dark:bg-slate-900 text-blue-600 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
                   }`}
                 >
                   <Store className="w-4 h-4" />
@@ -214,8 +214,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
                   onClick={() => setOrderType('dine_in')}
                   className={`flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
                     orderType === 'dine_in'
-                      ? 'bg-white dark:bg-zinc-900 text-orange-600 shadow-sm'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
+                      ? 'bg-white dark:bg-slate-900 text-blue-600 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
                   }`}
                 >
                   <Utensils className="w-4 h-4" />
@@ -326,16 +326,16 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
                   onClick={() => setPaymentMethod('cash_on_delivery')}
                   className={`flex items-center gap-3 p-3.5 rounded-2xl border text-left rtl:text-right transition-all cursor-pointer ${
                     paymentMethod === 'cash_on_delivery'
-                      ? 'border-orange-500 bg-orange-50/50 dark:bg-orange-950/20 ring-1 ring-orange-500'
-                      : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800'
+                      ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-950/20 ring-1 ring-blue-500'
+                      : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800'
                   }`}
                 >
                   <Banknote className="w-5 h-5 text-emerald-600" />
                   <div>
-                    <span className="block text-xs font-bold text-zinc-900 dark:text-zinc-100">
+                    <span className="block text-xs font-bold text-slate-900 dark:text-slate-100">
                       {t('checkout.cashOnDelivery')}
                     </span>
-                    <span className="text-[10px] text-zinc-400">
+                    <span className="text-[10px] text-slate-400">
                       {isAr ? 'الدفع نقداً عند استلام الوجبة' : 'Pay with cash upon receipt'}
                     </span>
                   </div>
@@ -346,16 +346,16 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
                   onClick={() => setPaymentMethod('card')}
                   className={`flex items-center gap-3 p-3.5 rounded-2xl border text-left rtl:text-right transition-all cursor-pointer ${
                     paymentMethod === 'card'
-                      ? 'border-orange-500 bg-orange-50/50 dark:bg-orange-950/20 ring-1 ring-orange-500'
-                      : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800'
+                      ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-950/20 ring-1 ring-blue-500'
+                      : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800'
                   }`}
                 >
-                  <CreditCard className="w-5 h-5 text-orange-600" />
+                  <CreditCard className="w-5 h-5 text-blue-600" />
                   <div>
-                    <span className="block text-xs font-bold text-zinc-900 dark:text-zinc-100">
+                    <span className="block text-xs font-bold text-slate-900 dark:text-slate-100">
                       {t('checkout.card')}
                     </span>
-                    <span className="text-[10px] text-zinc-400">
+                    <span className="text-[10px] text-slate-400">
                       {isAr ? 'فيزا، ماستركارد، مدى' : 'Visa, MasterCard, Amex'}
                     </span>
                   </div>
@@ -372,12 +372,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
             )}
 
             {/* Total Summary & Submit */}
-            <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
               <div>
-                <span className="text-xs text-zinc-400 font-bold block">
+                <span className="text-xs text-slate-400 font-bold block">
                   {t('cart.total')}
                 </span>
-                <span className="text-xl font-black text-orange-600 dark:text-orange-400">
+                <span className="text-xl font-black text-blue-600 dark:text-blue-400">
                   {currency} {currentTotal.toFixed(2)}
                 </span>
               </div>
@@ -385,7 +385,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-sm shadow-lg shadow-orange-600/25 active:scale-98 transition-all cursor-pointer disabled:opacity-50"
+                className="flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 hover:from-blue-500 hover:to-indigo-700 text-white font-black text-sm shadow-lg shadow-blue-900/30 active:scale-98 transition-all cursor-pointer disabled:opacity-50 ring-1 ring-blue-400/30"
               >
                 <span>{isSubmitting ? '...' : t('checkout.submitOrder')}</span>
                 {isRTL ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}

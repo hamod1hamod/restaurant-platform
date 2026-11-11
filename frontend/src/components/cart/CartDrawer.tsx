@@ -73,7 +73,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
           {/* Header */}
           <div className="p-5 sm:p-6 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-orange-100 dark:bg-orange-950/60 text-orange-600 dark:text-orange-400 flex items-center justify-center font-bold">
+              <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
                 <ShoppingBag className="w-5 h-5" />
               </div>
               <h2 className="font-extrabold text-lg text-zinc-900 dark:text-zinc-50">
@@ -114,7 +114,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
                 </p>
                 <button
                   onClick={() => setIsCartOpen(false)}
-                  className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 text-white font-bold text-xs"
+                  className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-500/20"
                 >
                   {t('cart.startBrowsing')}
                 </button>
@@ -135,7 +135,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
                           {prodName}
                         </h4>
                         {sizeName && (
-                          <span className="inline-block text-[11px] font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/40 px-2 py-0.5 rounded-md">
+                          <span className="inline-block text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded-md">
                             {sizeName}
                           </span>
                         )}
@@ -222,12 +222,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
                         value={couponCode}
                         onChange={e => setCouponCode(e.target.value)}
                         placeholder={t('cart.promoPlaceholder')}
-                        className="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs text-zinc-900 dark:text-zinc-100 uppercase font-mono placeholder:normal-case placeholder:font-sans focus:outline-none focus:ring-1 focus:ring-orange-500"
+                        className="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs text-zinc-900 dark:text-zinc-100 uppercase font-mono placeholder:normal-case placeholder:font-sans focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                       <button
                         onClick={handleApplyCoupon}
                         disabled={couponLoading || !couponCode.trim()}
-                        className="px-4 py-2 rounded-xl bg-zinc-900 dark:bg-zinc-700 hover:bg-orange-600 text-white font-bold text-xs transition-colors disabled:opacity-50"
+                        className="px-4 py-2 rounded-xl bg-slate-900 dark:bg-slate-700 hover:bg-blue-600 text-white font-bold text-xs transition-colors disabled:opacity-50"
                       >
                         {couponLoading ? '...' : t('cart.apply')}
                       </button>
@@ -260,14 +260,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
                 )}
                 <div className="flex items-center justify-between text-base font-black text-zinc-900 dark:text-zinc-50 pt-2 border-t border-zinc-200 dark:border-zinc-800">
                   <span>{t('cart.total')}</span>
-                  <span className="text-orange-600 dark:text-orange-400">{currency} {total.toFixed(2)}</span>
+                  <span className="text-blue-600 dark:text-blue-400">{currency} {total.toFixed(2)}</span>
                 </div>
               </div>
 
-              {/* Checkout CTA */}
+              {/* Checkout CTA in Dark Blue & White style */}
               <button
                 onClick={handleProceedCheckout}
-                className="w-full flex items-center justify-between px-6 py-4 rounded-2xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-sm sm:text-base shadow-lg shadow-orange-600/25 active:scale-98 transition-all cursor-pointer"
+                className="w-full flex items-center justify-between px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 hover:from-blue-500 hover:to-indigo-700 text-white font-black text-sm sm:text-base shadow-lg shadow-blue-900/30 active:scale-98 transition-all cursor-pointer ring-1 ring-blue-400/30"
               >
                 <span>{t('cart.checkoutBtn')}</span>
                 {isRTL ? <ArrowLeft className="w-5 h-5" /> : <ArrowRight className="w-5 h-5" />}
