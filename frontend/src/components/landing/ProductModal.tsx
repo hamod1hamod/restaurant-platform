@@ -192,7 +192,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                         {isSelected && <Check className="w-4 h-4 text-blue-600" />}
                       </div>
                       <span className="text-xs font-black text-blue-600 dark:text-blue-400 mt-1">
-                        {currency} {size.price.toFixed(2)}
+                        {currency} {Number(size.price || 0).toFixed(2)}
                       </span>
                     </button>
                   );
@@ -236,7 +236,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                         </span>
                       </div>
                       <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
-                        +{currency} {extra.price.toFixed(2)}
+                        +{currency} {Number(extra.price || 0).toFixed(2)}
                       </span>
                     </div>
                   );
@@ -294,7 +294,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               <span>{t('product.addToCart')}</span>
             </span>
             <span className="font-black text-white">
-              {currency} {overallTotal.toFixed(2)}
+              {currency} {Number(overallTotal || 0).toFixed(2)}
             </span>
           </button>
 

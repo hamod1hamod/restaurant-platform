@@ -448,7 +448,7 @@ export const api = {
       }
       return {
         valid: true,
-        message: `Coupon applied: Saved $${discount.toFixed(2)}`,
+        message: `Coupon applied: Saved $${Number(discount || 0).toFixed(2)}`,
         discount_amount: Math.round(discount * 100) / 100,
         code: c.code
       };
@@ -617,14 +617,17 @@ export const api = {
       });
       return await handleResponse(res);
     } catch {
-      const totalRev = ordersState.reduce((acc, o) => acc + (o.total || 0), 0);
+      const totalRev = ordersState.reduce((acc, o) => acc + (Number(o.total) || 0), 0);
+      const avgOrderVal = ordersState.length > 0 ? totalRev / ordersState.length : 0;
       return {
-        gross_revenue: Math.round(totalRev * 100) / 100,
+        total_products: productsState.length,
+        total_categories: categoriesState.length,
         total_orders: ordersState.length,
         pending_orders: ordersState.filter(o => o.status !== 'completed' && o.status !== 'cancelled').length,
         completed_orders: ordersState.filter(o => o.status === 'completed').length,
-        total_products: productsState.length,
-        total_categories: categoriesState.length
+        total_revenue: Math.round(totalRev * 100) / 100,
+        gross_revenue: Math.round(totalRev * 100) / 100,
+        average_order_value: Math.round(avgOrderVal * 100) / 100
       };
     }
   },

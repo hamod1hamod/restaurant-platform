@@ -143,7 +143,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
                           <div className="text-xs text-zinc-500 dark:text-zinc-400 pt-0.5">
                             {item.selectedExtras.map((e, idx) => (
                               <span key={idx} className="block">
-                                + {isAr ? (e.extra_name_ar || e.extra_name) : e.extra_name} ({currency} {e.extra_price.toFixed(2)})
+                                + {isAr ? (e.extra_name_ar || e.extra_name) : e.extra_name} ({currency} {Number(e.extra_price || 0).toFixed(2)})
                               </span>
                             ))}
                           </div>
@@ -184,7 +184,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
                       </div>
 
                       <span className="font-black text-sm text-zinc-900 dark:text-zinc-50">
-                        {currency} {item.totalPrice.toFixed(2)}
+                        {currency} {Number(item.totalPrice || 0).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -204,7 +204,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
                     <div className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-emerald-600" />
                       <span className="font-bold text-emerald-800 dark:text-emerald-300">
-                        {appliedCoupon} (-{currency} {discountAmount.toFixed(2)})
+                        {appliedCoupon} (-{currency} {Number(discountAmount || 0).toFixed(2)})
                       </span>
                     </div>
                     <button
@@ -246,21 +246,21 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
               <div className="space-y-2 text-xs border-t border-zinc-200 dark:border-zinc-800 pt-3">
                 <div className="flex items-center justify-between text-zinc-600 dark:text-zinc-400">
                   <span>{t('cart.subtotal')}</span>
-                  <span className="font-bold">{currency} {subtotal.toFixed(2)}</span>
+                  <span className="font-bold">{currency} {Number(subtotal || 0).toFixed(2)}</span>
                 </div>
                 <div className="flex items-center justify-between text-zinc-600 dark:text-zinc-400">
                   <span>{t('cart.deliveryFee')}</span>
-                  <span className="font-bold">{currency} {deliveryFee.toFixed(2)}</span>
+                  <span className="font-bold">{currency} {Number(deliveryFee || 0).toFixed(2)}</span>
                 </div>
                 {discountAmount > 0 && (
                   <div className="flex items-center justify-between text-emerald-600 dark:text-emerald-400 font-bold">
                     <span>{t('cart.discount')}</span>
-                    <span>-{currency} {discountAmount.toFixed(2)}</span>
+                    <span>-{currency} {Number(discountAmount || 0).toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex items-center justify-between text-base font-black text-zinc-900 dark:text-zinc-50 pt-2 border-t border-zinc-200 dark:border-zinc-800">
                   <span>{t('cart.total')}</span>
-                  <span className="text-blue-600 dark:text-blue-400">{currency} {total.toFixed(2)}</span>
+                  <span className="text-blue-600 dark:text-blue-400">{currency} {Number(total || 0).toFixed(2)}</span>
                 </div>
               </div>
 

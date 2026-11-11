@@ -162,7 +162,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
               </div>
               <div className="flex justify-between py-1 text-sm font-black text-slate-900 dark:text-white pt-1">
                 <span>{t('cart.total')}:</span>
-                <span className="text-blue-600 dark:text-blue-400">{currency} {createdOrder.total.toFixed(2)}</span>
+                <span className="text-blue-600 dark:text-blue-400">{currency} {Number(createdOrder.total || 0).toFixed(2)}</span>
               </div>
             </div>
 
@@ -378,7 +378,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
                   {t('cart.total')}
                 </span>
                 <span className="text-xl font-black text-blue-600 dark:text-blue-400">
-                  {currency} {currentTotal.toFixed(2)}
+                  {currency} {Number(currentTotal || 0).toFixed(2)}
                 </span>
               </div>
 

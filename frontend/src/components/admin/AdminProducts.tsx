@@ -383,11 +383,11 @@ export const AdminProducts: React.FC<AdminProductsProps> = ({ currency }) => {
                     <td className="py-3.5 px-6">
                       <div className="flex flex-col">
                         <span className="font-black text-sm text-zinc-900 dark:text-zinc-100">
-                          {currency} {(p.discount_price ?? p.base_price).toFixed(2)}
+                          {currency} {Number(p.discount_price ?? p.base_price ?? 0).toFixed(2)}
                         </span>
                         {p.discount_price && (
                           <span className="text-[10px] text-zinc-400 line-through">
-                            {currency} {p.base_price.toFixed(2)}
+                            {currency} {Number(p.base_price || 0).toFixed(2)}
                           </span>
                         )}
                       </div>
@@ -686,7 +686,7 @@ export const AdminProducts: React.FC<AdminProductsProps> = ({ currency }) => {
                         {s.is_default && <span className="text-[10px] bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded font-bold">Default</span>}
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="font-bold text-orange-600 dark:text-orange-400">{currency} {s.price.toFixed(2)}</span>
+                        <span className="font-bold text-orange-600 dark:text-orange-400">{currency} {Number(s.price || 0).toFixed(2)}</span>
                         <button type="button" onClick={() => handleRemoveSize(idx)} className="text-rose-500 hover:text-rose-700">
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -749,7 +749,7 @@ export const AdminProducts: React.FC<AdminProductsProps> = ({ currency }) => {
                         <span className="text-zinc-400">({ex.name_ar})</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="font-bold text-orange-600 dark:text-orange-400">+{currency} {ex.price.toFixed(2)}</span>
+                        <span className="font-bold text-orange-600 dark:text-orange-400">+{currency} {Number(ex.price || 0).toFixed(2)}</span>
                         <button type="button" onClick={() => handleRemoveExtra(idx)} className="text-rose-500 hover:text-rose-700">
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>

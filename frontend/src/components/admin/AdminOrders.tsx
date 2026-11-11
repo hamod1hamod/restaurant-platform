@@ -201,7 +201,7 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ currency }) => {
 
                     <td className="py-4 px-6">
                       <span className="font-black text-sm text-zinc-900 dark:text-zinc-100 block">
-                        {currency} {order.total.toFixed(2)}
+                        {currency} {Number(order.total || 0).toFixed(2)}
                       </span>
                       <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase">
                         {order.payment_method}
@@ -331,7 +331,7 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ currency }) => {
                       )}
                     </div>
                     <span className="font-black text-sm">
-                      {currency} {item.total_price.toFixed(2)}
+                      {currency} {Number(item.total_price || 0).toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -342,21 +342,21 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ currency }) => {
             <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800 space-y-1.5 text-xs">
               <div className="flex justify-between text-zinc-500">
                 <span>Subtotal:</span>
-                <span>{currency} {selectedOrder.subtotal.toFixed(2)}</span>
+                <span>{currency} {Number(selectedOrder.subtotal || 0).toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-zinc-500">
                 <span>Delivery Fee:</span>
-                <span>{currency} {selectedOrder.delivery_fee.toFixed(2)}</span>
+                <span>{currency} {Number(selectedOrder.delivery_fee || 0).toFixed(2)}</span>
               </div>
-              {selectedOrder.discount_amount > 0 && (
+              {Number(selectedOrder.discount_amount || 0) > 0 && (
                 <div className="flex justify-between text-emerald-600 font-bold">
                   <span>Discount:</span>
-                  <span>-{currency} {selectedOrder.discount_amount.toFixed(2)}</span>
+                  <span>-{currency} {Number(selectedOrder.discount_amount || 0).toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between text-base font-black pt-2 border-t border-zinc-200 dark:border-zinc-800">
                 <span>Total:</span>
-                <span className="text-orange-600">{currency} {selectedOrder.total.toFixed(2)}</span>
+                <span className="text-orange-600">{currency} {Number(selectedOrder.total || 0).toFixed(2)}</span>
               </div>
             </div>
 
@@ -415,7 +415,7 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ currency }) => {
                       {itm.size_name && <span className="text-zinc-500 text-[11px] block">{itm.size_name}</span>}
                     </td>
                     <td className="py-2 text-center">{itm.quantity}</td>
-                    <td className="py-2 text-right font-bold">{currency} {itm.total_price.toFixed(2)}</td>
+                    <td className="py-2 text-right font-bold">{currency} {Number(itm.total_price || 0).toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -425,21 +425,21 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ currency }) => {
             <div className="pt-2 border-t border-zinc-300 space-y-1 text-xs">
               <div className="flex justify-between">
                 <span>Subtotal:</span>
-                <span>{currency} {receiptOrder.subtotal.toFixed(2)}</span>
+                <span>{currency} {Number(receiptOrder.subtotal || 0).toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Delivery:</span>
-                <span>{currency} {receiptOrder.delivery_fee.toFixed(2)}</span>
+                <span>{currency} {Number(receiptOrder.delivery_fee || 0).toFixed(2)}</span>
               </div>
-              {receiptOrder.discount_amount > 0 && (
+              {Number(receiptOrder.discount_amount || 0) > 0 && (
                 <div className="flex justify-between font-bold text-emerald-700">
                   <span>Discount:</span>
-                  <span>-{currency} {receiptOrder.discount_amount.toFixed(2)}</span>
+                  <span>-{currency} {Number(receiptOrder.discount_amount || 0).toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between text-base font-black pt-2 border-t border-zinc-300">
                 <span>Total Amount:</span>
-                <span>{currency} {receiptOrder.total.toFixed(2)}</span>
+                <span>{currency} {Number(receiptOrder.total || 0).toFixed(2)}</span>
               </div>
             </div>
 

@@ -99,7 +99,7 @@ export const AdminCustomers: React.FC<AdminCustomersProps> = ({ currency }) => {
                     {c.total_orders}
                   </td>
                   <td className="py-4 px-6 font-black text-sm text-orange-600 dark:text-orange-400">
-                    {currency} {c.total_spent.toFixed(2)}
+                    {currency} {Number(c.total_spent || 0).toFixed(2)}
                   </td>
                 </tr>
               ))}

@@ -139,7 +139,7 @@ export const AdminReports: React.FC<AdminReportsProps> = ({ currency }) => {
                     {p.total_sold}
                   </td>
                   <td className="py-3 text-right rtl:text-left font-black text-orange-600 dark:text-orange-400">
-                    {currency} {p.total_revenue.toFixed(2)}
+                    {currency} {Number(p.total_revenue || 0).toFixed(2)}
                   </td>
                 </tr>
               ))}

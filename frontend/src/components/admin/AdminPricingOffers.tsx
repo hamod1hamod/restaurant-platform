@@ -126,7 +126,7 @@ export const AdminPricingOffers: React.FC<AdminPricingOffersProps> = ({ currency
                     {cp.discount_percent ? `${cp.discount_percent}% OFF` : `${currency} ${cp.discount_amount} OFF`}
                   </td>
                   <td className="py-4 px-6 font-bold text-zinc-600 dark:text-zinc-300">
-                    {currency} {cp.min_order_value.toFixed(2)}
+                    {currency} {Number(cp.min_order_value || 0).toFixed(2)}
                   </td>
                   <td className="py-4 px-6 font-bold text-zinc-500">
                     {cp.usage_count} {isAr ? 'مرات' : 'times'}

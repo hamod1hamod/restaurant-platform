@@ -189,11 +189,11 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
           </div>
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-black text-slate-900 dark:text-white">
-              {currency} {stats.total_revenue.toFixed(2)}
+              {currency} {Number(stats?.total_revenue || 0).toFixed(2)}
             </span>
           </div>
           <p className="text-[11px] text-slate-400 font-medium">
-            {isAr ? 'متوسط قيمة الطلب:' : 'Average Order Value:'} {currency} {stats.average_order_value.toFixed(2)}
+            {isAr ? 'متوسط قيمة الطلب:' : 'Average Order Value:'} {currency} {Number(stats?.average_order_value || 0).toFixed(2)}
           </p>
         </div>
 
@@ -366,7 +366,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
                     </div>
                   </div>
                   <span className="font-bold text-xs text-slate-800 dark:text-slate-200">
-                    {currency} {p.total_revenue.toFixed(2)}
+                    {currency} {Number(p.total_revenue || 0).toFixed(2)}
                   </span>
                 </div>
               ))
@@ -422,7 +422,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
                     {order.order_type}
                   </td>
                   <td className="py-3.5 font-black text-slate-900 dark:text-white">
-                    {currency} {order.total.toFixed(2)}
+                    {currency} {Number(order.total || 0).toFixed(2)}
                   </td>
                   <td className="py-3.5">
                     <span
