@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+backend/venv/
+backend/__pycache__/
+backend/app/**/__pycache__/
+*.pyc
+
+# Local databases and uploads
+backend/*.db
+backend/*.sqlite3
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Build artifacts
+frontend/dist/
+frontend/.tmp/
+.vite/
+
+# Environment files
+backend/.env
+.env.local
+
+# Logs and OS
+*.log
+.DS_Store
+Thumbs.db
