@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gourmet Haven - Redirecting</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA router
+      var path = window.location.pathname;
+      var repo = '/restaurant-platform';
+      
+      if (path.indexOf('/admin') !== -1) {
+        window.location.replace(repo + '/#admin');
+      } else {
+        window.location.replace(repo + '/');
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to Gourmet Haven...</p>
+  </body>
+</html>

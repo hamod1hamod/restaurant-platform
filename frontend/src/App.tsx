@@ -76,13 +76,10 @@ const RestaurantApp: React.FC = () => {
       const search = new URLSearchParams(window.location.search);
       const path = window.location.pathname.toLowerCase();
 
-      const isAdminRoute = hash.includes('admin') || search.has('admin') || path.endsWith('/admin');
+      const isAdminRoute = hash.includes('admin') || search.has('admin') || path.endsWith('/admin') || path.includes('/admin');
 
       if (isAdminRoute) {
         setIsAdminView(true);
-        if (!isAuthenticated) {
-          setAdminLoginOpen(true);
-        }
       } else {
         setIsAdminView(false);
       }
@@ -96,7 +93,7 @@ const RestaurantApp: React.FC = () => {
       window.removeEventListener('hashchange', handleCheckAdminRoute);
       window.removeEventListener('popstate', handleCheckAdminRoute);
     };
-  }, [isAuthenticated, setIsAdminView]);
+  }, [setIsAdminView]);
 
   const fetchAppData = async () => {
     try {
@@ -176,8 +173,25 @@ const RestaurantApp: React.FC = () => {
     return a.display_order - b.display_order;
   });
 
-  // If in Admin Dashboard view and authenticated
-  if (isAdminView && isAuthenticated) {
+  // If in Admin Dashboard view
+  if (isAdminView) {
+    if (!isAuthenticated) {
+      return (
+        <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+          <AdminLogin
+            isOpen={true}
+            onSuccess={() => {
+              setIsAdminView(true);
+            }}
+            onClose={() => {
+              window.location.hash = '';
+              setIsAdminView(false);
+            }}
+          />
+        </div>
+      );
+    }
+
     return (
       <AdminLayout
         currentTab={adminTab}
@@ -205,21 +219,6 @@ const RestaurantApp: React.FC = () => {
         {adminTab === 'customers' && <AdminCustomers currency={currency} />}
         {adminTab === 'reports' && <AdminReports currency={currency} />}
       </AdminLayout>
-    );
-  }
-
-  // If in Admin route but not yet authenticated
-  if (isAdminView && !isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
-        <AdminLogin
-          isOpen={true}
-          onClose={() => {
-            window.location.hash = '';
-            setIsAdminView(false);
-          }}
-        />
-      </div>
     );
   }
 

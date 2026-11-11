@@ -77,17 +77,18 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
           <div>
             &copy; {new Date().getFullYear()} {restaurantName}. {isAr ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
               <span>{isAr ? 'صنع بكل' : 'Crafted with'}</span>
               <Heart className="w-3.5 h-3.5 text-blue-400 fill-blue-400" />
             </span>
             <a
               href="#admin"
-              className="text-slate-700 hover:text-slate-400 transition-colors p-1"
-              title="Staff Portal (Restricted)"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-blue-950 text-slate-400 hover:text-white hover:border-blue-600 transition-colors font-semibold text-[11px]"
+              title="Staff Portal & Management (Restricted)"
             >
-              <Lock className="w-3 h-3" />
+              <Lock className="w-3 h-3 text-blue-400" />
+              <span>{isAr ? 'بوابة الإدارة' : 'Staff Portal'}</span>
             </a>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ShieldCheck, Lock, User, AlertCircle, ArrowLeft, ArrowRight } from 'lucide-react';
+import { X, ShieldCheck, Lock, User, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
 import { api } from '../../services/api';
@@ -7,10 +7,11 @@ import { api } from '../../services/api';
 interface AdminLoginProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
-export const AdminLogin: React.FC<AdminLoginProps> = ({ isOpen, onClose }) => {
-  const { language, isRTL } = useLanguage();
+export const AdminLogin: React.FC<AdminLoginProps> = ({ isOpen, onClose, onSuccess }) => {
+  const { language } = useLanguage();
   const isAr = language === 'ar';
   const { login, setIsAdminView } = useAuth();
 
@@ -30,7 +31,10 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ isOpen, onClose }) => {
       const res = await api.login(username, password);
       login(res.access_token, res.user);
       setIsAdminView(true);
-      onClose();
+      window.location.hash = '#admin';
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (err: any) {
       setError(err.message || 'Invalid username or password');
     } finally {
@@ -51,7 +55,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ isOpen, onClose }) => {
       >
         <button
           onClick={handleCancel}
-          className="absolute top-4 right-4 rtl:right-auto rtl:left-4 p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+          className="absolute top-4 right-4 rtl:right-auto rtl:left-4 p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
           title="Return to Website"
         >
           <X className="w-5 h-5" />
