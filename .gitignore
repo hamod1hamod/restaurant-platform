@@ -24,3 +24,4 @@ backend/.env
 *.log
 .DS_Store
 Thumbs.db
+.taste-skill/
