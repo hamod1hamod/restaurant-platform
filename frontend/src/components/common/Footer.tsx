@@ -52,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
               {isAr ? 'ساعات العمل والعنوان' : 'Hours & Location'}
             </p>
             <p className="font-medium text-[#0d2a1c] dark:text-white">
-              {isAr ? (settings?.address_ar || 'شارع جراند، وسط المدينة') : (settings?.address || 'Grand Avenue, Downtown District')}
+              {isAr ? (settings?.address_ar || 'شارع ٢٦ يوليو، الزمالك، القاهرة، مصر') : (settings?.address || '26th of July St, Zamalek, Cairo, Egypt')}
             </p>
             <p className="text-[#5f6b64] dark:text-[#a3a3a3] tabular-nums">
               {settings?.opening_hours || 'Mon - Sun: 09:00 AM - 12:00 Midnight'}

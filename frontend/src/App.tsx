@@ -122,7 +122,7 @@ const RestaurantApp: React.FC = () => {
     fetchAppData();
   }, []);
 
-  const currency = settings?.currency || 'USD';
+  const currency = settings?.currency || 'EGP ';
 
   // Active section configuration from settings
   let activeSections: Record<string, boolean> = {

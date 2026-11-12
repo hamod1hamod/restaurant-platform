@@ -6,13 +6,13 @@ export const mockSettings: RestaurantSettings = {
   name_ar: "مطعم وكافيه خطاب",
   description: "Experience world-class culinary masterpieces prepared with locally sourced organic ingredients, handcrafted by our master chefs.",
   description_ar: "استمتع بأشهى الأطباق العالمية المحضرة بأجود المكونات العضوية الطازجة بأيدي أمهر الطهاة.",
-  phone: "+1 (555) 234-5678",
-  whatsapp: "+1 (555) 234-5678",
+  phone: "+20 100 234 5678",
+  whatsapp: "+20 100 234 5678",
   email: "contact@khatab.example",
-  address: "Grand Avenue, Downtown District",
-  address_ar: "شارع جراند، وسط المدينة",
-  opening_hours: "Monday - Sunday: 10:00 AM - 11:30 PM",
-  google_maps_url: "https://maps.google.com",
+  address: "26th of July St, Zamalek, Cairo, Egypt",
+  address_ar: "شارع ٢٦ يوليو، الزمالك، القاهرة، مصر",
+  opening_hours: "Daily: 09:00 AM - 01:00 AM (Cairo Time)",
+  google_maps_url: "https://maps.google.com/?q=Zamalek+Cairo+Egypt",
   social_links_json: "{}",
   hero_title: "Where Every Flavor Tells a Story",
   hero_title_ar: "حيث تروي كل نكهة قصة استثنائية",
@@ -21,10 +21,10 @@ export const mockSettings: RestaurantSettings = {
   hero_image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80",
   primary_color: "#d92b21",
   active_sections_json: "{}",
-  delivery_fee: 4.99,
-  min_order_value: 15.00,
-  tax_percentage: 8.5,
-  currency: "$"
+  delivery_fee: 35.00,
+  min_order_value: 150.00,
+  tax_percentage: 14.0,
+  currency: "EGP "
 };
 
 export const mockCategories: Category[] = [
@@ -280,18 +280,18 @@ export const mockCoupons: Coupon[] = [
 ];
 
 export const mockReviews: Review[] = [
-  { id: 1, customer_name: "Alexander Wright", rating: 5, comment: "The Wagyu Truffle burger was undoubtedly the best burger I've had all year. Fast delivery and packaging was premium!", created_at: "2026-11-09T18:30:00Z", is_approved: true },
-  { id: 2, customer_name: "Layla Al-Mansour", rating: 5, comment: "تجربة طعام خيالية! البيتزا على الحطب طرية ولذيذة جداً وخدمة التوصيل سريعة ومحترمة.", created_at: "2026-11-10T14:15:00Z", is_approved: true },
-  { id: 3, customer_name: "Marcus Chen", rating: 5, comment: "The 350g Ribeye with truffle mash was cooked to exact perfection. Definitely our new favorite weekend restaurant.", created_at: "2026-11-10T20:45:00Z", is_approved: true }
+  { id: 1, customer_name: "Karim El-Masry", rating: 5, comment: "Best Wagyu truffle burger and specialty espresso in Zamalek. Fast delivery across Cairo and everything arrived hot!", created_at: "2026-11-09T18:30:00Z", is_approved: true },
+  { id: 2, customer_name: "ليلى المنصور", rating: 5, comment: "تجربة ممتازة في الزمالك! البيتزا على الحطب والقهوة المختصة على أعلى مستوى، والتوصيل سريع جداً داخل القاهرة.", created_at: "2026-11-10T14:15:00Z", is_approved: true },
+  { id: 3, customer_name: "Nourhan Hassan", rating: 5, comment: "The 350g Ribeye and iced spanish latte are our weekend ritual in Cairo. Warm hospitality and great ambiance.", created_at: "2026-11-10T20:45:00Z", is_approved: true }
 ];
 
 export const mockOrders: Order[] = [
   {
     id: 1,
     order_number: "ORD-20261111-92B104",
-    customer_name: "Sarah Jenkins",
-    customer_phone: "+1 555-019-2831",
-    delivery_address: "742 Evergreen Terrace, Apt 4B",
+    customer_name: "Youssef Mansour",
+    customer_phone: "+20 101 234 5678",
+    delivery_address: "14 Brazil St, Zamalek, Cairo",
     order_type: "delivery",
     payment_method: "cash_on_delivery",
     payment_status: "paid",
@@ -311,7 +311,7 @@ export const mockOrders: Order[] = [
     id: 2,
     order_number: "ORD-20261111-47A812",
     customer_name: "Omar Al-Khatib",
-    customer_phone: "+1 555-018-9941",
+    customer_phone: "+20 102 987 6543",
     table_number: "Table 6",
     order_type: "dine_in",
     payment_method: "online_card",

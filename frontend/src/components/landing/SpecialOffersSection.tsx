@@ -11,20 +11,20 @@ export const SpecialOffersSection: React.FC = () => {
     {
       code: 'WELCOME10',
       title: isAr ? 'خصم ١٠٪ للطلب الأول' : '10% off your first online order',
-      description: isAr ? 'استخدم الكود عند الدفع للطلبات التي تزيد عن ٢٠$' : 'Apply at checkout on any order over $20.',
+      description: isAr ? 'استخدم الكود عند الدفع للطلبات التي تزيد عن ٢٠٠ ج.م' : 'Apply at checkout on any order over 200 EGP.',
       discount: '10% OFF'
     },
     {
       code: 'KHATAB20',
       title: isAr ? 'خصم ٢٠٪ للولائم العائلية' : '20% off family & grill platters',
-      description: isAr ? 'صالح على طلبات المشويات والبيتزا لأكثر من ٥٠$' : 'Valid on grill platters and wood-fired pizzas over $50.',
+      description: isAr ? 'صالح على طلبات المشويات والبيتزا لأكثر من ٥٠٠ ج.م' : 'Valid on grill platters and wood-fired pizzas over 500 EGP.',
       discount: '20% OFF'
     },
     {
       code: 'SAVE5',
-      title: isAr ? 'وفر ٥$ على وجبتك المفضلة' : '$5 off orders over $25',
-      description: isAr ? 'خصم فوري مباشر على أي طلب بقيمة ٢٥$ فأكثر' : 'Instant deduction on dine-in, pickup, or delivery over $25.',
-      discount: '$5 OFF'
+      title: isAr ? 'وفر ٥٠ ج.م على وجبتك المفضلة' : '50 EGP off orders over 250 EGP',
+      description: isAr ? 'خصم فوري مباشر على أي طلب بقيمة ٢٥٠ ج.م فأكثر' : 'Instant deduction on dine-in, pickup, or delivery over 250 EGP.',
+      discount: '50 EGP OFF'
     }
   ];
 

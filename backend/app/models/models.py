@@ -198,12 +198,12 @@ class RestaurantSettings(Base):
     cover_url = Column(String(500), nullable=True)
     description = Column(Text, default="Experience unforgettable culinary craft with fresh artisan ingredients and passion.")
     description_ar = Column(Text, default="تجربة طهي استثنائية مع أجود المكونات الطازجة وأشهى النكهات الأصيلة.")
-    phone = Column(String(50), default="+1 (555) 234-5678")
-    whatsapp = Column(String(50), default="+15552345678")
+    phone = Column(String(50), default="+20 100 234 5678")
+    whatsapp = Column(String(50), default="+201002345678")
     email = Column(String(100), default="contact@khatab.example")
-    address = Column(String(255), default="742 Evergreen Terrace, Springfield")
-    address_ar = Column(String(255), default="شارع النخيل، حي الزهور، الرياض")
-    google_maps_url = Column(String(500), default="https://maps.google.com")
+    address = Column(String(255), default="26th of July St, Zamalek, Cairo, Egypt")
+    address_ar = Column(String(255), default="شارع ٢٦ يوليو، الزمالك، القاهرة، مصر")
+    google_maps_url = Column(String(500), default="https://maps.google.com/?q=Zamalek+Cairo+Egypt")
     opening_hours = Column(String(255), default="Mon - Sun: 10:00 AM - 12:00 AM")
     social_links_json = Column(Text, default='{"facebook":"#","instagram":"#","twitter":"#","tiktok":"#"}')
     
@@ -216,7 +216,7 @@ class RestaurantSettings(Base):
     primary_color = Column(String(30), default="#ea580c") # Orange-600
     active_sections_json = Column(Text, default='{"hero":true,"categories":true,"menu":true,"bestsellers":true,"offers":true,"gallery":true,"reviews":true,"about":true,"contact":true}')
     
-    currency = Column(String(10), default="USD") # USD, SAR, AED, EUR, etc.
+    currency = Column(String(10), default="EGP") # EGP, SAR, AED, USD, etc.
     min_order_value = Column(Float, default=15.0)
     delivery_fee = Column(Float, default=3.99)
     tax_percentage = Column(Float, default=5.0)

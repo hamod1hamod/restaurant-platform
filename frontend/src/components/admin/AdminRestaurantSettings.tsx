@@ -32,7 +32,7 @@ export const AdminRestaurantSettings: React.FC<AdminRestaurantSettingsProps> = (
   const [addressAr, setAddressAr] = useState('');
   const [openingHours, setOpeningHours] = useState('');
   const [googleMapsUrl, setGoogleMapsUrl] = useState('');
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('EGP');
   const [minOrderValue, setMinOrderValue] = useState<number>(15.0);
   const [deliveryFee, setDeliveryFee] = useState<number>(3.50);
 
@@ -73,7 +73,7 @@ export const AdminRestaurantSettings: React.FC<AdminRestaurantSettingsProps> = (
       setAddressAr(data.address_ar);
       setOpeningHours(data.opening_hours);
       setGoogleMapsUrl(data.google_maps_url);
-      setCurrency(data.currency || 'USD');
+      setCurrency(data.currency || 'EGP');
       setMinOrderValue(data.min_order_value);
       setDeliveryFee(data.delivery_fee);
       setHeroTitle(data.hero_title);
@@ -318,7 +318,7 @@ export const AdminRestaurantSettings: React.FC<AdminRestaurantSettingsProps> = (
                 type="text"
                 value={currency}
                 onChange={e => setCurrency(e.target.value)}
-                placeholder="USD / SAR / AED"
+                placeholder="EGP / SAR / USD"
                 className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-sm font-bold text-zinc-900 dark:text-zinc-100"
               />
             </div>

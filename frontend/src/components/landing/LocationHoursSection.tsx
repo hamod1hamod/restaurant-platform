@@ -12,9 +12,9 @@ export const LocationHoursSection: React.FC<LocationHoursSectionProps> = ({ sett
   const isAr = language === 'ar';
 
   const address = isAr
-    ? (settings?.address_ar || 'شارع جراند، وسط المدينة')
-    : (settings?.address || 'Grand Avenue, Downtown District');
-  const whatsappUrl = `https://wa.me/${settings?.whatsapp?.replace(/[^0-9]/g, '') || '15557892345'}`;
+    ? (settings?.address_ar || 'شارع ٢٦ يوليو، الزمالك، القاهرة، مصر')
+    : (settings?.address || '26th of July St, Zamalek, Cairo, Egypt');
+  const whatsappUrl = `https://wa.me/${settings?.whatsapp?.replace(/[^0-9]/g, '') || '201002345678'}`;
 
   return (
     <section
@@ -75,10 +75,10 @@ export const LocationHoursSection: React.FC<LocationHoursSectionProps> = ({ sett
                   {isAr ? 'الهاتف' : 'Telephone'}
                 </p>
                 <a
-                  href={`tel:${settings?.phone || '+15552345678'}`}
+                  href={`tel:${settings?.phone || '+201002345678'}`}
                   className="text-base font-medium text-[#0d2a1c] dark:text-white tabular-nums hover:text-[#0d2a1c] transition-colors"
                 >
-                  {settings?.phone || '+1 (555) 234-5678'}
+                  {settings?.phone || '+20 100 234 5678'}
                 </a>
               </div>
 

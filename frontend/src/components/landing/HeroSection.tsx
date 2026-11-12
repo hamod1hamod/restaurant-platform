@@ -25,7 +25,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ settings }) => {
     : (settings?.hero_subtitle || `${restaurantName} — dry-aged cuts, wood-fired pizza, brioche burgers, and single-origin espresso. Open daily 09:00 AM – 12:00 AM.`);
 
   const heroImage = settings?.hero_image || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80';
-  const whatsappUrl = `https://wa.me/${settings?.whatsapp?.replace(/[^0-9]/g, '') || '15557892345'}`;
+  const whatsappUrl = `https://wa.me/${settings?.whatsapp?.replace(/[^0-9]/g, '') || '201002345678'}`;
 
   return (
     <section

@@ -676,9 +676,9 @@ export const api = {
       return await handleResponse(res);
     } catch {
       return [
-        { id: 1, name: 'Sarah Jenkins', phone: '+1 555-019-2831', orders_count: 5, total_spent: 245.80, last_order: '2026-11-11' },
-        { id: 2, name: 'Omar Al-Khatib', phone: '+1 555-018-9941', orders_count: 3, total_spent: 112.50, last_order: '2026-11-11' },
-        { id: 3, name: 'Elena Rostova', phone: '+1 555-014-5520', orders_count: 2, total_spent: 85.00, last_order: '2026-11-10' }
+        { id: 1, name: 'Youssef Mansour', phone: '+20 101 234 5678', orders_count: 5, total_spent: 2450.80, last_order: '2026-11-11' },
+        { id: 2, name: 'Omar Al-Khatib', phone: '+20 102 987 6543', orders_count: 3, total_spent: 1120.50, last_order: '2026-11-11' },
+        { id: 3, name: 'Mariam Adel', phone: '+20 111 456 7890', orders_count: 2, total_spent: 850.00, last_order: '2026-11-10' }
       ];
     }
   },

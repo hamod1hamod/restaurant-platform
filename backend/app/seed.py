@@ -39,13 +39,13 @@ def seed_database():
             cover_url="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80",
             description="Award-winning culinary destination crafting artisan burgers, woodfired pizzas, prime grills, and decadent patisserie.",
             description_ar="وجهة طهي حائزة على جوائز تقدم برجر حرفي وبيتزا على الحطب ومشويات فاخرة وحلويات مميزة.",
-            phone="+1 (555) 789-2345",
-            whatsapp="+15557892345",
+            phone="+20 100 234 5678",
+            whatsapp="+201002345678",
             email="reservations@khatab.example",
-            address="450 Culinary Boulevard, Downtown Plaza",
-            address_ar="٤٥٠ بوليفارد الذواقة، وسط المدينة",
-            google_maps_url="https://maps.google.com/?q=Downtown+Plaza",
-            opening_hours="Mon - Sun: 09:00 AM - 12:00 Midnight",
+            address="26th of July St, Zamalek, Cairo, Egypt",
+            address_ar="شارع ٢٦ يوليو، الزمالك، القاهرة، مصر",
+            google_maps_url="https://maps.google.com/?q=Zamalek+Cairo+Egypt",
+            opening_hours="Daily: 09:00 AM - 01:00 AM (Cairo Time)",
             social_links_json='{"facebook":"https://facebook.com","instagram":"https://instagram.com","twitter":"https://twitter.com","tiktok":"https://tiktok.com"}',
             hero_title="Masterpiece Flavors, Freshly Prepared",
             hero_title_ar="نكهات استثنائية محضرة بكل شغف",
@@ -54,10 +54,10 @@ def seed_database():
             hero_image="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80",
             primary_color="#d92b21",
             active_sections_json='{"hero":true,"categories":true,"menu":true,"bestsellers":true,"offers":true,"gallery":true,"reviews":true,"about":true,"contact":true}',
-            currency="USD",
-            min_order_value=15.0,
-            delivery_fee=3.50,
-            tax_percentage=5.0
+            currency="EGP",
+            min_order_value=150.0,
+            delivery_fee=35.00,
+            tax_percentage=14.0
         )
         db.add(settings)
 

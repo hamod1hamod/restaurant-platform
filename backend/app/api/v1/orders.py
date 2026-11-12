@@ -197,7 +197,7 @@ def get_order_invoice(
             "phone": settings.phone if settings else "",
             "address": settings.address if settings else "",
             "tax_percentage": settings.tax_percentage if settings else 5.0,
-            "currency": settings.currency if settings else "USD"
+            "currency": settings.currency if settings else "EGP"
         },
         "order": order
     }
