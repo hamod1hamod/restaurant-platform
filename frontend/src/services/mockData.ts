@@ -47,8 +47,8 @@ export const mockProducts: Product[] = [
     description: "200g premium Wagyu beef patty, black truffle aioli, aged cheddar, caramelized shallots, arugula on buttered brioche bun.",
     description_ar: "قطعة لحم واغيو فاخرة ٢٠٠ جرام مع صلصة الترافل الأسود، جبنة شيدر معتقة، بصل مكرمل وجرجير طازج في خبز بريوش محمص بالزبدة.",
     product_type: "Food",
-    base_price: 18.99,
-    discount_price: 16.49,
+    base_price: 380.00,
+    discount_price: 330.00,
     image_url: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
     is_available: true,
     is_featured: true,
@@ -62,13 +62,13 @@ export const mockProducts: Product[] = [
     prep_time_mins: 15,
     display_order: 1,
     sizes: [
-      { id: 1, name: "Single Patty (200g)", name_ar: "شريحة واحدة (٢٠٠جم)", price: 18.99, is_default: true },
-      { id: 2, name: "Double Wagyu (400g)", name_ar: "شريحتين واغيو (٤٠٠جم)", price: 25.99 }
+      { id: 1, name: "Single Patty (200g)", name_ar: "شريحة واحدة (٢٠٠جم)", price: 380.00, is_default: true },
+      { id: 2, name: "Double Wagyu (400g)", name_ar: "شريحتين واغيو (٤٠٠جم)", price: 520.00 }
     ],
     extras: [
-      { id: 1, name: "Extra Aged Cheddar", name_ar: "جبن شيدر إضافي", price: 2.00, max_quantity: 2 },
-      { id: 2, name: "Crispy Beef Bacon", name_ar: "بيكون بقري مقرمش", price: 3.50, max_quantity: 2 },
-      { id: 3, name: "Truffle Fries Combo", name_ar: "كومبو بطاطس بالترافل والمشروب", price: 4.50, max_quantity: 1 }
+      { id: 1, name: "Extra Aged Cheddar", name_ar: "جبن شيدر إضافي", price: 45.00, max_quantity: 2 },
+      { id: 2, name: "Crispy Beef Bacon", name_ar: "بيكون بقري مقرمش", price: 75.00, max_quantity: 2 },
+      { id: 3, name: "Truffle Fries Combo", name_ar: "كومبو بطاطس بالترافل والمشروب", price: 95.00, max_quantity: 1 }
     ],
     images: []
   },
@@ -80,7 +80,7 @@ export const mockProducts: Product[] = [
     description: "Crispy fried free-range chicken breast dipped in smoky chipotle sauce, pickled jalapeños, purple slaw on sesame brioche.",
     description_ar: "صدر دجاج مقرمش متبل بخلطة الشيبوتلي المدخنة الحارة، هالبينو مخلل، سلطة ملفوف بنفسجية في خبز بريوش بالسمسم.",
     product_type: "Food",
-    base_price: 14.50,
+    base_price: 290.00,
     image_url: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=800&q=80",
     is_available: true,
     is_featured: false,
@@ -94,12 +94,12 @@ export const mockProducts: Product[] = [
     prep_time_mins: 12,
     display_order: 2,
     sizes: [
-      { id: 3, name: "Regular Crunch", name_ar: "الحجم العادي", price: 14.50, is_default: true },
-      { id: 4, name: "Mega Double Crunch", name_ar: "دبل دجاج مقرمش", price: 19.50 }
+      { id: 3, name: "Regular Crunch", name_ar: "الحجم العادي", price: 290.00, is_default: true },
+      { id: 4, name: "Mega Double Crunch", name_ar: "دبل دجاج مقرمش", price: 390.00 }
     ],
     extras: [
-      { id: 4, name: "Extra Chipotle Sauce", name_ar: "صلصة شيبوتلي إضافية", price: 1.50, max_quantity: 3 },
-      { id: 5, name: "Spicy Seasoned Wedges", name_ar: "بطاطس ودجز متبلة حارة", price: 3.00, max_quantity: 1 }
+      { id: 4, name: "Extra Chipotle Sauce", name_ar: "صلصة شيبوتلي إضافية", price: 30.00, max_quantity: 3 },
+      { id: 5, name: "Spicy Seasoned Wedges", name_ar: "بطاطس ودجز متبلة حارة", price: 65.00, max_quantity: 1 }
     ],
     images: []
   },
@@ -111,8 +111,8 @@ export const mockProducts: Product[] = [
     description: "Dry-aged Black Angus ribeye flame-grilled, accompanied by roasted garlic bulb, rosemary jus, and truffle mashed potatoes.",
     description_ar: "ستيك بلاك أنجوس ريب آي معتق مشوي على اللهب، يقدم مع ثوم مشوي، صوص إكليل الجبل وبطاطس بيوريه بالترافل.",
     product_type: "Food",
-    base_price: 34.00,
-    discount_price: 29.99,
+    base_price: 680.00,
+    discount_price: 600.00,
     image_url: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
     is_available: true,
     is_featured: true,
@@ -126,11 +126,11 @@ export const mockProducts: Product[] = [
     prep_time_mins: 22,
     display_order: 3,
     sizes: [
-      { id: 5, name: "Medium Rare (Recommended)", name_ar: "ميديم رير (موصى به)", price: 34.00, is_default: true },
-      { id: 6, name: "Medium Well", name_ar: "ميديم ويل", price: 34.00 }
+      { id: 5, name: "Medium Rare (Recommended)", name_ar: "ميديم رير (موصى به)", price: 680.00, is_default: true },
+      { id: 6, name: "Medium Well", name_ar: "ميديم ويل", price: 680.00 }
     ],
     extras: [
-      { id: 6, name: "Grilled Jumbo Prawns (2 pcs)", name_ar: "روبيان جامبو مشوي (قطعتين)", price: 8.00, max_quantity: 2 }
+      { id: 6, name: "Grilled Jumbo Prawns (2 pcs)", name_ar: "روبيان جامبو مشوي (قطعتين)", price: 160.00, max_quantity: 2 }
     ],
     images: []
   },
@@ -142,7 +142,7 @@ export const mockProducts: Product[] = [
     description: "48-hour slow fermented dough, San Marzano tomato base, creamy whole Italian burrata, fresh black truffle shavings, basil.",
     description_ar: "عجينة مخمرة لمدة ٤٨ ساعة، صلصة طماطم سان مارزانو، جبنة بوراتا إيطالية كاملة، رقائق الترافل الأسود وريحان طازج.",
     product_type: "Food",
-    base_price: 21.00,
+    base_price: 420.00,
     image_url: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
     is_available: true,
     is_featured: true,
@@ -156,8 +156,8 @@ export const mockProducts: Product[] = [
     prep_time_mins: 14,
     display_order: 4,
     sizes: [
-      { id: 7, name: "Medium 11 inch", name_ar: "وسط ١١ إنش", price: 21.00, is_default: true },
-      { id: 8, name: "Large 14 inch", name_ar: "كبير ١٤ إنش", price: 27.50 }
+      { id: 7, name: "Medium 11 inch", name_ar: "وسط ١١ إنش", price: 420.00, is_default: true },
+      { id: 8, name: "Large 14 inch", name_ar: "كبير ١٤ إنش", price: 540.00 }
     ],
     extras: [],
     images: []
@@ -170,7 +170,7 @@ export const mockProducts: Product[] = [
     description: "Silky handcrafted egg fettuccine tossed in a rich Parmigiano-Reggiano emulsion, wild porcini mushrooms, and white truffle glaze.",
     description_ar: "فيتوتشيني طازجة محضرة يدوياً بالبيض، مع صوص جبن بارميجيانو كريمي، فطر البورتشيني البري ولمسة الترافل الأبيض.",
     product_type: "Food",
-    base_price: 19.50,
+    base_price: 390.00,
     image_url: "https://images.unsplash.com/photo-1621996346565-e3d5d6281728?auto=format&fit=crop&w=800&q=80",
     is_available: true,
     is_featured: false,
@@ -184,11 +184,11 @@ export const mockProducts: Product[] = [
     prep_time_mins: 15,
     display_order: 5,
     sizes: [
-      { id: 9, name: "Regular Portion", name_ar: "طبق فردي", price: 19.50, is_default: true },
-      { id: 10, name: "Large Sharing Plate", name_ar: "طبق للمشاركة", price: 26.00 }
+      { id: 9, name: "Regular Portion", name_ar: "طبق فردي", price: 390.00, is_default: true },
+      { id: 10, name: "Large Sharing Plate", name_ar: "طبق للمشاركة", price: 520.00 }
     ],
     extras: [
-      { id: 7, name: "Add Grilled Chicken Breast", name_ar: "إضافة صدر دجاج مشوي", price: 4.50, max_quantity: 1 }
+      { id: 7, name: "Add Grilled Chicken Breast", name_ar: "إضافة صدر دجاج مشوي", price: 95.00, max_quantity: 1 }
     ],
     images: []
   },
@@ -200,8 +200,8 @@ export const mockProducts: Product[] = [
     description: "Crispy panko-breaded bites stuffed with four-cheese macaroni, black truffle essence, served with warm marinara dipping sauce.",
     description_ar: "لقيمات مقرمشة بفتات البانكو محشوة بمكرونة بأربعة أنواع أجبان فاخرة وخلاصة الترافل مع صوص المارينارا الساخن.",
     product_type: "Food",
-    base_price: 11.00,
-    discount_price: 9.50,
+    base_price: 220.00,
+    discount_price: 190.00,
     image_url: "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=800&q=80",
     is_available: true,
     is_featured: false,
@@ -226,7 +226,7 @@ export const mockProducts: Product[] = [
     description: "Warm Belgian 70% dark chocolate fondant with a flowing gooey core, served with Madagascar vanilla bean gelato and fresh berries.",
     description_ar: "كيك شوكولاتة بلجيكية داكنة ٧٠٪ ساخنة بقلب يتدفق بالشوكولاتة الذائبة، تقدم مع آيس كريم فانيليا مدغشقر وتوت طازج.",
     product_type: "Desserts",
-    base_price: 10.50,
+    base_price: 210.00,
     image_url: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80",
     is_available: true,
     is_featured: true,
@@ -251,7 +251,7 @@ export const mockProducts: Product[] = [
     description: "Freshly squeezed red dragonfruit, passion fruit pulp, wild organic mint leaves, lime juice, topped with sparkling botanical soda.",
     description_ar: "فاكهة التنين الحمراء الطازجة المعصورة مع لب الباشن فروت، أوراق النعناع البري، عصير ليمون ومياه فوارة منعشة.",
     product_type: "Drinks",
-    base_price: 7.50,
+    base_price: 145.00,
     image_url: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80",
     is_available: true,
     is_featured: true,
@@ -265,18 +265,48 @@ export const mockProducts: Product[] = [
     prep_time_mins: 5,
     display_order: 8,
     sizes: [
-      { id: 11, name: "Regular Glass (400ml)", name_ar: "كوب عادي (٤٠٠مل)", price: 7.50, is_default: true },
-      { id: 12, name: "Large Pitcher (1 Liter)", name_ar: "إبريق كبير (١ لتر)", price: 14.00 }
+      { id: 11, name: "Regular Glass (400ml)", name_ar: "كوب عادي (٤٠٠مل)", price: 145.00, is_default: true },
+      { id: 12, name: "Large Pitcher (1 Liter)", name_ar: "إبريق كبير (١ لتر)", price: 280.00 }
     ],
     extras: [],
+    images: []
+  },
+  {
+    id: 9,
+    category_id: 8,
+    name: "Khatab Signature Spanish Latte",
+    name_ar: "سبانش لاتيه خطاب المميز",
+    description: "Double shot single-origin Ethiopian espresso over velvety condensed milk and steamed micro-foam, served hot or iced.",
+    description_ar: "دبل شوت إسبريسو إثيوبي أحادي المصدر مع الحليب المكثف والفوم الناعم، يقدم ساخناً أو مثلجاً.",
+    product_type: "Drinks",
+    base_price: 125.00,
+    image_url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80",
+    is_available: true,
+    is_featured: true,
+    is_bestseller: true,
+    is_new: false,
+    is_vegetarian: true,
+    is_spicy: false,
+    ingredients: "Single-origin Ethiopian espresso, Fresh milk, Condensed milk",
+    ingredients_ar: "إسبريسو إثيوبي مختص، حليب طازج، حليب مكثف",
+    calories: 190,
+    prep_time_mins: 4,
+    display_order: 9,
+    sizes: [
+      { id: 13, name: "Hot Regular", name_ar: "ساخن عادي", price: 125.00, is_default: true },
+      { id: 14, name: "Iced Large", name_ar: "مثلج كبير", price: 145.00 }
+    ],
+    extras: [
+      { id: 8, name: "Extra Espresso Shot", name_ar: "شوت إسبريسو إضافي", price: 35.00, max_quantity: 2 }
+    ],
     images: []
   }
 ];
 
 export const mockCoupons: Coupon[] = [
-  { id: 1, code: "WELCOME10", discount_percent: 10, min_order_value: 20, is_active: true, usage_count: 5 },
-  { id: 2, code: "KHATAB20", discount_percent: 20, min_order_value: 50, is_active: true, usage_count: 12 },
-  { id: 3, code: "SAVE5", discount_amount: 5, min_order_value: 25, is_active: true, usage_count: 8 }
+  { id: 1, code: "WELCOME10", discount_percent: 10, min_order_value: 200, is_active: true, usage_count: 5 },
+  { id: 2, code: "KHATAB20", discount_percent: 20, min_order_value: 500, is_active: true, usage_count: 12 },
+  { id: 3, code: "SAVE5", discount_amount: 50, min_order_value: 250, is_active: true, usage_count: 8 }
 ];
 
 export const mockReviews: Review[] = [
@@ -296,15 +326,15 @@ export const mockOrders: Order[] = [
     payment_method: "cash_on_delivery",
     payment_status: "paid",
     status: "completed",
-    subtotal: 52.99,
-    delivery_fee: 4.99,
-    discount_amount: 5.30,
-    total: 57.18,
+    subtotal: 1050.00,
+    delivery_fee: 35.00,
+    discount_amount: 105.00,
+    total: 980.00,
     coupon_code: "WELCOME10",
     created_at: "2026-11-11T12:30:00Z",
     items: [
-      { id: 1, product_id: 1, product_name: "Truffle Wagyu Supreme Burger", size_name: "Single Patty (200g)", unit_price: 18.99, quantity: 2, total_price: 37.98 },
-      { id: 2, product_id: 8, product_name: "Dragonfruit Passion Sparkler", size_name: "Regular Glass (400ml)", unit_price: 7.50, quantity: 2, total_price: 15.00 }
+      { id: 1, product_id: 1, product_name: "Truffle Wagyu Supreme Burger", size_name: "Single Patty (200g)", unit_price: 380.00, quantity: 2, total_price: 760.00 },
+      { id: 2, product_id: 8, product_name: "Dragonfruit Passion Sparkler", size_name: "Regular Glass (400ml)", unit_price: 145.00, quantity: 2, total_price: 290.00 }
     ]
   },
   {
