@@ -1,4 +1,4 @@
-# Gourmet Haven - Restaurant Digital Menu & Management Platform
+# Khatab Restaurant & Café — Digital Menu & Management Platform
 
 [![Deploy to GitHub Pages](https://github.com/hamod1hamod/restaurant-platform/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/hamod1hamod/restaurant-platform/actions/workflows/deploy-pages.yml)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f?style=flat&logo=github)](https://hamod1hamod.github.io/restaurant-platform/)
@@ -30,7 +30,7 @@ A modern, responsive, full-stack restaurant platform featuring an interactive **
   - Special kitchen instructions field.
 - **Interactive Cart & Checkout Flow:**
   - Slide-over Cart Drawer with item breakdown, size and extras details, and quantity adjustments.
-  - Promotional discount coupon validator (e.g. `WELCOME10`, `GOURMET20`, `SAVE5`).
+  - Promotional discount coupon validator (e.g. `WELCOME10`, `KHATAB20`, `SAVE5`).
   - Order types: **Delivery**, **Pickup**, and **Dine-In** (with Table Number).
   - Payment methods: **Cash on Delivery**, **Cash at Counter**, and **Online Card Simulator**.
   - Generates a unique tracking Order Number (e.g., `ORD-20261111-36BAF0`) with a confirmation receipt.

@@ -1,20 +1,22 @@
 import React from 'react';
-import { Plus, Sliders, Clock, Flame, Sparkles, Leaf, Info } from 'lucide-react';
+import { Plus, Sliders, Clock } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Product } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
-import { Badge } from '../common/Badge';
 
 interface ProductCardProps {
   product: Product;
   currency: string;
   onOpenDetails: (product: Product) => void;
+  index?: number;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   currency,
-  onOpenDetails
+  onOpenDetails,
+  index = 0
 }) => {
   const { language, t } = useLanguage();
   const { addToCart } = useCart();
@@ -30,7 +32,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!product.is_available) return;
-    
+
     if (hasOptions) {
       onOpenDetails(product);
     } else {
@@ -39,12 +41,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.08 }}
+      transition={{
+        duration: 0.42,
+        delay: Math.min(index * 0.04, 0.28),
+        ease: [0.22, 1, 0.36, 1]
+      }}
       onClick={() => onOpenDetails(product)}
-      className="taste-card group relative flex flex-col justify-between rounded-3xl bg-slate-900/90 border border-slate-800/80 overflow-hidden shadow-sm cursor-pointer select-none"
+      className="taste-card group relative flex flex-col justify-between bg-white dark:bg-[#1c3629] border border-[#0d2a1c]/12 dark:border-white/15 overflow-hidden cursor-pointer select-none"
     >
-      {/* Top Image Container with Taste-Skill zoom frame */}
-      <div className="taste-photo-frame relative aspect-4/3 w-full overflow-hidden bg-slate-800">
+      {/* Square-cornered 4:3 photograph frame with 1.03 zoom on hover */}
+      <div className="taste-photo-frame relative aspect-[4/3] w-full bg-[#ebebeb] dark:bg-[#0d2a1c]">
         <img
           src={product.image_url || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80'}
           alt={name}
@@ -52,87 +63,68 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           loading="lazy"
         />
 
-        {/* Gradient shadow for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity"></div>
-
-        {/* Badges in top-left */}
-        <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 flex flex-col gap-1.5 z-10">
-          {product.is_bestseller && <Badge type="bestseller" />}
-          {product.is_featured && <Badge type="featured" />}
-          {product.is_new && <Badge type="new" />}
-          {product.is_vegetarian && <Badge type="vegetarian" />}
-          {product.is_spicy && <Badge type="spicy" />}
-        </div>
-
-        {/* Discount Tag */}
         {hasDiscount && (
-          <div className="absolute bottom-3 left-3 rtl:left-auto rtl:right-3 z-10 px-2.5 py-1 rounded-full bg-blue-600 text-white font-black text-xs shadow-md">
-            {Math.round(((product.base_price - (product.discount_price || 0)) / product.base_price) * 100)}% {isAr ? 'خصم' : 'OFF'}
-          </div>
+          <span className="absolute top-3 left-3 rtl:left-auto rtl:right-3 z-10 px-2.5 py-1 bg-[#f6e016] text-[#0d2a1c] font-semibold text-xs tabular-nums">
+            -{Math.round(((product.base_price - (product.discount_price || 0)) / product.base_price) * 100)}%
+          </span>
         )}
 
-        {/* Sold out overlay */}
         {!product.is_available && (
-          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-xs flex items-center justify-center z-20">
-            <span className="px-4 py-1.5 rounded-full bg-slate-800 text-slate-200 border border-slate-700 font-extrabold text-xs tracking-wider uppercase shadow-lg">
+          <div className="absolute inset-0 bg-[#f7f7f7]/85 dark:bg-[#0d2a1c]/85 flex items-center justify-center z-20">
+            <span className="px-4 py-1.5 bg-[#0d2a1c] text-[#f7f7f7] font-medium text-xs uppercase tracking-wider">
               {t('product.soldOut')}
             </span>
           </div>
         )}
-
-        {/* Quick View hint on hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
-          <span className="px-3 py-1.5 rounded-full bg-slate-900/90 text-white border border-slate-700 text-xs font-bold backdrop-blur-md shadow-lg">
-            {isAr ? 'عرض التفاصيل والإضافات' : 'View Details & Extras'}
-          </span>
-        </div>
       </div>
 
       {/* Product Content Body */}
       <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-        
-        <div className="space-y-1.5">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="font-extrabold text-base sm:text-lg text-white group-hover:text-blue-400 transition-colors line-clamp-1">
-              {name}
-            </h3>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between gap-2 text-xs font-medium text-[#5f6b64] dark:text-[#97a39c]">
+            <div className="flex items-center gap-2">
+              {product.is_bestseller && (
+                <span className="px-2 py-0.5 bg-[#f6e016] text-[#0d2a1c] font-semibold">
+                  {isAr ? 'الأكثر طلباً' : 'Bestseller'}
+                </span>
+              )}
+              {product.is_vegetarian && <span>{isAr ? 'نباتي' : 'Veg'}</span>}
+              {product.is_spicy && <span>{isAr ? 'حار' : 'Spicy'}</span>}
+            </div>
+            {product.prep_time_mins && (
+              <span className="inline-flex items-center gap-1 tabular-nums">
+                <Clock className="w-3 h-3" />
+                {product.prep_time_mins}m
+              </span>
+            )}
           </div>
 
-          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+          <h3 className="font-display text-xl text-[#0d2a1c] dark:text-[#f7f7f7] group-hover:underline underline-offset-4 decoration-[#f6e016] decoration-2 line-clamp-1">
+            {name}
+          </h3>
+
+          <p className="text-sm text-[#5f6b64] dark:text-[#97a39c] line-clamp-2 leading-relaxed">
             {description}
           </p>
         </div>
 
-        {/* Ingredients & Prep metadata */}
-        {product.ingredients && (
-          <div className="text-[11px] text-slate-400 line-clamp-1 flex items-center gap-1.5 pt-1">
-            <span className="font-semibold text-slate-400">{isAr ? 'المكونات:' : 'Ingredients:'}</span>
-            <span>{isAr ? (product.ingredients_ar || product.ingredients) : product.ingredients}</span>
-          </div>
-        )}
-
-        {/* Footer: Price & Add Button */}
-        <div className="pt-3.5 border-t border-slate-800/80 flex items-center justify-between">
-          <div className="flex flex-col">
-            <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">
-              {product.sizes && product.sizes.length > 1 ? (isAr ? 'يبدأ من' : 'From') : (isAr ? 'السعر' : 'Price')}
+        {/* Footer: Tabular Price & Add Button */}
+        <div className="pt-4 border-t border-[#0d2a1c]/10 dark:border-white/10 flex items-center justify-between gap-3">
+          <div className="flex items-baseline gap-2 tabular-nums">
+            <span className="text-lg font-semibold text-[#0d2a1c] dark:text-[#f7f7f7]">
+              {currency}{Number(displayPrice || 0).toFixed(2)}
             </span>
-            <div className="flex items-baseline gap-2">
-              <span className="font-black text-xl text-white">
-                {currency} {Number(displayPrice || 0).toFixed(2)}
+            {hasDiscount && (
+              <span className="text-xs text-[#5f6b64] dark:text-[#97a39c] line-through">
+                {currency}{Number(product.base_price || 0).toFixed(2)}
               </span>
-              {hasDiscount && (
-                <span className="text-xs text-slate-400 line-through">
-                  {currency} {Number(product.base_price || 0).toFixed(2)}
-                </span>
-              )}
-            </div>
+            )}
           </div>
 
           {product.is_available && (
             <button
               onClick={handleQuickAdd}
-              className="taste-btn flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-900/30 ring-1 ring-blue-400/30 cursor-pointer"
+              className="taste-btn h-10 px-4 flex items-center gap-1.5 bg-[#0d2a1c] dark:bg-[#f6e016] hover:bg-[#1c3629] dark:hover:bg-[#e5cf12] text-[#f7f7f7] dark:text-[#0d2a1c] font-medium text-sm cursor-pointer"
             >
               {hasOptions ? (
                 <>
@@ -148,8 +140,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </button>
           )}
         </div>
-
       </div>
-    </div>
+    </motion.article>
   );
 };

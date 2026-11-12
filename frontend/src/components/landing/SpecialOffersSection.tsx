@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Copy, Check, Sparkles } from 'lucide-react';
+import { Copy, Check } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 export const SpecialOffersSection: React.FC = () => {
@@ -10,20 +10,20 @@ export const SpecialOffersSection: React.FC = () => {
   const offers = [
     {
       code: 'WELCOME10',
-      title: isAr ? 'خصم ١٠٪ للطلب الأول' : '10% Off First Digital Order',
-      description: isAr ? 'استخدم الكود عند الدفع للطلبات التي تزيد عن ٢٠$' : 'Apply at checkout on any order over $20',
+      title: isAr ? 'خصم ١٠٪ للطلب الأول' : '10% off your first online order',
+      description: isAr ? 'استخدم الكود عند الدفع للطلبات التي تزيد عن ٢٠$' : 'Apply at checkout on any order over $20.',
       discount: '10% OFF'
     },
     {
-      code: 'GOURMET20',
-      title: isAr ? 'خصم ٢٠٪ للولائم العائلية' : '20% Gourmet Feast Discount',
-      description: isAr ? 'صالح على طلبات المشويات والبيتزا لأكثر من ٥٠$' : 'Valid on grill platters & artisan pizza orders over $50',
+      code: 'KHATAB20',
+      title: isAr ? 'خصم ٢٠٪ للولائم العائلية' : '20% off family & grill platters',
+      description: isAr ? 'صالح على طلبات المشويات والبيتزا لأكثر من ٥٠$' : 'Valid on grill platters and wood-fired pizzas over $50.',
       discount: '20% OFF'
     },
     {
       code: 'SAVE5',
-      title: isAr ? 'وفر ٥$ على وجبتك المفضلة' : 'Instant $5 Cash Voucher',
-      description: isAr ? 'خصم فوري مباشر على أي طلب بقيمة ٢٥$ فأكثر' : 'Instant deduction on any order of $25 or more',
+      title: isAr ? 'وفر ٥$ على وجبتك المفضلة' : '$5 off orders over $25',
+      description: isAr ? 'خصم فوري مباشر على أي طلب بقيمة ٢٥$ فأكثر' : 'Instant deduction on dine-in, pickup, or delivery over $25.',
       discount: '$5 OFF'
     }
   ];
@@ -35,82 +35,71 @@ export const SpecialOffersSection: React.FC = () => {
   };
 
   return (
-    <section id="offers" className="py-20 bg-slate-950 text-white border-b border-slate-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-900/40 border border-blue-500/30 text-blue-400 font-bold text-xs uppercase tracking-wider">
-            <Tag className="w-3.5 h-3.5" />
-            <span>{isAr ? 'عروض ترويجية وكوبونات' : 'Exclusive Promotions'}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white">
+    <section
+      id="offers"
+      className="py-20 lg:py-24 bg-white dark:bg-[#0d2a1c] text-[#0d2a1c] dark:text-[#f5f5f5] border-b border-black/12 dark:border-white/12"
+    >
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-10">
+          <h2 className="font-display text-3xl sm:text-4xl text-[#0d2a1c] dark:text-white">
             {t('nav.offers')}
           </h2>
-          <p className="text-sm text-slate-400">
+          <p className="text-base text-[#5f6b64] dark:text-[#a3a3a3]">
             {isAr
-              ? 'انسخ أي كود خصم بضغطة زر وطبقه مباشرة في سلة المشتريات لتستمتع بأفضل الأسعار.'
-              : 'Copy any coupon code with one click and redeem it in your cart for delicious savings.'}
+              ? 'انسخ كود الخصم وطبقه في سلة المشتريات.'
+              : 'Copy a voucher code to apply directly in your cart.'}
           </p>
         </div>
 
-        {/* Promo Cards with Taste-Skill 2px lift & tactile copy */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {offers.map(offer => (
             <div
               key={offer.code}
-              className="taste-card relative p-7 rounded-3xl bg-slate-900/90 border border-slate-800/80 flex flex-col justify-between space-y-6 shadow-sm overflow-hidden"
+              className="taste-card p-7 bg-[#ebebeb] dark:bg-[#1c3629] border border-black/12 dark:border-white/12 flex flex-col justify-between space-y-6"
             >
-              {/* Decorative Subtle Accent Light */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-2xl pointer-events-none"></div>
+              <div className="space-y-3">
+                <span className="inline-block px-2.5 py-1 bg-[#0d2a1c] text-white font-medium text-xs tabular-nums">
+                  {offer.discount}
+                </span>
 
-              <div className="space-y-3 relative z-10">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-blue-600/20 text-blue-400 font-black text-xs uppercase tracking-wider border border-blue-500/20">
-                  <Sparkles className="w-3 h-3" />
-                  <span>{offer.discount}</span>
-                </div>
-                
-                <h3 className="font-extrabold text-xl text-white">
+                <h3 className="font-display text-2xl text-[#0d2a1c] dark:text-white">
                   {offer.title}
                 </h3>
-                
-                <p className="text-xs text-slate-400 leading-relaxed">
+
+                <p className="text-sm text-[#5f6b64] dark:text-[#a3a3a3] leading-relaxed">
                   {offer.description}
                 </p>
               </div>
 
-              {/* Coupon Box */}
-              <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3 relative z-10">
-                <div className="px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 font-mono font-black text-sm text-blue-300 tracking-wider">
+              <div className="pt-4 border-t border-black/12 dark:border-white/12 flex items-center justify-between gap-3">
+                <code className="px-3 py-2 bg-white dark:bg-[#0d2a1c] border border-black/15 dark:border-white/15 font-mono font-semibold text-sm text-[#0d2a1c] dark:text-white tracking-wider">
                   {offer.code}
-                </div>
+                </code>
 
                 <button
                   onClick={() => handleCopy(offer.code)}
-                  className={`taste-btn flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold cursor-pointer transition-all ${
+                  className={`taste-btn h-10 px-4 flex items-center gap-1.5 text-sm font-medium cursor-pointer ${
                     copiedCode === offer.code
-                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-950/40'
-                      : 'bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-900/30 ring-1 ring-blue-400/30'
+                      ? 'bg-[#0d2a1c] text-white'
+                      : 'bg-[#0d2a1c] hover:bg-[#1c3629] text-white'
                   }`}
                 >
                   {copiedCode === offer.code ? (
                     <>
                       <Check className="w-3.5 h-3.5" />
-                      <span>{isAr ? 'تم النسخ!' : 'Copied!'}</span>
+                      <span>{isAr ? 'تم النسخ' : 'Copied'}</span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-3.5 h-3.5" />
-                      <span>{isAr ? 'نسخ الكود' : 'Copy Code'}</span>
+                      <span>{isAr ? 'نسخ الكود' : 'Copy code'}</span>
                     </>
                   )}
                 </button>
               </div>
-
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

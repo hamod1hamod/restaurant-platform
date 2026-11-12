@@ -178,7 +178,7 @@ const RestaurantApp: React.FC = () => {
   if (isAdminView) {
     if (!isAuthenticated) {
       return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-[#ebebeb] dark:bg-[#0d2a1c] flex items-center justify-center p-4">
           <AdminLogin
             isOpen={true}
             onSuccess={() => {
@@ -223,90 +223,142 @@ const RestaurantApp: React.FC = () => {
     );
   }
 
-  // Customer Landing Page View in Dark Blue & White Theme
+  const isFiltered =
+    selectedCategoryId !== null ||
+    searchQuery.trim().length > 0 ||
+    isVegetarian ||
+    isSpicy ||
+    isBestseller;
+
+  // Customer Landing Page View (Taste-Skill Place System: offwhite-bottle-yellow + Outfit)
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors">
+    <div className="min-h-screen bg-[#f7f7f7] dark:bg-[#0d2a1c] text-[#0d2a1c] dark:text-[#f7f7f7] flex flex-col transition-colors">
       
-      {/* Sticky Header Navbar (Control panel removed from public landing page) */}
       <Navbar settings={settings} />
 
-      <main className="flex-1">
+      <main id="top" className="flex-1">
         
         {/* A. Hero Section */}
         {activeSections.hero && <HeroSection settings={settings} />}
 
-        {/* Dynamic Menu Section */}
-        <section id="menu" className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="mb-6">
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
-              {t('nav.menu')}
-            </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              {isAr ? 'استمتع بأشهى الأطباق المحضرة طازجة من قائمة طعامنا الرقمية' : 'Browse our chef-crafted gourmet menu and customize your favorites'}
-            </p>
-          </div>
-
-          {/* B. Food Categories Bar */}
-          {activeSections.categories && (
-            <CategoryBar
-              categories={categories}
-              selectedCategoryId={selectedCategoryId}
-              onSelectCategory={setSelectedCategoryId}
-            />
-          )}
-
-          {/* D. Advanced Search & Filtering */}
-          <FilterBar
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-            isVegetarian={isVegetarian}
-            onToggleVegetarian={() => setIsVegetarian(!isVegetarian)}
-            isSpicy={isSpicy}
-            onToggleSpicy={() => setIsSpicy(!isSpicy)}
-            isBestseller={isBestseller}
-            onToggleBestseller={() => setIsBestseller(!isBestseller)}
-            sortBy={sortBy}
-            onSortChange={setSortBy}
-          />
-
-          {/* C. Dynamic Menu Products Grid */}
-          {loading ? (
-            <div className="py-24 text-center">
-              <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-xs font-bold text-slate-400">{t('common.loading')}</p>
-            </div>
-          ) : filteredProducts.length === 0 ? (
-            <div className="py-20 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-blue-950 p-8">
-              <p className="text-base font-extrabold text-slate-700 dark:text-slate-200">
-                {t('menu.noProductsFound')}
+        {/* Dynamic All-Menu-On-One-Page Section with Animated Card Listing */}
+        <section id="menu" className="py-20 bg-[#ebebeb] dark:bg-[#1c3629] border-b border-[#0d2a1c]/12 dark:border-white/15">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-8">
+              <div>
+                <span className="inline-block px-2.5 py-0.5 bg-[#f6e016] text-[#0d2a1c] text-xs font-semibold uppercase tracking-wider mb-2">
+                  {isAr ? 'القائمة الكاملة' : 'Complete Menu'}
+                </span>
+                <h2 className="font-display text-3xl sm:text-4xl text-[#0d2a1c] dark:text-[#f7f7f7]">
+                  {t('nav.menu')}
+                </h2>
+              </div>
+              <p className="text-base text-[#5f6b64] dark:text-[#97a39c] tabular-nums">
+                {isAr
+                  ? `${filteredProducts.length} صنف متاح في صفحة واحدة`
+                  : `${filteredProducts.length} dishes & drinks on one page`}
               </p>
-              <button
-                onClick={() => {
-                  setSelectedCategoryId(null);
-                  setSearchQuery('');
-                  setIsVegetarian(false);
-                  setIsSpicy(false);
-                  setIsBestseller(false);
-                }}
-                className="mt-4 px-5 py-2.5 rounded-full bg-blue-600 text-white font-bold text-xs hover:bg-blue-700 cursor-pointer shadow-md shadow-blue-500/20"
-              >
-                {isAr ? 'إعادة ضبط الفلاتر' : 'Reset Filters'}
-              </button>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map(product => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  currency={currency}
-                  onOpenDetails={setSelectedProduct}
-                />
-              ))}
-            </div>
-          )}
 
+            {/* B. Food Categories Bar */}
+            {activeSections.categories && (
+              <CategoryBar
+                categories={categories}
+                selectedCategoryId={selectedCategoryId}
+                onSelectCategory={setSelectedCategoryId}
+              />
+            )}
+
+            {/* D. Advanced Search & Filtering */}
+            <FilterBar
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              isVegetarian={isVegetarian}
+              onToggleVegetarian={() => setIsVegetarian(!isVegetarian)}
+              isSpicy={isSpicy}
+              onToggleSpicy={() => setIsSpicy(!isSpicy)}
+              isBestseller={isBestseller}
+              onToggleBestseller={() => setIsBestseller(!isBestseller)}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
+            />
+
+            {/* C. Dynamic Menu Products Grid (Grouped by Category when viewing All Menu) */}
+            {loading ? (
+              <div className="py-24 text-center">
+                <div className="w-10 h-10 border-2 border-[#0d2a1c] dark:border-[#f6e016] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <p className="text-sm font-medium text-[#5f6b64]">{t('common.loading')}</p>
+              </div>
+            ) : filteredProducts.length === 0 ? (
+              <div className="py-20 text-center bg-white dark:bg-[#0d2a1c] border border-[#0d2a1c]/12 dark:border-white/15 p-8">
+                <p className="text-base font-medium text-[#0d2a1c] dark:text-[#f7f7f7]">
+                  {t('menu.noProductsFound')}
+                </p>
+                <button
+                  onClick={() => {
+                    setSelectedCategoryId(null);
+                    setSearchQuery('');
+                    setIsVegetarian(false);
+                    setIsSpicy(false);
+                    setIsBestseller(false);
+                  }}
+                  className="taste-btn mt-4 px-5 py-2.5 bg-[#0d2a1c] dark:bg-[#f6e016] text-[#f7f7f7] dark:text-[#0d2a1c] font-medium text-sm cursor-pointer"
+                >
+                  {isAr ? 'إعادة ضبط الفلاتر' : 'Reset Filters'}
+                </button>
+              </div>
+            ) : !isFiltered && categories.length > 0 ? (
+              <div className="space-y-14 pt-4">
+                {categories.map(cat => {
+                  const catProducts = filteredProducts.filter(p => p.category_id === cat.id);
+                  if (catProducts.length === 0) return null;
+                  return (
+                    <div key={cat.id} className="space-y-6">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-3 border-b border-[#0d2a1c]/15 dark:border-white/15">
+                        <div>
+                          <h3 className="font-display text-2xl sm:text-3xl text-[#0d2a1c] dark:text-[#f7f7f7]">
+                            {isAr ? cat.name_ar : cat.name}
+                          </h3>
+                          {(cat.description || cat.description_ar) && (
+                            <p className="text-sm text-[#5f6b64] dark:text-[#97a39c] mt-1">
+                              {isAr ? (cat.description_ar || cat.description) : cat.description}
+                            </p>
+                          )}
+                        </div>
+                        <span className="text-xs font-medium px-2.5 py-1 bg-white dark:bg-[#0d2a1c] border border-[#0d2a1c]/12 dark:border-white/15 tabular-nums self-start sm:self-auto">
+                          {catProducts.length} {isAr ? 'أصناف' : (catProducts.length === 1 ? 'item' : 'items')}
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {catProducts.map((product, idx) => (
+                          <ProductCard
+                            key={product.id}
+                            product={product}
+                            currency={currency}
+                            onOpenDetails={setSelectedProduct}
+                            index={idx}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-4">
+                {filteredProducts.map((product, idx) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    currency={currency}
+                    onOpenDetails={setSelectedProduct}
+                    index={idx}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </section>
 
         {/* G. Additional Landing Page Sections */}

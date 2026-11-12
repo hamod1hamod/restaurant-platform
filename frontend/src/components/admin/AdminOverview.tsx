@@ -157,7 +157,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
               setRestoreStatus(null);
               setRestoreModalOpen(true);
             }}
-            className="taste-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-md shadow-blue-600/30 cursor-pointer ring-1 ring-blue-400/30"
+            className="taste-btn inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#0d2a1c] hover:bg-[#1c3629] text-white text-xs font-medium cursor-pointer"
           >
             <Database className="w-4 h-4" />
             <span>{isAr ? 'استعادة قاعدة البيانات' : 'Restore Database'}</span>
@@ -166,7 +166,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
           {/* Refresh Button */}
           <button
             onClick={fetchDashboardData}
-            className="taste-btn p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer"
+            className="taste-btn p-2 bg-white dark:bg-[#1c3629] border border-black/15 dark:border-white/15 text-[#0d2a1c] dark:text-white hover:border-black/40 cursor-pointer"
             title="Refresh Metrics"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -174,85 +174,85 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
         </div>
       </div>
 
-      {/* KPI Metric Cards in Dark Blue & White style (Taste-Skill) */}
+      {/* KPI Metric Cards (Taste-Skill White / Signal Red) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         
         {/* Total Revenue */}
-        <div className="taste-card p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
+        <div className="taste-card p-6 bg-white dark:bg-[#1c3629] border border-black/12 dark:border-white/12 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+            <span className="text-xs font-medium uppercase tracking-wider text-[#5f6b64]">
               {isAr ? 'إجمالي المبيعات' : 'Total Revenue'}
             </span>
-            <div className="w-10 h-10 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
-              <DollarSign className="w-5 h-5" />
+            <div className="w-9 h-9 bg-[#ebebeb] dark:bg-[#1f1f1f] text-[#0d2a1c] flex items-center justify-center">
+              <DollarSign className="w-4 h-4" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-white">
-              {currency} {Number(stats?.total_revenue || 0).toFixed(2)}
+            <span className="font-display text-3xl text-[#0d2a1c] dark:text-white tabular-nums">
+              {currency}{Number(stats?.total_revenue || 0).toFixed(2)}
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 font-medium">
-            {isAr ? 'متوسط قيمة الطلب:' : 'Average Order Value:'} {currency} {Number(stats?.average_order_value || 0).toFixed(2)}
+          <p className="text-xs text-[#5f6b64] tabular-nums">
+            {isAr ? 'متوسط قيمة الطلب:' : 'Average Order:'} {currency}{Number(stats?.average_order_value || 0).toFixed(2)}
           </p>
         </div>
 
         {/* Total Orders */}
-        <div className="taste-card p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
+        <div className="taste-card p-6 bg-white dark:bg-[#1c3629] border border-black/12 dark:border-white/12 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+            <span className="text-xs font-medium uppercase tracking-wider text-[#5f6b64]">
               {isAr ? 'إجمالي الطلبات' : 'Total Orders'}
             </span>
-            <div className="w-10 h-10 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
-              <ShoppingCart className="w-5 h-5" />
+            <div className="w-9 h-9 bg-[#ebebeb] dark:bg-[#1f1f1f] text-[#0d2a1c] dark:text-white flex items-center justify-center">
+              <ShoppingCart className="w-4 h-4" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-white">
+            <span className="font-display text-3xl text-[#0d2a1c] dark:text-white tabular-nums">
               {stats.total_orders}
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 font-medium">
+          <p className="text-xs text-[#5f6b64] tabular-nums">
             {stats.completed_orders} {isAr ? 'مكتمل بنجاح' : 'completed successfully'}
           </p>
         </div>
 
         {/* Pending Orders */}
-        <div className="taste-card p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
+        <div className="taste-card p-6 bg-white dark:bg-[#1c3629] border border-black/12 dark:border-white/12 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-              {isAr ? 'طلبات قيد الإعداد والتوصيل' : 'Active Pipeline'}
+            <span className="text-xs font-medium uppercase tracking-wider text-[#5f6b64]">
+              {isAr ? 'طلبات قيد الإعداد' : 'Active Pipeline'}
             </span>
-            <div className="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
-              <Clock className="w-5 h-5" />
+            <div className="w-9 h-9 bg-[#ebebeb] dark:bg-[#1f1f1f] text-[#0d2a1c] flex items-center justify-center">
+              <Clock className="w-4 h-4" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-amber-400">
+            <span className="font-display text-3xl text-[#0d2a1c] tabular-nums">
               {stats.pending_orders}
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 font-medium">
-            {isAr ? 'يتطلب متابعة وتجهيز المطبخ' : 'In prep, ready, or out for delivery'}
+          <p className="text-xs text-[#5f6b64]">
+            {isAr ? 'يتطلب متابعة المطبخ' : 'In prep, ready, or out for delivery'}
           </p>
         </div>
 
         {/* Total Products */}
-        <div className="taste-card p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
+        <div className="taste-card p-6 bg-white dark:bg-[#1c3629] border border-black/12 dark:border-white/12 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+            <span className="text-xs font-medium uppercase tracking-wider text-[#5f6b64]">
               {isAr ? 'أصناف القائمة' : 'Active Menu Items'}
             </span>
-            <div className="w-10 h-10 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
-              <UtensilsCrossed className="w-5 h-5" />
+            <div className="w-9 h-9 bg-[#ebebeb] dark:bg-[#1f1f1f] text-[#0d2a1c] dark:text-white flex items-center justify-center">
+              <UtensilsCrossed className="w-4 h-4" />
             </div>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-white">
+            <span className="font-display text-3xl text-[#0d2a1c] dark:text-white tabular-nums">
               {stats.total_products}
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 font-medium">
+          <p className="text-xs text-[#5f6b64] tabular-nums">
             {stats.total_categories} {isAr ? 'أقسام طعام نشطة' : 'categories managed'}
           </p>
         </div>
@@ -263,46 +263,46 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Sales Chart (2 Cols) */}
-        <div className="lg:col-span-2 p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-blue-950/70 shadow-sm space-y-6">
+        <div className="lg:col-span-2 p-6 sm:p-8 bg-white dark:bg-[#1c3629] border border-black/12 dark:border-white/12 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h3 className="font-extrabold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-blue-500" />
+              <h3 className="font-display text-xl text-[#0d2a1c] dark:text-white flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-[#0d2a1c]" />
                 <span>{isAr ? 'تحليل المبيعات والإيرادات' : 'Sales & Revenue Trajectory'}</span>
               </h3>
-              <span className="text-xs text-slate-400">
+              <span className="text-xs text-[#5f6b64]">
                 {isAr ? 'تطور العائدات المالية حسب الفترة الزمنية' : 'Revenue earned across selected period'}
               </span>
             </div>
 
             {/* Daily / Weekly / Monthly Switcher */}
-            <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-blue-950 text-xs font-bold">
+            <div className="flex items-center gap-1 p-1 bg-[#ebebeb] dark:bg-[#0d2a1c] border border-black/12 dark:border-white/12 text-xs font-medium">
               <button
                 onClick={() => setChartPeriod('daily')}
-                className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 transition-colors cursor-pointer ${
                   chartPeriod === 'daily'
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#0d2a1c] text-white'
+                    : 'text-[#5f6b64] hover:text-[#0d2a1c] dark:hover:text-white'
                 }`}
               >
                 {isAr ? 'يومي' : 'Daily'}
               </button>
               <button
                 onClick={() => setChartPeriod('weekly')}
-                className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 transition-colors cursor-pointer ${
                   chartPeriod === 'weekly'
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#0d2a1c] text-white'
+                    : 'text-[#5f6b64] hover:text-[#0d2a1c] dark:hover:text-white'
                 }`}
               >
                 {isAr ? 'أسبوعي' : 'Weekly'}
               </button>
               <button
                 onClick={() => setChartPeriod('monthly')}
-                className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 transition-colors cursor-pointer ${
                   chartPeriod === 'monthly'
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#0d2a1c] text-white'
+                    : 'text-[#5f6b64] hover:text-[#0d2a1c] dark:hover:text-white'
                 }`}
               >
                 {isAr ? 'شهري' : 'Monthly'}
@@ -310,20 +310,20 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
             </div>
           </div>
 
-          {/* Bar Chart Visualization in Dark Blue style */}
-          <div className="h-64 flex items-end gap-3 sm:gap-6 pt-6 border-b border-slate-100 dark:border-blue-950/80 pb-2">
+          {/* Bar Chart Visualization */}
+          <div className="h-64 flex items-end gap-3 sm:gap-6 pt-6 border-b border-black/10 dark:border-white/10 pb-2">
             {salesChart.map((bar, idx) => {
               const heightPercent = Math.max(12, Math.round((bar.revenue / maxRevenue) * 100));
               return (
                 <div key={idx} className="flex-1 flex flex-col items-center gap-2 h-full justify-end group">
-                  <div className="text-[10px] font-black text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {currency} {bar.revenue}
+                  <div className="text-[10px] font-medium text-[#5f6b64] opacity-0 group-hover:opacity-100 transition-opacity tabular-nums">
+                    {currency}{bar.revenue}
                   </div>
                   <div
                     style={{ height: `${heightPercent}%` }}
-                    className="w-full max-w-[48px] rounded-t-xl bg-gradient-to-t from-blue-700 via-blue-600 to-indigo-600 group-hover:from-blue-500 group-hover:to-indigo-500 transition-all duration-300 shadow-xs"
+                    className="w-full max-w-[48px] bg-[#0d2a1c] dark:bg-white group-hover:bg-[#0d2a1c] transition-colors duration-200"
                   ></div>
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 truncate max-w-[60px]">
+                  <span className="text-[11px] font-medium text-[#5f6b64] truncate max-w-[60px]">
                     {bar.label}
                   </span>
                 </div>

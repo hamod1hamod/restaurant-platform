@@ -192,15 +192,15 @@ class RestaurantSettings(Base):
     __tablename__ = "restaurant_settings"
 
     id = Column(Integer, primary_key=True, default=1)
-    name = Column(String(100), default="Gourmet Haven")
-    name_ar = Column(String(100), default="ملاذ الذواقة")
+    name = Column(String(100), default="Khatab Restaurant & Café")
+    name_ar = Column(String(100), default="مطعم وكافيه خطاب")
     logo_url = Column(String(500), nullable=True)
     cover_url = Column(String(500), nullable=True)
     description = Column(Text, default="Experience unforgettable culinary craft with fresh artisan ingredients and passion.")
     description_ar = Column(Text, default="تجربة طهي استثنائية مع أجود المكونات الطازجة وأشهى النكهات الأصيلة.")
     phone = Column(String(50), default="+1 (555) 234-5678")
     whatsapp = Column(String(50), default="+15552345678")
-    email = Column(String(100), default="contact@gourmethaven.com")
+    email = Column(String(100), default="contact@khatab.example")
     address = Column(String(255), default="742 Evergreen Terrace, Springfield")
     address_ar = Column(String(255), default="شارع النخيل، حي الزهور، الرياض")
     google_maps_url = Column(String(500), default="https://maps.google.com")

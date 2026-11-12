@@ -2,15 +2,15 @@ import { Category, Product, RestaurantSettings, Review, Coupon, Order, AdminUser
 
 export const mockSettings: RestaurantSettings = {
   id: 1,
-  name: "Gourmet Haven",
-  name_ar: "ملاذ النكهات الراقية",
+  name: "Khatab Restaurant & Café",
+  name_ar: "مطعم وكافيه خطاب",
   description: "Experience world-class culinary masterpieces prepared with locally sourced organic ingredients, handcrafted by our master chefs.",
   description_ar: "استمتع بأشهى الأطباق العالمية المحضرة بأجود المكونات العضوية الطازجة بأيدي أمهر الطهاة.",
   phone: "+1 (555) 234-5678",
   whatsapp: "+1 (555) 234-5678",
-  email: "contact@gourmethaven.com",
-  address: "450 Grand Avenue, Financial District, New York, NY 10001",
-  address_ar: "٤٥٠ شارع جراند، الحي المالي، نيويورك",
+  email: "contact@khatab.example",
+  address: "Grand Avenue, Downtown District",
+  address_ar: "شارع جراند، وسط المدينة",
   opening_hours: "Monday - Sunday: 10:00 AM - 11:30 PM",
   google_maps_url: "https://maps.google.com",
   social_links_json: "{}",
@@ -19,7 +19,7 @@ export const mockSettings: RestaurantSettings = {
   hero_subtitle: "Handcrafted gourmet burgers, wood-fired artisan pizzas, prime-aged steaks, and signature desserts.",
   hero_subtitle_ar: "برجر فاخر محضّر يدوياً، بيتزا على الحطب، ستيك معتق فاخر، وألذ الحلويات والمشروبات المنعشة.",
   hero_image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80",
-  primary_color: "#e11d48",
+  primary_color: "#d92b21",
   active_sections_json: "{}",
   delivery_fee: 4.99,
   min_order_value: 15.00,
@@ -275,7 +275,7 @@ export const mockProducts: Product[] = [
 
 export const mockCoupons: Coupon[] = [
   { id: 1, code: "WELCOME10", discount_percent: 10, min_order_value: 20, is_active: true, usage_count: 5 },
-  { id: 2, code: "GOURMET20", discount_percent: 20, min_order_value: 50, is_active: true, usage_count: 12 },
+  { id: 2, code: "KHATAB20", discount_percent: 20, min_order_value: 50, is_active: true, usage_count: 12 },
   { id: 3, code: "SAVE5", discount_amount: 5, min_order_value: 25, is_active: true, usage_count: 8 }
 ];
 
@@ -332,6 +332,6 @@ export const mockAdminUser: AdminUser = {
   id: 1,
   username: "admin",
   full_name: "Restaurant Administrator",
-  email: "admin@gourmethaven.com",
+  email: "admin@khatab.example",
   role: "superadmin"
 };

@@ -31,19 +31,18 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
   const isAr = language === 'ar';
 
   return (
-    <div className="w-full overflow-x-auto pb-4 pt-1 scrollbar-none">
-      <div className="flex items-center gap-2.5 min-w-max">
-        
+    <div className="w-full overflow-x-auto pb-3 pt-1 scrollbar-none">
+      <div className="flex items-center gap-2 min-w-max">
         {/* "All" button */}
         <button
           onClick={() => onSelectCategory(null)}
-          className={`taste-btn flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold cursor-pointer transition-all ${
+          className={`taste-btn h-11 px-4 flex items-center gap-2 text-sm font-medium cursor-pointer border ${
             selectedCategoryId === null
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-1 ring-blue-400/50'
-              : 'bg-slate-900/90 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800/80'
+              ? 'bg-[#0d2a1c] dark:bg-[#f6e016] text-[#f7f7f7] dark:text-[#0d2a1c] border-[#0d2a1c] dark:border-[#f6e016]'
+              : 'bg-white dark:bg-[#1c3629] text-[#0d2a1c] dark:text-[#f7f7f7] border-[#0d2a1c]/15 dark:border-white/15 hover:border-[#0d2a1c]/40'
           }`}
         >
-          <Grid className="w-4 h-4 text-blue-400" />
+          <Grid className="w-4 h-4" />
           <span>{t('menu.allCategories')}</span>
         </button>
 
@@ -57,29 +56,25 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
             <button
               key={category.id}
               onClick={() => onSelectCategory(category.id)}
-              className={`taste-btn flex items-center gap-2.5 px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold cursor-pointer transition-all ${
+              className={`taste-btn h-11 px-4 flex items-center gap-2 text-sm font-medium cursor-pointer border ${
                 isSelected
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-1 ring-blue-400/50'
-                  : 'bg-slate-900/90 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800/80'
+                  ? 'bg-[#0d2a1c] dark:bg-[#f6e016] text-[#f7f7f7] dark:text-[#0d2a1c] border-[#0d2a1c] dark:border-[#f6e016]'
+                  : 'bg-white dark:bg-[#1c3629] text-[#0d2a1c] dark:text-[#f7f7f7] border-[#0d2a1c]/15 dark:border-white/15 hover:border-[#0d2a1c]/40'
               }`}
             >
               {category.image_url ? (
-                <img
-                  src={category.image_url}
-                  alt={name}
-                  className="w-4 h-4 rounded-full object-cover"
-                />
+                <img src={category.image_url} alt={name} className="w-4 h-4 object-cover" />
               ) : (
-                <span className={isSelected ? 'text-white' : 'text-blue-400'}>{icon}</span>
+                <span>{icon}</span>
               )}
               <span>{name}</span>
 
               {category.product_count !== undefined && (
                 <span
-                  className={`text-[10px] px-1.5 py-0.5 rounded-md font-mono ${
+                  className={`text-xs tabular-nums px-1.5 py-0.5 ${
                     isSelected
-                      ? 'bg-blue-700/80 text-blue-100'
-                      : 'bg-slate-800 text-slate-400'
+                      ? 'bg-[#f6e016] dark:bg-[#0d2a1c] text-[#0d2a1c] dark:text-[#f6e016]'
+                      : 'text-[#5f6b64] dark:text-[#97a39c]'
                   }`}
                 >
                   {category.product_count}
@@ -88,7 +83,6 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
             </button>
           );
         })}
-
       </div>
     </div>
   );

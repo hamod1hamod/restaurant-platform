@@ -377,11 +377,11 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ currency }) => {
 
             {/* Print Header */}
             <div className="text-center space-y-1 pb-4 border-b border-zinc-200">
-              <h2 className="text-2xl font-black tracking-tight">
-                Gourmet Haven & Bistro
+              <h2 className="font-display text-2xl tracking-tight text-[#0d2a1c]">
+                Khatab Restaurant & Café
               </h2>
-              <p className="text-xs text-zinc-500">Official Tax Receipt / Order Invoice</p>
-              <div className="text-sm font-mono font-bold text-orange-600 pt-1">
+              <p className="text-xs text-[#5f6b64]">Official Tax Receipt / Order Invoice</p>
+              <div className="text-sm font-mono font-bold text-[#0d2a1c] pt-1">
                 {receiptOrder.order_number}
               </div>
             </div>

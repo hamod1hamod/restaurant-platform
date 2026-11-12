@@ -1,10 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-type="place" data-radius="square" data-buttons="arrow" data-motion>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Khatab Restaurant & Café — All-Day Menu & Specialty Coffee</title>
+    <meta name="description" content="Khatab Restaurant & Café: explore our full menu on one page — dry-aged steaks, brioche burgers, wood-fired pizza, and single-origin espresso." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Khatab Restaurant & Café — Full Menu & Specialty Coffee" />
+    <meta property="og:description" content="Explore our full menu on one page: freshly prepared dishes and single-origin espresso." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#f7f7f7" />
+    <meta name="site-kind" content="other" />
+    <meta name="page-type" content="place" />
+    <meta name="page-kind" content="place" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400..700&family=Outfit:wght@400..600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/system.css" />
+    <link rel="stylesheet" href="assets/ui/cards.css" />
+    <link rel="stylesheet" href="assets/motion/motion.css" />
+    <link rel="stylesheet" href="assets/layout/layout.css" />
+    <link rel="stylesheet" href="assets/icons/icon.css" />
+    <style>
+      :root {
+        --p-bg: #f7f7f7; --p-surface: #ebebeb; --p-ink: #0d2a1c; --p-muted: #5f6b64;
+        --p-accent: #f6e016; --p-accent-ink: #0d2a1c; --p-action: #0d2a1c; --p-action-ink: #f7f7f7;
+        --p-inv-bg: #0d2a1c; --p-inv-surface: #1c3629; --p-inv-ink: #f7f7f7; --p-inv-muted: #97a39c;
+        --p-inv-accent: #f6e016; --p-inv-accent-ink: #0d2a1c; --p-inv-action: #f6e016; --p-inv-action-ink: #0d2a1c;
+        --font-display: "Outfit", system-ui, sans-serif;
+        --font-text: "Outfit", system-ui, sans-serif;
+        --display-weight: 400;
+        --display-tracking: -0.03em;
+        --r-lg: 0px; --r-md: 0px; --r-sm: 2px; --r-btn: 2px;
+        --btn-h: 48px;
+      }
+      html[data-type="place"] {
+        --r-lg: 0px; --r-md: 0px; --r-sm: 2px; --r-btn: 2px;
+      }
+    </style>
+    <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
   </head>
   <body>
     <div id="root"></div>

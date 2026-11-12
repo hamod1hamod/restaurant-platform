@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import {
   LayoutDashboard, FolderTree, UtensilsCrossed, ShoppingCart, Tag,
-  Settings, Users, BarChart3, LogOut, ExternalLink, Globe, Sun, Moon,
-  Menu, X, Sparkles, Database
+  Settings, Users, BarChart3, LogOut, ExternalLink, Globe, Menu, X
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
 import { RestaurantSettings } from '../../types';
 
@@ -23,7 +21,6 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   children
 }) => {
   const { language, toggleLanguage, t, isRTL } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
   const { admin, logout, setIsAdminView } = useAuth();
   const isAr = language === 'ar';
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -55,68 +52,66 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     setIsAdminView(false);
   };
 
+  const restaurantName = isAr
+    ? (settings?.name_ar || 'مطعم وكافيه خطاب')
+    : (settings?.name || 'Khatab Restaurant & Café');
+
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col lg:flex-row text-slate-100 font-sans">
-      
+    <div className="min-h-screen bg-[#ebebeb] dark:bg-[#0d2a1c] flex flex-col lg:flex-row text-[#0d2a1c] dark:text-[#f5f5f5]">
       {/* Mobile Top Header */}
-      <header className="lg:hidden flex items-center justify-between p-4 bg-slate-900 border-b border-slate-800 text-white">
+      <header className="lg:hidden flex items-center justify-between p-4 bg-white dark:bg-[#1c3629] border-b border-black/12 dark:border-white/12">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold">
-            <UtensilsCrossed className="w-4 h-4" />
-          </div>
-          <span className="font-black text-base">
-            {isAr ? 'لوحة تحكم الإدارة' : 'Admin Hub'}
+          <span className="mark text-[#0d2a1c]" data-mark="petal" aria-hidden="true"></span>
+          <span className="font-display text-lg">
+            {restaurantName}
           </span>
         </div>
 
         <button
           onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-          className="taste-btn p-2 rounded-xl bg-slate-800 text-slate-300"
+          className="taste-btn w-10 h-10 flex items-center justify-center border border-black/15 dark:border-white/15 cursor-pointer"
         >
           {mobileSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </header>
 
-      {/* Desktop Sidebar (Taste-Skill Dark Slate & Navy) */}
+      {/* Desktop Sidebar */}
       <aside
-        className={`fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} z-40 w-72 bg-slate-900 border-r rtl:border-r-0 rtl:border-l border-slate-800 p-6 flex flex-col justify-between transition-transform duration-300 lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} z-40 w-72 bg-white dark:bg-[#1c3629] border-r rtl:border-r-0 rtl:border-l border-black/12 dark:border-white/12 p-6 flex flex-col justify-between transition-transform duration-300 lg:static lg:translate-x-0 ${
           mobileSidebarOpen
             ? 'translate-x-0'
             : isRTL ? 'translate-x-full lg:translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         <div className="space-y-6">
-          
           {/* Brand Header */}
-          <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
-            <div className="w-10 h-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-600/30">
-              <UtensilsCrossed className="w-5 h-5" />
-            </div>
-            <div>
-              <h1 className="font-black text-base text-white tracking-tight">
-                {isAr ? (settings?.name_ar || 'ملاذ الذواقة') : (settings?.name || 'Gourmet Haven')}
+          <div className="flex items-center gap-3 pb-6 border-b border-black/12 dark:border-white/12">
+            <span className="mark text-[#0d2a1c] shrink-0" data-mark="petal" aria-hidden="true"></span>
+            <div className="min-w-0">
+              <h1 className="font-display text-lg text-[#0d2a1c] dark:text-white leading-tight truncate">
+                {restaurantName}
               </h1>
-              <span className="text-[11px] text-blue-400 font-bold uppercase tracking-wider block">
-                {isAr ? 'بوابة إدارة المطعم' : 'Restaurant Operations'}
+              <span className="text-[11px] text-[#0d2a1c] font-medium uppercase tracking-wider block mt-0.5">
+                {isAr ? 'بوابة إدارة المطعم' : 'Operations Portal'}
               </span>
             </div>
           </div>
 
           {/* Navigation Menu */}
-          <nav className="space-y-1.5">
+          <nav className="space-y-1">
             {menuItems.map(item => {
               const isActive = currentTab === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleTabClick(item.id)}
-                  className={`taste-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-left rtl:text-right cursor-pointer transition-all ${
+                  className={`taste-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-left rtl:text-right cursor-pointer ${
                     isActive
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-1 ring-blue-400/40'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-800/80'
+                      ? 'bg-[#0d2a1c] text-white'
+                      : 'text-[#5f6b64] dark:text-[#a3a3a3] hover:text-[#0d2a1c] dark:hover:text-white hover:bg-[#ebebeb] dark:hover:bg-[#1f1f1f]'
                   }`}
                 >
-                  <span className={isActive ? 'text-white' : 'text-slate-400'}>
+                  <span className={isActive ? 'text-white' : 'text-[#5f6b64]'}>
                     {item.icon}
                   </span>
                   <span>{item.label}</span>
@@ -127,53 +122,47 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="pt-6 border-t border-slate-800 space-y-2">
-          
-          {/* View Website */}
+        <div className="pt-6 border-t border-black/12 dark:border-white/12 space-y-2">
           <button
             onClick={handleExitAdmin}
-            className="taste-btn w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-850 cursor-pointer"
+            className="taste-btn w-full h-10 flex items-center justify-between px-3.5 bg-[#ebebeb] dark:bg-[#0d2a1c] border border-black/12 dark:border-white/12 text-xs font-medium hover:border-black/40 cursor-pointer"
           >
             <span className="flex items-center gap-2">
-              <ExternalLink className="w-4 h-4 text-blue-400" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#0d2a1c]" />
               <span>{isAr ? 'معاينة موقع المطعم' : 'View Public Website'}</span>
             </span>
           </button>
 
-          {/* Language Toggle */}
           <button
             onClick={toggleLanguage}
-            className="taste-btn w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white cursor-pointer"
+            className="taste-btn w-full h-10 flex items-center justify-between px-3.5 bg-[#ebebeb] dark:bg-[#0d2a1c] border border-black/12 dark:border-white/12 text-xs font-medium hover:border-black/40 cursor-pointer"
           >
             <span className="flex items-center gap-2">
-              <Globe className="w-4 h-4 text-blue-400" />
+              <Globe className="w-3.5 h-3.5 text-[#5f6b64]" />
               <span>{language === 'en' ? 'العربية' : 'English'}</span>
             </span>
           </button>
 
-          {/* Admin User Info & Logout */}
-          <div className="pt-2 flex items-center justify-between px-2">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-blue-600/30 text-blue-400 flex items-center justify-center font-black text-xs">
+          <div className="pt-3 flex items-center justify-between px-1">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 bg-[#0d2a1c] dark:bg-white text-white dark:text-[#0d2a1c] flex items-center justify-center font-medium text-xs">
                 {admin?.username?.charAt(0).toUpperCase() || 'A'}
               </div>
               <div>
-                <span className="text-xs font-bold text-white block">{admin?.full_name || 'Admin'}</span>
-                <span className="text-[10px] text-slate-400">{admin?.role || 'Manager'}</span>
+                <span className="text-xs font-medium block">{admin?.full_name || 'Admin'}</span>
+                <span className="text-[11px] text-[#5f6b64]">{admin?.role || 'Manager'}</span>
               </div>
             </div>
 
             <button
               onClick={handleLogout}
               title="Logout"
-              className="taste-btn p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-slate-800"
+              className="taste-btn p-2 text-[#5f6b64] hover:text-[#0d2a1c] cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
             </button>
           </div>
-
         </div>
-
       </aside>
 
       {/* Main Content Area */}
@@ -182,7 +171,6 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
           {children}
         </div>
       </main>
-
     </div>
   );
 };

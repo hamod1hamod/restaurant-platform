@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, MessageSquarePlus, User, CheckCircle2, X } from 'lucide-react';
+import { Star, MessageSquarePlus, CheckCircle2, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Review } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
@@ -44,85 +44,78 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
         setComment('');
         setRating(5);
       }, 1800);
-    } catch (err) {
-      alert("Error submitting review. Please try again.");
+    } catch {
+      alert('Error submitting review. Please try again.');
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <section id="reviews" className="py-20 lg:py-28 bg-slate-950 text-white border-b border-slate-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+    <section
+      id="reviews"
+      className="py-20 lg:py-24 bg-[#ebebeb] dark:bg-[#1c3629] text-[#0d2a1c] dark:text-[#f5f5f5] border-b border-black/12 dark:border-white/12"
+    >
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-900/40 border border-blue-500/30 text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
-              <Star className="w-3.5 h-3.5 fill-blue-400" />
-              <span>{isAr ? 'تقييمات وتجارب حقيقية' : 'Testimonials & Ratings'}</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="font-display text-3xl sm:text-4xl text-[#0d2a1c] dark:text-white">
               {t('reviews.title')}
             </h2>
-            <p className="text-sm text-slate-400 mt-1 max-w-xl">
-              {isAr ? 'نفخر برضا زبائننا ونسعى دائماً لتقديم أشهى الأطباق وأرقى الخدمات.' : 'See what our loyal diners are saying about their flavorful journeys.'}
+            <p className="text-base text-[#5f6b64] dark:text-[#a3a3a3] mt-1.5 max-w-xl">
+              {isAr ? 'آراء ضيوف مطعم وكافيه خطاب.' : 'Notes from guests at Khatab Restaurant & Café.'}
             </p>
           </div>
 
           <button
             onClick={() => setModalOpen(true)}
-            className="taste-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 cursor-pointer ring-1 ring-blue-400/40"
+            className="taste-btn h-11 px-5 inline-flex items-center gap-2 bg-[#0d2a1c] hover:bg-[#1c3629] text-white font-medium text-sm cursor-pointer shrink-0"
           >
             <MessageSquarePlus className="w-4 h-4" />
             <span>{t('reviews.writeReview')}</span>
           </button>
         </div>
 
-        {/* Reviews Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map(rev => (
             <div
               key={rev.id}
-              className="taste-card p-6 rounded-3xl bg-slate-900/90 border border-slate-800/80 shadow-sm flex flex-col justify-between space-y-4"
+              className="taste-card p-6 bg-white dark:bg-[#0d2a1c] border border-black/12 dark:border-white/12 flex flex-col justify-between space-y-6"
             >
-              <div className="space-y-3">
-                {/* Rating Stars */}
-                <div className="flex items-center gap-1 text-amber-400">
+              <div className="space-y-4">
+                <div className="flex items-center gap-1 text-[#0d2a1c]">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${i < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-700'}`}
+                      className={`w-4 h-4 ${i < rev.rating ? 'fill-[#0d2a1c] text-[#0d2a1c]' : 'text-black/15 dark:text-white/15'}`}
                     />
                   ))}
                 </div>
-                
-                <p className="text-sm text-slate-300 leading-relaxed italic">
-                  "{rev.comment}"
+
+                <p className="text-base text-[#0d2a1c] dark:text-[#e5e5e5] leading-relaxed">
+                  “{rev.comment}”
                 </p>
               </div>
 
-              {/* Author */}
-              <div className="flex items-center gap-3 pt-3 border-t border-slate-800/80">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-800 text-white flex items-center justify-center font-bold text-sm shadow-xs ring-1 ring-blue-400/40">
+              <div className="flex items-center gap-3 pt-4 border-t border-black/10 dark:border-white/10">
+                <div className="w-9 h-9 bg-[#ebebeb] dark:bg-[#1a1a1a] border border-black/12 dark:border-white/12 text-[#0d2a1c] dark:text-white flex items-center justify-center font-medium text-sm">
                   {rev.customer_name.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-white">
+                  <h4 className="font-medium text-sm text-[#0d2a1c] dark:text-white">
                     {rev.customer_name}
                   </h4>
-                  <span className="text-[11px] text-slate-400">
-                    {isAr ? 'زبون معتمد' : 'Verified Diner'}
+                  <span className="text-xs text-[#5f6b64] dark:text-[#a3a3a3]">
+                    {isAr ? 'ضيف معتمد' : 'Verified Guest'}
                   </span>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
       </div>
 
-      {/* Review Submission Modal with AnimatePresence */}
+      {/* Review Submission Modal */}
       <AnimatePresence>
         {modalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -131,39 +124,40 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setModalOpen(false)}
-              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
-            ></motion.div>
+              className="fixed inset-0 bg-black/60"
+            />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-lg rounded-3xl bg-slate-900 border border-slate-700 p-6 sm:p-8 shadow-2xl z-10 space-y-6 text-white"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full max-w-lg bg-white dark:bg-[#0d2a1c] border border-black/15 dark:border-white/15 p-6 sm:p-8 z-10 space-y-6 text-[#0d2a1c] dark:text-white"
             >
-              <div className="flex items-center justify-between">
-                <h3 className="font-black text-xl text-white">
+              <div className="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-4">
+                <h3 className="font-display text-2xl text-[#0d2a1c] dark:text-white">
                   {t('reviews.writeReview')}
                 </h3>
                 <button
                   onClick={() => setModalOpen(false)}
-                  className="taste-btn p-2 rounded-full text-slate-400 hover:text-white"
+                  aria-label="Close"
+                  className="taste-btn w-9 h-9 flex items-center justify-center border border-black/15 dark:border-white/15 text-[#5f6b64] hover:text-[#0d2a1c] dark:hover:text-white cursor-pointer"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
               {success ? (
                 <div className="py-8 text-center space-y-3">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto animate-bounce" />
-                  <p className="font-extrabold text-white text-base">
+                  <CheckCircle2 className="w-10 h-10 text-[#0d2a1c] mx-auto" />
+                  <p className="font-medium text-base">
                     {isAr ? 'شكراً لك! تم إرسال تقييمك بنجاح.' : 'Thank you! Your review has been submitted.'}
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                    <label className="block text-[13px] font-medium text-[#5f6b64] dark:text-[#a3a3a3] mb-1.5">
                       {isAr ? 'اسمك الكريم' : 'Your Name'}
                     </label>
                     <input
@@ -172,12 +166,12 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                       value={customerName}
                       onChange={e => setCustomerName(e.target.value)}
                       placeholder={isAr ? 'مثال: محمد العمري' : 'e.g. Alex Morgan'}
-                      className="w-full px-4 py-3 rounded-2xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full h-11 px-4 rounded-[2px] bg-[#ebebeb] dark:bg-[#1c3629] border border-black/15 dark:border-white/15 text-sm focus:outline-none focus:border-[#0d2a1c]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                    <label className="block text-[13px] font-medium text-[#5f6b64] dark:text-[#a3a3a3] mb-1.5">
                       {isAr ? 'التقييم' : 'Rating'}
                     </label>
                     <div className="flex items-center gap-2">
@@ -186,10 +180,10 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                           key={star}
                           type="button"
                           onClick={() => setRating(star)}
-                          className="taste-btn p-1 text-2xl cursor-pointer"
+                          className="taste-btn p-1 cursor-pointer"
                         >
                           <Star
-                            className={`w-7 h-7 ${star <= rating ? 'fill-amber-400 text-amber-400' : 'text-slate-700'}`}
+                            className={`w-6 h-6 ${star <= rating ? 'fill-[#0d2a1c] text-[#0d2a1c]' : 'text-black/15 dark:text-white/15'}`}
                           />
                         </button>
                       ))}
@@ -197,7 +191,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                    <label className="block text-[13px] font-medium text-[#5f6b64] dark:text-[#a3a3a3] mb-1.5">
                       {isAr ? 'رأيك وتجربتك' : 'Your Experience'}
                     </label>
                     <textarea
@@ -206,20 +200,19 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                       value={comment}
                       onChange={e => setComment(e.target.value)}
                       placeholder={isAr ? 'ما الذي نال إعجابك في الأطباق والخدمة؟' : 'What did you enjoy most about the food and service?'}
-                      className="w-full px-4 py-3 rounded-2xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-4 rounded-[2px] bg-[#ebebeb] dark:bg-[#1c3629] border border-black/15 dark:border-white/15 text-sm focus:outline-none focus:border-[#0d2a1c]"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="taste-btn w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 cursor-pointer disabled:opacity-50"
+                    className="taste-btn w-full h-12 bg-[#0d2a1c] hover:bg-[#1c3629] text-white font-medium text-sm cursor-pointer disabled:opacity-50"
                   >
                     {submitting ? '...' : (isAr ? 'نشر التقييم' : 'Submit Review')}
                   </button>
                 </form>
               )}
-
             </motion.div>
           </div>
         )}

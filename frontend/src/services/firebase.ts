@@ -121,7 +121,7 @@ export async function restoreDatabase(): Promise<{ success: boolean; message: st
       return { success: true, message: 'Database successfully restored and synchronized with Firebase Firestore!' };
     }
 
-    return { success: true, message: 'Database successfully restored to original gourmet baseline menu!' };
+    return { success: true, message: 'Database successfully restored to Khatab Restaurant & Café baseline menu!' };
   } catch (err: any) {
     return { success: false, message: `Restore error: ${err.message || 'Unknown error'}` };
   }

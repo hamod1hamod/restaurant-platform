@@ -33,15 +33,15 @@ def seed_database():
         # 2. Restaurant Settings & Landing Configuration
         settings = RestaurantSettings(
             id=1,
-            name="Gourmet Haven & Bistro",
-            name_ar="ملاذ الذواقة وبيسترو",
+            name="Khatab Restaurant & Café",
+            name_ar="مطعم وكافيه خطاب",
             logo_url="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=200&h=200&q=80",
             cover_url="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80",
             description="Award-winning culinary destination crafting artisan burgers, woodfired pizzas, prime grills, and decadent patisserie.",
             description_ar="وجهة طهي حائزة على جوائز تقدم برجر حرفي وبيتزا على الحطب ومشويات فاخرة وحلويات مميزة.",
             phone="+1 (555) 789-2345",
             whatsapp="+15557892345",
-            email="reservations@gourmethaven.com",
+            email="reservations@khatab.example",
             address="450 Culinary Boulevard, Downtown Plaza",
             address_ar="٤٥٠ بوليفارد الذواقة، وسط المدينة",
             google_maps_url="https://maps.google.com/?q=Downtown+Plaza",
@@ -52,7 +52,7 @@ def seed_database():
             hero_subtitle="Indulge in our chef-crafted digital menu. Savor wood-fired crusts, certified Angus cuts, and handcrafted drinks delivered right to your table or doorstep.",
             hero_subtitle_ar="استمتع بقائمتنا الرقمية الغنية بالمأكولات الإيطالية والمشويات الفاخرة والعصائر الطازجة مع التوصيل السريع.",
             hero_image="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80",
-            primary_color="#ea580c",
+            primary_color="#d92b21",
             active_sections_json='{"hero":true,"categories":true,"menu":true,"bestsellers":true,"offers":true,"gallery":true,"reviews":true,"about":true,"contact":true}',
             currency="USD",
             min_order_value=15.0,
@@ -458,7 +458,7 @@ def seed_database():
         # 5. Promo Coupons
         coupons = [
             Coupon(code="WELCOME10", discount_percent=10.0, min_order_value=20.0, is_active=True),
-            Coupon(code="GOURMET20", discount_percent=20.0, min_order_value=40.0, is_active=True),
+            Coupon(code="KHATAB20", discount_percent=20.0, min_order_value=40.0, is_active=True),
             Coupon(code="SAVE5", discount_amount=5.0, min_order_value=25.0, is_active=True),
         ]
         for cp in coupons:

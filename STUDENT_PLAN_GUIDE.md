@@ -24,7 +24,7 @@ This repository is optimized to leverage the benefits included in your **GitHub 
 
 ## 🌐 3. Free Custom Domain (Namecheap / Name.com)
 *Included in Student Pack: 1 free `.me` or `.tech` domain for 1 year.*
-- You can replace `hamod1hamod.github.io/restaurant-platform` with a custom branded restaurant domain (e.g., `gourmethaven.me` or `restaurantmenu.live`).
+- You can replace `hamod1hamod.github.io/restaurant-platform` with a custom branded restaurant domain (e.g., `khatabcafe.me` or `restaurantmenu.live`).
 - **Steps to connect to GitHub Pages:**
   1. Claim your free domain at Namecheap or Name.com using your GitHub Student Pack.
   2. In your GitHub repository: Go to **Settings** $\to$ **Pages** $\to$ **Custom domain**.
@@ -43,7 +43,7 @@ This repository is optimized to leverage the benefits included in your **GitHub 
   - Deploy the FastAPI container on Azure Container Apps or Azure App Service.
 - **Connecting your deployed backend to GitHub Pages:**
   - In your GitHub repo settings, go to **Settings** $\to$ **Secrets and variables** $\to$ **Actions** $\to$ **Variables**.
-  - Add `VITE_API_BASE_URL` with your live backend URL (e.g., `https://api.gourmethaven.me/api/v1`).
+  - Add `VITE_API_BASE_URL` with your live backend URL (e.g., `https://api.khatabcafe.me/api/v1`).
 
 ---
 

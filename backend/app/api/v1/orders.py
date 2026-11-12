@@ -192,8 +192,8 @@ def get_order_invoice(
     settings = db.query(RestaurantSettings).first()
     return {
         "restaurant": {
-            "name": settings.name if settings else "Gourmet Haven",
-            "name_ar": settings.name_ar if settings else "ملاذ الذواقة",
+            "name": settings.name if settings else "Khatab Restaurant & Café",
+            "name_ar": settings.name_ar if settings else "مطعم وكافيه خطاب",
             "phone": settings.phone if settings else "",
             "address": settings.address if settings else "",
             "tax_percentage": settings.tax_percentage if settings else 5.0,
