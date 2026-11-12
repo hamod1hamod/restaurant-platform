@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Sliders, Clock } from 'lucide-react';
+import { Plus, Sliders } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Product } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
@@ -43,103 +43,91 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08 }}
+      viewport={{ once: true, amount: 0.05 }}
       transition={{
-        duration: 0.42,
-        delay: Math.min(index * 0.04, 0.28),
+        duration: 0.3,
+        delay: Math.min(index * 0.03, 0.2),
         ease: [0.22, 1, 0.36, 1]
       }}
       onClick={() => onOpenDetails(product)}
-      className="taste-card group relative flex flex-col justify-between bg-white dark:bg-[#1c3629] border border-[#0d2a1c]/12 dark:border-white/15 overflow-hidden cursor-pointer select-none"
+      className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 bg-white dark:bg-[#0d2a1c] hover:bg-[#f7f7f7] dark:hover:bg-[#1c3629] transition-colors cursor-pointer select-none"
     >
-      {/* Square-cornered 4:3 photograph frame with 1.03 zoom on hover */}
-      <div className="taste-photo-frame relative aspect-[4/3] w-full bg-[#ebebeb] dark:bg-[#0d2a1c]">
-        <img
-          src={product.image_url || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80'}
-          alt={name}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+      {/* Left: Square Thumbnail + Dish Info */}
+      <div className="flex items-start sm:items-center gap-4 min-w-0 flex-1">
+        <div className="taste-photo-frame w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-[#ebebeb] dark:bg-[#1c3629] border border-[#0d2a1c]/10 dark:border-white/10">
+          <img
+            src={product.image_url || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80'}
+            alt={name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
 
-        {hasDiscount && (
-          <span className="absolute top-3 left-3 rtl:left-auto rtl:right-3 z-10 px-2.5 py-1 bg-[#f6e016] text-[#0d2a1c] font-semibold text-xs tabular-nums">
-            -{Math.round(((product.base_price - (product.discount_price || 0)) / product.base_price) * 100)}%
-          </span>
-        )}
-
-        {!product.is_available && (
-          <div className="absolute inset-0 bg-[#f7f7f7]/85 dark:bg-[#0d2a1c]/85 flex items-center justify-center z-20">
-            <span className="px-4 py-1.5 bg-[#0d2a1c] text-[#f7f7f7] font-medium text-xs uppercase tracking-wider">
-              {t('product.soldOut')}
-            </span>
-          </div>
-        )}
-      </div>
-
-      {/* Product Content Body */}
-      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between gap-2 text-xs font-medium text-[#5f6b64] dark:text-[#97a39c]">
-            <div className="flex items-center gap-2">
-              {product.is_bestseller && (
-                <span className="px-2 py-0.5 bg-[#f6e016] text-[#0d2a1c] font-semibold">
-                  {isAr ? 'الأكثر طلباً' : 'Bestseller'}
-                </span>
-              )}
-              {product.is_vegetarian && <span>{isAr ? 'نباتي' : 'Veg'}</span>}
-              {product.is_spicy && <span>{isAr ? 'حار' : 'Spicy'}</span>}
-            </div>
-            {product.prep_time_mins && (
-              <span className="inline-flex items-center gap-1 tabular-nums">
-                <Clock className="w-3 h-3" />
-                {product.prep_time_mins}m
+        <div className="min-w-0 flex-1 space-y-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <h3 className="font-display text-lg sm:text-xl text-[#0d2a1c] dark:text-[#f7f7f7] group-hover:underline underline-offset-4 decoration-[#f6e016] decoration-2">
+              {name}
+            </h3>
+            {product.is_bestseller && (
+              <span className="px-2 py-0.5 bg-[#f6e016] text-[#0d2a1c] text-[11px] font-semibold">
+                {isAr ? 'الأكثر طلباً' : 'Bestseller'}
+              </span>
+            )}
+            {product.is_vegetarian && (
+              <span className="text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
+                {isAr ? 'نباتي' : 'Veg'}
+              </span>
+            )}
+            {product.is_spicy && (
+              <span className="text-[11px] font-medium text-amber-700 dark:text-amber-400">
+                {isAr ? 'حار' : 'Spicy'}
               </span>
             )}
           </div>
-
-          <h3 className="font-display text-xl text-[#0d2a1c] dark:text-[#f7f7f7] group-hover:underline underline-offset-4 decoration-[#f6e016] decoration-2 line-clamp-1">
-            {name}
-          </h3>
 
           <p className="text-sm text-[#5f6b64] dark:text-[#97a39c] line-clamp-2 leading-relaxed">
             {description}
           </p>
         </div>
+      </div>
 
-        {/* Footer: Tabular Price & Add Button */}
-        <div className="pt-4 border-t border-[#0d2a1c]/10 dark:border-white/10 flex items-center justify-between gap-3">
-          <div className="flex items-baseline gap-2 tabular-nums">
-            <span className="text-lg font-semibold text-[#0d2a1c] dark:text-[#f7f7f7]">
-              {currency}{Number(displayPrice || 0).toFixed(2)}
+      {/* Right: Price + Simple Action Button */}
+      <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-5 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#0d2a1c]/10 dark:border-white/10 shrink-0">
+        <div className="flex items-baseline gap-2 tabular-nums">
+          <span className="text-base sm:text-lg font-semibold text-[#0d2a1c] dark:text-[#f7f7f7]">
+            {currency}{Number(displayPrice || 0).toFixed(2)}
+          </span>
+          {hasDiscount && (
+            <span className="text-xs text-[#5f6b64] dark:text-[#97a39c] line-through">
+              {currency}{Number(product.base_price || 0).toFixed(2)}
             </span>
-            {hasDiscount && (
-              <span className="text-xs text-[#5f6b64] dark:text-[#97a39c] line-through">
-                {currency}{Number(product.base_price || 0).toFixed(2)}
-              </span>
-            )}
-          </div>
-
-          {product.is_available && (
-            <button
-              onClick={handleQuickAdd}
-              className="taste-btn h-10 px-4 flex items-center gap-1.5 bg-[#0d2a1c] dark:bg-[#f6e016] hover:bg-[#1c3629] dark:hover:bg-[#e5cf12] text-[#f7f7f7] dark:text-[#0d2a1c] font-medium text-sm cursor-pointer"
-            >
-              {hasOptions ? (
-                <>
-                  <Sliders className="w-3.5 h-3.5" />
-                  <span>{isAr ? 'تخصيص' : 'Customize'}</span>
-                </>
-              ) : (
-                <>
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>{isAr ? 'إضافة' : 'Add'}</span>
-                </>
-              )}
-            </button>
           )}
         </div>
+
+        {product.is_available ? (
+          <button
+            onClick={handleQuickAdd}
+            className="taste-btn h-10 px-4 flex items-center gap-1.5 bg-[#0d2a1c] dark:bg-[#f6e016] hover:bg-[#1c3629] dark:hover:bg-[#e5cf12] text-[#f7f7f7] dark:text-[#0d2a1c] font-medium text-sm cursor-pointer"
+          >
+            {hasOptions ? (
+              <>
+                <Sliders className="w-3.5 h-3.5" />
+                <span>{isAr ? 'تخصيص' : 'Customize'}</span>
+              </>
+            ) : (
+              <>
+                <Plus className="w-3.5 h-3.5" />
+                <span>{isAr ? 'إضافة' : 'Add'}</span>
+              </>
+            )}
+          </button>
+        ) : (
+          <span className="px-3 py-1.5 bg-[#ebebeb] dark:bg-[#1c3629] text-[#5f6b64] text-xs font-medium">
+            {t('product.soldOut')}
+          </span>
+        )}
       </div>
     </motion.article>
   );

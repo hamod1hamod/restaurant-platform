@@ -48,13 +48,14 @@ export const BestSellersSection: React.FC<BestSellersSectionProps> = ({
           </a>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {bestsellers.map(product => (
+        <div className="flex flex-col divide-y divide-[#0d2a1c]/12 dark:divide-white/12 border border-[#0d2a1c]/12 dark:border-white/12 bg-white dark:bg-[#0d2a1c]">
+          {bestsellers.map((product, idx) => (
             <ProductCard
               key={product.id}
               product={product}
               currency={currency}
               onOpenDetails={onOpenDetails}
+              index={idx}
             />
           ))}
         </div>

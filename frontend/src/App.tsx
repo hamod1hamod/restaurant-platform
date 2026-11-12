@@ -308,29 +308,22 @@ const RestaurantApp: React.FC = () => {
                 </button>
               </div>
             ) : !isFiltered && categories.length > 0 ? (
-              <div className="space-y-14 pt-4">
+              <div className="space-y-10 pt-4">
                 {categories.map(cat => {
                   const catProducts = filteredProducts.filter(p => p.category_id === cat.id);
                   if (catProducts.length === 0) return null;
                   return (
-                    <div key={cat.id} className="space-y-6">
-                      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-3 border-b border-[#0d2a1c]/15 dark:border-white/15">
-                        <div>
-                          <h3 className="font-display text-2xl sm:text-3xl text-[#0d2a1c] dark:text-[#f7f7f7]">
-                            {isAr ? cat.name_ar : cat.name}
-                          </h3>
-                          {(cat.description || cat.description_ar) && (
-                            <p className="text-sm text-[#5f6b64] dark:text-[#97a39c] mt-1">
-                              {isAr ? (cat.description_ar || cat.description) : cat.description}
-                            </p>
-                          )}
-                        </div>
-                        <span className="text-xs font-medium px-2.5 py-1 bg-white dark:bg-[#0d2a1c] border border-[#0d2a1c]/12 dark:border-white/15 tabular-nums self-start sm:self-auto">
+                    <div key={cat.id} className="space-y-3">
+                      <div className="flex items-baseline justify-between gap-2 pb-2 border-b border-[#0d2a1c]/20 dark:border-white/20">
+                        <h3 className="font-display text-2xl text-[#0d2a1c] dark:text-[#f7f7f7]">
+                          {isAr ? cat.name_ar : cat.name}
+                        </h3>
+                        <span className="text-xs font-medium text-[#5f6b64] dark:text-[#97a39c] tabular-nums">
                           {catProducts.length} {isAr ? 'أصناف' : (catProducts.length === 1 ? 'item' : 'items')}
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      <div className="flex flex-col divide-y divide-[#0d2a1c]/12 dark:divide-white/12 border border-[#0d2a1c]/12 dark:border-white/12 bg-white dark:bg-[#0d2a1c]">
                         {catProducts.map((product, idx) => (
                           <ProductCard
                             key={product.id}
@@ -346,7 +339,7 @@ const RestaurantApp: React.FC = () => {
                 })}
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-4">
+              <div className="flex flex-col divide-y divide-[#0d2a1c]/12 dark:divide-white/12 border border-[#0d2a1c]/12 dark:border-white/12 bg-white dark:bg-[#0d2a1c] mt-4">
                 {filteredProducts.map((product, idx) => (
                   <ProductCard
                     key={product.id}
