@@ -68,11 +68,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const existingIndex = prevItems.findIndex(item => item.id === cartItemId);
       if (existingIndex > -1) {
         const updated = [...prevItems];
-        const newQty = updated[existingIndex].quantity + quantity;
+        const currentItem = updated[existingIndex];
+        const newQty = (currentItem?.quantity || 0) + quantity;
         updated[existingIndex] = {
-          ...updated[existingIndex],
+          ...currentItem,
           quantity: newQty,
-          totalPrice: updated[existingIndex].unitPrice * newQty
+          totalPrice: (currentItem?.unitPrice || 0) * newQty
         };
         return updated;
       } else {
@@ -108,7 +109,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
           return {
             ...item,
             quantity,
-            totalPrice: item.unitPrice * quantity
+            totalPrice: (item.unitPrice || 0) * quantity
           };
         }
         return item;
@@ -133,7 +134,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const totalItemsCount = items.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotal = items.reduce((sum, item) => sum + item.totalPrice, 0);
+  const subtotal = items.reduce((sum, item) => sum + (item.totalPrice || 0), 0);
   const total = Math.max(0, subtotal + deliveryFee - discountAmount);
 
   return (

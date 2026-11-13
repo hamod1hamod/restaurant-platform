@@ -149,9 +149,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ currency }) => {
                           {isAr ? (item.selectedSize.name_ar || item.selectedSize.name) : item.selectedSize.name}
                         </span>
                       )}
-                      {item.selectedExtras.length > 0 && (
+                      {(item.selectedExtras?.length ?? 0) > 0 && (
                         <div className="text-xs text-[#5f6b64] dark:text-[#a3a3a3] pt-0.5">
-                          {item.selectedExtras.map((e, idx) => (
+                          {item.selectedExtras?.map((e, idx) => (
                             <span key={idx} className="block tabular-nums">
                               + {isAr ? (e.extra_name_ar || e.extra_name) : e.extra_name} ({currency}{Number(e.extra_price || 0).toFixed(2)})
                             </span>

@@ -69,7 +69,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ currency }) => {
         size_id: item.selectedSize?.id,
         quantity: item.quantity,
         special_instructions: item.specialInstructions || undefined,
-        extras: item.selectedExtras.map(e => ({ extra_name: e.extra_name, price: e.extra_price }))
+        extras: (item.selectedExtras || []).map(e => ({ extra_name: e.extra_name, price: e.extra_price }))
       }))
     };
 

@@ -1,11 +1,90 @@
-export interface ProductSize {
-  id?: number;
+/**
+ * Core Data Models for Restaurant Menu SPA & Admin Dashboard
+ */
+
+export interface ItemSize {
+  id?: number | string;
   name: string;
-  name_ar: string;
+  name_ar?: string;
+  name_en?: string;
   price: number;
   is_default?: boolean;
 }
 
+export interface MenuItem {
+  id: string;
+  category_id: string;
+  name: string;
+  name_en?: string;
+  description: string;
+  image_url: string;
+  is_available: boolean;
+  sizes: ItemSize[];
+}
+
+export interface Category {
+  id: any;
+  name: string;
+  name_ar?: string;
+  name_en?: string;
+  icon?: string;
+  image_url?: string;
+  description?: string;
+  description_ar?: string;
+  sort_order?: number;
+  display_order?: number;
+  is_active?: boolean;
+  parent_id?: number;
+  product_count?: number;
+  item_count?: number;
+}
+
+export interface RestaurantSettings {
+  id?: number;
+  name: string;
+  name_ar?: string;
+  name_en?: string;
+  currency: string;
+  currency_symbol?: string;
+  tagline?: string;
+  phone: string;
+  address: string;
+  address_ar?: string;
+  description?: string;
+  description_ar?: string;
+  logo_url?: string;
+  cover_url?: string;
+  whatsapp?: string;
+  email?: string;
+  google_maps_url?: string;
+  opening_hours?: string;
+  social_links_json?: string;
+  hero_title?: string;
+  hero_title_ar?: string;
+  hero_subtitle?: string;
+  hero_subtitle_ar?: string;
+  hero_image?: string;
+  primary_color?: string;
+  active_sections_json?: string;
+  min_order_value?: number;
+  delivery_fee?: number;
+  tax_percentage?: number;
+}
+
+// Modern Cart Item
+export interface CartItem {
+  id: string;
+  item?: MenuItem;
+  selectedSize?: ItemSize | any;
+  product?: any;
+  selectedExtras?: any[];
+  quantity: number;
+  unitPrice?: number;
+  totalPrice?: number;
+  specialInstructions?: string;
+}
+
+// Backwards-compatible models
 export interface ProductExtra {
   id?: number;
   name: string;
@@ -20,6 +99,14 @@ export interface ProductImage {
   image_url: string;
   is_primary?: boolean;
   display_order?: number;
+}
+
+export interface ProductSize {
+  id?: number;
+  name: string;
+  name_ar: string;
+  price: number;
+  is_default?: boolean;
 }
 
 export interface Product {
@@ -50,36 +137,11 @@ export interface Product {
   created_at?: string;
 }
 
-export interface Category {
-  id: number;
-  name: string;
-  name_ar: string;
-  description?: string;
-  description_ar?: string;
-  image_url?: string;
-  icon?: string;
-  display_order: number;
-  is_active: boolean;
-  parent_id?: number;
-  product_count?: number;
-}
-
 export interface CartExtraItem {
   extra_name: string;
   extra_name_ar?: string;
   extra_price: number;
   quantity: number;
-}
-
-export interface CartItem {
-  id: string; // unique cart line id
-  product: Product;
-  selectedSize?: ProductSize;
-  selectedExtras: CartExtraItem[];
-  quantity: number;
-  unitPrice: number;
-  totalPrice: number;
-  specialInstructions?: string;
 }
 
 export interface OrderItemExtra {
@@ -134,35 +196,6 @@ export interface Coupon {
   is_active: boolean;
   usage_count: number;
   valid_until?: string;
-}
-
-export interface RestaurantSettings {
-  id: number;
-  name: string;
-  name_ar: string;
-  logo_url?: string;
-  cover_url?: string;
-  description: string;
-  description_ar: string;
-  phone: string;
-  whatsapp: string;
-  email: string;
-  address: string;
-  address_ar: string;
-  google_maps_url: string;
-  opening_hours: string;
-  social_links_json: string;
-  hero_title: string;
-  hero_title_ar: string;
-  hero_subtitle: string;
-  hero_subtitle_ar: string;
-  hero_image: string;
-  primary_color: string;
-  active_sections_json: string;
-  currency: string;
-  min_order_value: number;
-  delivery_fee: number;
-  tax_percentage: number;
 }
 
 export interface Review {

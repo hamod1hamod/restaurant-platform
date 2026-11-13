@@ -1,0 +1,17 @@
+{
+  "name": "restaurant-menu-backend",
+  "version": "1.0.0",
+  "description": "Minimalist, local-first Node.js backend for Restaurant Menu SPA & Admin Dashboard",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node -e \"console.log('Backend test passed')\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

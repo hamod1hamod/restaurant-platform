@@ -61,14 +61,14 @@ export const AdminCategories: React.FC = () => {
 
   const openEditModal = (cat: Category) => {
     setEditingCategory(cat);
-    setName(cat.name);
-    setNameAr(cat.name_ar);
+    setName(cat.name || '');
+    setNameAr(cat.name_ar || cat.name || '');
     setDescription(cat.description || '');
     setDescriptionAr(cat.description_ar || '');
     setImageUrl(cat.image_url || '');
     setIcon(cat.icon || 'Utensils');
-    setDisplayOrder(cat.display_order);
-    setIsActive(cat.is_active);
+    setDisplayOrder(cat.display_order || 0);
+    setIsActive(cat.is_active ?? true);
     setParentId(cat.parent_id);
     setModalOpen(true);
   };

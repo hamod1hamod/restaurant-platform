@@ -1,0 +1,648 @@
+{
+  "restaurant": {
+    "name": "مطعم وكافيه خطاب",
+    "name_en": "Khatab Restaurant & Café",
+    "currency": "EGP",
+    "currency_symbol": "ج.م",
+    "tagline": "أشهى المأكولات والمشويات الشرقية والغربية في قلب القاهرة",
+    "phone": "+20 100 234 5678",
+    "address": "شارع 26 يوليو، الزمالك، القاهرة"
+  },
+  "categories": [
+    {
+      "id": "cat-grills",
+      "name": "مشويات ولحوم",
+      "name_en": "Grilled Meats & BBQ",
+      "icon": "🥩",
+      "image_url": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+      "description": "مشويات لحوم، كباب وكفتة حاتي وشيش طاووق على الفحم",
+      "sort_order": 1
+    },
+    {
+      "id": "cat-burgers",
+      "name": "برجر وسندوتشات",
+      "name_en": "Burgers & Sandwiches",
+      "icon": "🍔",
+      "image_url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+      "description": "برجر بقري فاخر، دبل تشيز وتشيكن كريسبي مع صوصات خاصة",
+      "sort_order": 2
+    },
+    {
+      "id": "cat-pizza",
+      "name": "بيتزا وفطائر",
+      "name_en": "Pizza & Pies",
+      "icon": "🍕",
+      "image_url": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
+      "description": "بيتزا إيطالية على الحطب، مارجريتا، ببيروني وموتزاريلا طبيعية",
+      "sort_order": 3
+    },
+    {
+      "id": "cat-mains",
+      "name": "وجبات رئيسية",
+      "name_en": "Main Courses",
+      "icon": "🍗",
+      "image_url": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80",
+      "description": "وجبات عائلية متكاملة، دجاج شواية وأرز بسمتي بالخلطة والمكسرات",
+      "sort_order": 4
+    },
+    {
+      "id": "cat-starters",
+      "name": "مقبلات وبطاطس",
+      "name_en": "Appetizers & Sides",
+      "icon": "🍟",
+      "image_url": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=800&q=80",
+      "description": "بطاطس مبهّرة، أصابع جبنة موتزاريلا مقلية، سمبوسك وسلطات شرقية",
+      "sort_order": 5
+    },
+    {
+      "id": "cat-drinks",
+      "name": "مشروبات وعصائر",
+      "name_en": "Drinks & Juices",
+      "icon": "🥤",
+      "image_url": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
+      "description": "عصائر طبيعية طازجة، موهيتو منعش، ومشروبات باردة",
+      "sort_order": 6
+    },
+    {
+      "id": "cat-desserts",
+      "name": "حلويات وكافيه",
+      "name_en": "Desserts & Café",
+      "icon": "🍰",
+      "image_url": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
+      "description": "أم علي بالقشطة والمكسرات، تشيز كيك، وقهوة إسبريسو مختصة",
+      "sort_order": 7
+    }
+  ],
+  "items": [
+    {
+      "id": "item-101",
+      "category_id": "cat-grills",
+      "name": "مشكل مشويات حاتي فاخر",
+      "name_en": "Khatab Mixed Grill Platter",
+      "description": "كباب بتلو، كفتة حاتي مشوية، وشيش طاووق مع خبز بلدي وطحينة",
+      "image_url": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "ربع كيلو (فردي)",
+          "name_en": "Single (250g)",
+          "price": 185
+        },
+        {
+          "name": "نصف كيلو (وسط)",
+          "name_en": "Medium (500g)",
+          "price": 340
+        },
+        {
+          "name": "كيلو كامل (عائلي)",
+          "name_en": "Full Kg (Family)",
+          "price": 650
+        }
+      ]
+    },
+    {
+      "id": "item-102",
+      "category_id": "cat-grills",
+      "name": "كفتة حاتي بلدي على الفحم",
+      "name_en": "Charcoal Grilled Kofta",
+      "description": "كفتة لحم بلدي طازجة بتتبيلة خطاب السرية مع أرز بسمتي وسلطة خضراء",
+      "image_url": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "طبق فردي",
+          "name_en": "Small",
+          "price": 140
+        },
+        {
+          "name": "نصف كيلو",
+          "name_en": "Medium",
+          "price": 260
+        },
+        {
+          "name": "كيلو عائلي",
+          "name_en": "Large",
+          "price": 490
+        }
+      ]
+    },
+    {
+      "id": "item-103",
+      "category_id": "cat-grills",
+      "name": "شيش طاووق متبل بالزبادي والأعشاب",
+      "name_en": "Marinated Shish Tawook",
+      "description": "قطع أوراك دجاج مخلية متبلة ومشوية على السيخ مع فلفل وبصل مشوي",
+      "image_url": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "وجبة صغيرة",
+          "name_en": "Small",
+          "price": 130
+        },
+        {
+          "name": "وجبة وسط",
+          "name_en": "Medium",
+          "price": 210
+        },
+        {
+          "name": "وجبة عائلية",
+          "name_en": "Large",
+          "price": 380
+        }
+      ]
+    },
+    {
+      "id": "item-104",
+      "category_id": "cat-grills",
+      "name": "ريش ضاني مشوية",
+      "name_en": "Grilled Lamb Chops",
+      "description": "ريش ضاني متبلة بأعشاب الجبل ومطبوخة بعناية على الفحم",
+      "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "نصف كيلو",
+          "name_en": "Medium",
+          "price": 420
+        },
+        {
+          "name": "كيلو كامل",
+          "name_en": "Large",
+          "price": 790
+        }
+      ]
+    },
+    {
+      "id": "item-105",
+      "category_id": "cat-grills",
+      "name": "طرب لحم بلدي مخصوص",
+      "name_en": "Traditional Tarb",
+      "description": "كفتة مشوية ملفوفة بمنديل الضاني المقرمش الشهير",
+      "image_url": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "طبق فردي",
+          "name_en": "Small",
+          "price": 160
+        },
+        {
+          "name": "نصف كيلو",
+          "name_en": "Medium",
+          "price": 295
+        },
+        {
+          "name": "كيلو عائلي",
+          "name_en": "Large",
+          "price": 560
+        }
+      ]
+    },
+    {
+      "id": "item-106",
+      "category_id": "cat-grills",
+      "name": "حواوشي حاتي إسكندراني بالجبنة",
+      "name_en": "Stuffed Hawawshi with Mozzarella",
+      "description": "خبز بلدي مقرمش محشو باللحم البلدي المتبل والجبنة الموتزاريلا الذائبة",
+      "image_url": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "رغيف عادي",
+          "name_en": "Regular",
+          "price": 65
+        },
+        {
+          "name": "رغيف دبل لحم وجبنة",
+          "name_en": "Double Meat & Cheese",
+          "price": 95
+        }
+      ]
+    },
+    {
+      "id": "item-201",
+      "category_id": "cat-burgers",
+      "name": "كلاسيك سموك هاوس برجر",
+      "name_en": "Smokehouse Classic Burger",
+      "description": "قطعة برجر بقري أنجوس 180 جم مع صوص الباربكيو المدخن وشيدر معتقة",
+      "image_url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "سينجل (150 جم)",
+          "name_en": "Single",
+          "price": 125
+        },
+        {
+          "name": "دبل (300 جم)",
+          "name_en": "Double",
+          "price": 175
+        },
+        {
+          "name": "تريبل (450 جم)",
+          "name_en": "Triple",
+          "price": 225
+        }
+      ]
+    },
+    {
+      "id": "item-202",
+      "category_id": "cat-burgers",
+      "name": "ديلوكس مشروم آند سويس برجر",
+      "name_en": "Mushroom & Swiss Burger",
+      "description": "برجر بقري طازج مع مشروم سوتيه كريمي وجبنة سويسرية ذائبة",
+      "image_url": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "حجم عادي",
+          "name_en": "Single",
+          "price": 135
+        },
+        {
+          "name": "حجم دبل",
+          "name_en": "Double",
+          "price": 185
+        }
+      ]
+    },
+    {
+      "id": "item-203",
+      "category_id": "cat-burgers",
+      "name": "سوبر كريسبي تشيكن زنجر",
+      "name_en": "Super Crispy Chicken Zinger",
+      "description": "صدر دجاج مقرمش متبل بخلطة حارة مع كول سلو وصوص تشيزي رانش",
+      "image_url": "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "عادي (Regular)",
+          "name_en": "Regular",
+          "price": 110
+        },
+        {
+          "name": "وجبة كومبو (مع بطاطس ومشروب)",
+          "name_en": "Combo Meal",
+          "price": 155
+        }
+      ]
+    },
+    {
+      "id": "item-204",
+      "category_id": "cat-burgers",
+      "name": "سندوتش كفتة حاتي بالخبز البلدي",
+      "name_en": "Egyptian Kofta Roll",
+      "description": "أصابع كفتة حاتي مشوية في خبز ساخن مع طحينة وخضروات مخللة",
+      "image_url": "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "سندوتش فردي",
+          "name_en": "Single",
+          "price": 55
+        },
+        {
+          "name": "سندوتش دبل",
+          "name_en": "Double",
+          "price": 85
+        }
+      ]
+    },
+    {
+      "id": "item-205",
+      "category_id": "cat-burgers",
+      "name": "سندوتش كبدة إسكندراني سبيشال",
+      "name_en": "Alexandrian Liver Sandwich",
+      "description": "كبدة بلدي متبلة بالثوم والفلفل الحار والليمون بالطريقة الإسكندرانية الأصلية",
+      "image_url": "https://images.unsplash.com/photo-1549611016-3a70d82b5040?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "سندوتش عادي",
+          "name_en": "Regular",
+          "price": 50
+        },
+        {
+          "name": "سندوتش جامبو",
+          "name_en": "Jumbo",
+          "price": 75
+        }
+      ]
+    },
+    {
+      "id": "item-301",
+      "category_id": "cat-pizza",
+      "name": "بيتزا ببيروني إيطالي كلاسيك",
+      "name_en": "Pepperoni Classic Pizza",
+      "description": "صلصة طماطم سان مارزانو، موتزاريلا إيطالية طبيعية وشرائح ببيروني مقرمشة",
+      "image_url": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "صغير (22 سم)",
+          "name_en": "Small (22cm)",
+          "price": 120
+        },
+        {
+          "name": "وسط (28 سم)",
+          "name_en": "Medium (28cm)",
+          "price": 175
+        },
+        {
+          "name": "كبير (35 سم)",
+          "name_en": "Large (35cm)",
+          "price": 235
+        }
+      ]
+    },
+    {
+      "id": "item-302",
+      "category_id": "cat-pizza",
+      "name": "بيتزا فور تشيز (أربعة أجبان)",
+      "name_en": "Quattro Formaggi Pizza",
+      "description": "مزيج فاخر من الموتزاريلا، البارميزان، الريكوتا والجبنة الزرقاء جورجونزولا",
+      "image_url": "https://images.unsplash.com/photo-1573821663912-569905455b1c?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "صغير (22 سم)",
+          "name_en": "Small",
+          "price": 130
+        },
+        {
+          "name": "وسط (28 سم)",
+          "name_en": "Medium",
+          "price": 185
+        },
+        {
+          "name": "كبير (35 سم)",
+          "name_en": "Large",
+          "price": 250
+        }
+      ]
+    },
+    {
+      "id": "item-303",
+      "category_id": "cat-pizza",
+      "name": "بيتزا باربكيو تشيكن",
+      "name_en": "BBQ Chicken Pizza",
+      "description": "قطع دجاج مشوية بصوص الباربكيو، بصل أحمر مكرمل، فلفل ألوان وجبنة موتزاريلا",
+      "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "صغير",
+          "name_en": "Small",
+          "price": 125
+        },
+        {
+          "name": "وسط",
+          "name_en": "Medium",
+          "price": 180
+        },
+        {
+          "name": "كبير",
+          "name_en": "Large",
+          "price": 245
+        }
+      ]
+    },
+    {
+      "id": "item-304",
+      "category_id": "cat-pizza",
+      "name": "فطيرة سجق بلدي إسكندراني كيري",
+      "name_en": "Alexandrian Sausage Pie with Kiri",
+      "description": "فطير شرقي مورق بالسمن البلدي محشو بسجق إسكندراني وجبنة كيري وموتزاريلا",
+      "image_url": "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "وسط",
+          "name_en": "Medium",
+          "price": 165
+        },
+        {
+          "name": "كبير عائلي",
+          "name_en": "Large",
+          "price": 230
+        }
+      ]
+    },
+    {
+      "id": "item-305",
+      "category_id": "cat-pizza",
+      "name": "فطيرة مشكل لحوم شرقية",
+      "name_en": "Eastern Meat Lovers Pie",
+      "description": "لحم مفروم، بسطرمة، سجق، زيتون، فلفل ألوان وموتزاريلا مطاطية",
+      "image_url": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "وسط",
+          "name_en": "Medium",
+          "price": 175
+        },
+        {
+          "name": "كبير عائلي",
+          "name_en": "Large",
+          "price": 245
+        }
+      ]
+    },
+    {
+      "id": "item-401",
+      "category_id": "cat-mains",
+      "name": "دجاج شواية على الفحم مع أرز بالخلطة",
+      "name_en": "Charcoal Roasted Chicken Platter",
+      "description": "دجاجة طازجة مشوية بتتبيلة الأعشاب مع أرز بسمتي بالخلطة والمكسرات وسلطات",
+      "image_url": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "نصف دجاجة (فردي)",
+          "name_en": "Half Chicken",
+          "price": 135
+        },
+        {
+          "name": "دجاجة كاملة (عائلي)",
+          "name_en": "Whole Chicken",
+          "price": 245
+        }
+      ]
+    },
+    {
+      "id": "item-402",
+      "category_id": "cat-mains",
+      "name": "طاجن لحمة موزة بالبصل القاورما",
+      "name_en": "Braised Beef Shank Tagine",
+      "description": "لحم موزة بتلو مطهو على نار هادئة في طاجن فخار مع البصل المكرمل وتوابل خطاب",
+      "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "طاجن وسط",
+          "name_en": "Medium",
+          "price": 220
+        },
+        {
+          "name": "طاجن كبير لشخصين",
+          "name_en": "Large",
+          "price": 340
+        }
+      ]
+    },
+    {
+      "id": "item-403",
+      "category_id": "cat-mains",
+      "name": "فتة لحمة كوارع وموزة مصرية",
+      "name_en": "Traditional Egyptian Fatta",
+      "description": "خبز بلدي محمص، أرز مصري بالزبدة، صلصة الخل والثوم وقطع لحم بتلو دايبة",
+      "image_url": "https://images.unsplash.com/photo-1547928576-965beec56488?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "طبق فردي",
+          "name_en": "Single",
+          "price": 175
+        },
+        {
+          "name": "سرفيس عائلي",
+          "name_en": "Family",
+          "price": 320
+        }
+      ]
+    },
+    {
+      "id": "item-404",
+      "category_id": "cat-mains",
+      "name": "وجبة كريسبي استربس عائلية",
+      "name_en": "Family Crispy Chicken Strips",
+      "description": "قطع صدور دجاج كرانشي ذهبية مع أرز ريزو، بطاطس مقلية، كول سلو وصوصات",
+      "image_url": "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "وجبة 5 قطع",
+          "name_en": "5 Pieces",
+          "price": 140
+        },
+        {
+          "name": "وجبة 10 قطع",
+          "name_en": "10 Pieces",
+          "price": 260
+        },
+        {
+          "name": "سطل عائلي 18 قطعة",
+          "name_en": "Family Bucket 18 Pcs",
+          "price": 420
+        }
+      ]
+    },
+    {
+      "id": "item-501",
+      "category_id": "cat-starters",
+      "name": "بطاطس ودجز مبهّرة مقرمشة",
+      "name_en": "Seasoned Potato Wedges",
+      "description": "أصابع بطاطس مقرمشة متبلة بخلطة البابريكا والأوريجانو مع صوص شيدر",
+      "image_url": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "حجم عادي",
+          "name_en": "Regular",
+          "price": 45
+        },
+        {
+          "name": "حجم عائلي",
+          "name_en": "Large",
+          "price": 75
+        }
+      ]
+    },
+    {
+      "id": "item-502",
+      "category_id": "cat-starters",
+      "name": "أصابع جبنة موتزاريلا مقلية",
+      "name_en": "Crispy Mozzarella Sticks",
+      "description": "أصابع موتزاريلا مقلية ذهبية مع صوص المارينارا الإيطالي",
+      "image_url": "https://images.unsplash.com/photo-1531749668029-2db88e4276c7?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "4 قطع",
+          "name_en": "4 Pcs",
+          "price": 65
+        },
+        {
+          "name": "8 قطع",
+          "name_en": "8 Pcs",
+          "price": 115
+        }
+      ]
+    },
+    {
+      "id": "item-601",
+      "category_id": "cat-drinks",
+      "name": "عصير مانجو طبيعي فريش",
+      "name_en": "Fresh Mango Juice",
+      "description": "عصير مانجو طبيعي 100% بدون أي مواد حافظة أو سكر إضافي",
+      "image_url": "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "كوب وسط (350 مل)",
+          "name_en": "Medium (350ml)",
+          "price": 45
+        },
+        {
+          "name": "كوب كبير (500 مل)",
+          "name_en": "Large (500ml)",
+          "price": 65
+        }
+      ]
+    },
+    {
+      "id": "item-602",
+      "category_id": "cat-drinks",
+      "name": "موهيتو ليمون ونعناع منعش",
+      "name_en": "Lemon Mint Mojito",
+      "description": "ليمون طازج مع أوراق النعناع والصودا وقطع الثلج المجروش",
+      "image_url": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "كأس عادي",
+          "name_en": "Regular",
+          "price": 50
+        },
+        {
+          "name": "كأس جامبو",
+          "name_en": "Jumbo",
+          "price": 70
+        }
+      ]
+    },
+    {
+      "id": "item-701",
+      "category_id": "cat-desserts",
+      "name": "طاجن أم علي ملوكي بالمكسرات والقشطة",
+      "name_en": "Royal Om Ali with Nuts",
+      "description": "رقائق ميل فوي بالحليب الساخن والمكسرات المحمصة وقشطة بلدي طازجة",
+      "image_url": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
+      "is_available": true,
+      "sizes": [
+        {
+          "name": "طاجن فردي",
+          "name_en": "Single",
+          "price": 65
+        },
+        {
+          "name": "طاجن عائلي للمشاركة",
+          "name_en": "Family Platter",
+          "price": 120
+        }
+      ]
+    }
+  ]
+}

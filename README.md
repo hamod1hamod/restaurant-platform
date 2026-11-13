@@ -1,182 +1,81 @@
-# Khatab Restaurant & Café — Digital Menu & Management Platform
+# Khatab Restaurant & Café — Digital Menu SPA & Admin Dashboard
 
 [![Deploy to GitHub Pages](https://github.com/hamod1hamod/restaurant-platform/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/hamod1hamod/restaurant-platform/actions/workflows/deploy-pages.yml)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f?style=flat&logo=github)](https://hamod1hamod.github.io/restaurant-platform/)
-[![Codespaces](https://img.shields.io/badge/Codespaces-Open%20in%20Browser-blue?logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=hamod1hamod/restaurant-platform)
-[![Docker Compose](https://img.shields.io/badge/Docker%20Compose-Ready-2496ED?logo=docker)](docker-compose.yml)
 
-> 🌐 **Live Demo Website:** [https://hamod1hamod.github.io/restaurant-platform/](https://hamod1hamod.github.io/restaurant-platform/)  
-> 🎓 **Student Developer Guide:** See [STUDENT_PLAN_GUIDE.md](STUDENT_PLAN_GUIDE.md) for Codespaces, custom domain, and cloud hosting perks.
+> 🌐 **Live Demo Website:** [https://hamod1hamod.github.io/restaurant-platform/](https://hamod1hamod.github.io/restaurant-platform/)
 
-A modern, responsive, full-stack restaurant platform featuring an interactive **Customer Digital Menu & Ordering Website** and a comprehensive **Admin Restaurant Management Dashboard**, backed by a high-performance **Python FastAPI** backend with dual **PostgreSQL / SQLite** database engines.
+A minimalist, high-performance, single-page application (SPA) for a digital restaurant menu and an admin management dashboard, built with **React**, **Tailwind CSS**, and a lightweight **Node.js** local-first backend.
 
 ---
 
 ## 🌟 Key Features
 
-### 1. Customer Landing Page & Digital Menu
-- **Bilingual Interface (English & Arabic):** Instant toggle with native `RTL` (Right-to-Left) and `LTR` layout orientation.
-- **Dark Mode & Light Mode:** Seamless theme switching with persistent user preference.
-- **Hero Showcase:** Dynamic hero title, subtitle, backdrop imagery, hours pill, and direct WhatsApp ordering button.
-- **Dynamic Food Categories:** Categorized dishes (Burgers, Steaks, Artisan Pizza, Breakfast, Starters, Desserts, Juices, Specialty Coffee) dynamically managed by the administrator.
-- **Advanced Search & Filtering:**
-  - Real-time search across dish titles and descriptions (both English and Arabic).
-  - Filter by Category, Vegetarian, Spicy, and Best Seller badges.
-  - Sort by Price (Low to High, High to Low), Popularity, and Newest additions.
-- **Product Details & Customization Modal:**
-  - High-resolution imagery, full descriptions, prep times, calorie counts, and ingredients list.
-  - Multi-size selector (e.g., Single Patty, Double, Regular, Sharing) with automatic live price recalculation.
-  - Configurable add-on extras (e.g., Extra Cheese, Truffle Aioli, Mushrooms) with custom prices.
-  - Special kitchen instructions field.
-- **Interactive Cart & Checkout Flow:**
-  - Slide-over Cart Drawer with item breakdown, size and extras details, and quantity adjustments.
-  - Promotional discount coupon validator (e.g. `WELCOME10`, `KHATAB20`, `SAVE5`).
-  - Order types: **Delivery**, **Pickup**, and **Dine-In** (with Table Number).
-  - Payment methods: **Cash on Delivery**, **Cash at Counter**, and **Online Card Simulator**.
-  - Generates a unique tracking Order Number (e.g., `ORD-20261111-36BAF0`) with a confirmation receipt.
-- **Additional Sections:**
-  - Chef's Best Sellers showcase.
-  - Exclusive Promotions & Discount Vouchers.
-  - Restaurant Culinary Story & Hygiene Standards.
-  - High-res Food & Dining Photo Gallery.
-  - Customer Testimonials & interactive "Leave a Review" modal.
-  - Location, Hours, Google Maps embed, and Customer Care telephone.
+### 1. Public Menu View (Customer Facing)
+- **Single, Mobile-Friendly Page:** Ultra-fast, responsive layout tailored for mobile phones, tablets, and desktops.
+- **Prominent Category Cards:** Elegant category cards featuring the exact elevated aesthetic with appetizing photos, item counts (`X صنف`), floating category emojis (🍗, 🍕, 🍔, 🥩, 🍟, 🥤, 🍰), and direct "عرض الأصناف" triggers.
+- **Dynamic Items Display:** Clicking any category or tab dynamically loads and displays all items belonging to that category below it.
+- **Dynamic Sizes & Prices:** Each item displays its Name, Description, and **multiple Size options with their corresponding Prices** (e.g., Small, Medium, Large, or Family) with interactive size selector pills and instant price calculation.
+- **Instant Search:** Real-time search across all dishes and drinks.
+- **Slide-in Cart Drawer:** Quick order review, quantity adjustment, and order confirmation in Egyptian Pounds (EGP / ج.م).
+
+### 2. Admin Dashboard (Management Facing)
+- **Secure Access Gate:** Easily accessible via the "لوحة الإدارة" button in the header (Password: `admin123`).
+- **Category Management (CRUD):** Add, Edit, and Delete categories with name, emoji icon, description, and image URL.
+- **Quick Category Photo Changer:** Clicking `[ 📷 تغيير الصورة ]` or `[ 📷 تعديل الصورة ]` directly opens an instant photo picker with high-definition food presets.
+- **Item Management (CRUD):** Add, Edit, and Delete menu items within any category.
+- **Dynamic Size & Price Form:** Add and remove multiple sizes with corresponding prices dynamically (`[+ إضافة حجم]`).
+
+### 3. Lightweight & Local-First Architecture
+- **Dual-Mode Data Layer:** Automatically connects to the local Node.js Express API (`http://localhost:5000/api`) when running, and seamlessly falls back to persistent `localStorage` when deployed standalone (e.g. on GitHub Pages).
 
 ---
 
-### 2. Comprehensive Admin Dashboard
-Accessible via the **Admin Portal** button in the header (Default credentials: `admin` / `admin123`).
+## 🚀 How to Run Locally
 
-- **Dashboard Overview & Analytics:**
-  - KPI cards: Gross Revenue, Total Orders, Active Pipeline Orders, Menu Dish Count.
-  - Interactive Sales Chart (Daily, Weekly, Monthly view toggles).
-  - Top-selling food items ranked by volume and revenue contribution.
-  - Live inbound orders table with real-time status indicators.
-- **Category Management:**
-  - Full CRUD: Add, edit, delete categories.
-  - Bilingual titles & descriptions (EN & AR).
-  - Reorder categories and toggle visibility on the live menu.
-  - Image upload or image URL preview.
-- **Food & Drink Menu Management (All 15 Fields):**
-  1. Product Name (English)
-  2. Product Name (Arabic)
-  3. Description (English)
-  4. Description (Arabic)
-  5. Category assignment
-  6. Product Type (Food, Drinks, Desserts, Snacks, Combos, Special Offers)
-  7. Regular Base Price
-  8. Discount Promotional Price
-  9. Product Image (File upload or direct URL)
-  10. Available Sizes & Differential Pricing (e.g., Small, Medium, Large)
-  11. Ingredients list (EN & AR)
-  12. Extra Options & Add-on Pricing (e.g., Extra Cheese, Sauces)
-  13. Availability toggle (In Stock / Sold Out)
-  14. Promotional Badges (Featured, Best Seller, New, Vegetarian, Spicy)
-  15. Display Order priority
-  - Duplicate product button for quick menu expansion.
-- **Order Management & Invoicing:**
-  - Search orders by order number, customer name, or phone.
-  - Filter orders by status: `new`, `confirmed`, `preparing`, `ready`, `out_for_delivery`, `completed`, `cancelled`.
-  - Update order status and payment status in one click.
-  - Detailed modal view of ordered dishes, sizes, extras, and customer instructions.
-  - Printable official tax invoice / receipt with restaurant branding.
-- **Pricing & Coupon Management:**
-  - Create custom discount codes (Percentage or Fixed Dollar amount).
-  - Configure minimum order threshold and maximum discount caps.
-  - Real-time coupon usage tracking.
-- **Restaurant Information & Visual Landing Customizer:**
-  - Edit restaurant name, logo, phone, WhatsApp, address, opening hours, and currency.
-  - Customize the customer landing page: Hero headline (EN & AR), subtitle, hero banner image.
-  - Section visibility toggles: Enable or disable any homepage section without touching source code.
-  - Configure minimum delivery order value and delivery fees.
-- **Customer CRM:**
-  - Searchable directory of customer profiles derived from past orders.
-  - Total order frequency, gross spend, and contact information.
-- **Reports & Data Export:**
-  - Download full sales reports in **CSV / Excel** format.
-  - Printable financial summary audit.
+### 1. Prerequisites
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
 
----
-
-## 🛠 Technology Stack
-
-- **Frontend:**
-  - React 19 + TypeScript + Vite
-  - Tailwind CSS v4
-  - Lucide React Icons
-  - LocalStorage persistence for Cart, Language, Theme, and Auth
-- **Backend:**
-  - Python 3.11+ / FastAPI
-  - SQLAlchemy 2.0 ORM
-  - Pydantic v2 schemas and data validation
-  - Passlib + Bcrypt password hashing
-  - JWT Bearer Authentication & Role-based Access Control
-  - Multipart file upload engine with static file serving
-- **Database:**
-  - Dual Compatibility: **PostgreSQL 16** (Production/Docker) and **SQLite** (instant zero-configuration local development).
-
----
-
-## 🚀 Quick Start Guide (Local Development)
-
-### 1. Backend Setup
+### 2. Start Backend API Server
 ```bash
+# Navigate to backend directory
 cd backend
 
-# Create virtual environment
-python -m venv venv
+# Install dependencies (only express, cors, multer)
+npm install
 
-# Activate virtual environment
-# Windows:
-.\venv\Scripts\activate
-# Linux/macOS:
-# source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Seed initial restaurant demo data
-python -m app.seed
-
-# Run FastAPI server
-uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+# Start the Node.js server
+npm start
 ```
-The backend API and interactive Swagger documentation will be available at:
-- **Swagger Docs:** `http://127.0.0.1:8000/docs`
-- **ReDoc:** `http://127.0.0.1:8000/redoc`
+The backend API server will run at: `http://localhost:5000`
 
----
-
-### 2. Frontend Setup
+### 3. Start Frontend Development Server
+Open a new terminal window:
 ```bash
+# Navigate to frontend directory
 cd frontend
 
-# Install packages
+# Install dependencies
 npm install
 
 # Start Vite dev server
 npm run dev
 ```
-Open your browser at `http://localhost:5173` (or the port shown in terminal).
+Open your browser at: `http://localhost:5173`
 
 ---
 
-## 🐳 Docker & Docker-Compose Deployment
+## 🔑 Admin Access
+- Click **"لوحة الإدارة"** in the top navigation bar.
+- Enter the admin password: `admin123` (or click "استخدام تلقائي").
+- You can now add, edit, delete categories, change photos, and manage items with multiple sizes and prices.
 
-Deploy the complete multi-tier stack (PostgreSQL database + FastAPI backend + React production Nginx frontend) with a single command:
+---
 
+## 📦 Build for Production / Deployment
 ```bash
-docker-compose up -d --build
+cd frontend
+npm run build
 ```
-
-### Services launched:
-- **Frontend:** `http://localhost:80`
-- **Backend API:** `http://localhost:8000`
-- **PostgreSQL Database:** `localhost:5432`
-
----
-
-## 🔐 Default Admin Account
-- **Username:** `admin` (or `admin@restaurant.com`)
-- **Password:** `admin123`
-- Click the **Admin Portal** button in the top navbar and click **Auto Fill** for instant access.
+The production bundle is generated in `frontend/dist/` and is deployed to GitHub Pages via `.github/workflows/deploy-pages.yml`.
